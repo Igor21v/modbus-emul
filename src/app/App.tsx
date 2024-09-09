@@ -1,14 +1,14 @@
 import { MainLayout } from 'shared/layouts/MainLayout';
-import { MainPage } from '../pages/MainPage';
 import { Leftbar } from 'widgets/Leftbar';
 import { Rightbar } from 'widgets/Rightbar';
 import { Logbar } from 'widgets/Logbar';
+import { AppRouter } from './providers/router';
 
 function App() {
   return (
     <div className="app">
       <MainLayout
-        content={<>Content</>}
+        content={<AppRouter />}
         leftbar={<Leftbar />}
         rightbar={<Rightbar />}
         logbar={<Logbar />}
