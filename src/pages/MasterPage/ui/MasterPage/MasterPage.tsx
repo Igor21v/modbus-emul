@@ -3,17 +3,15 @@ import cls from './MasterPage.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 
 interface MasterPageProps {
-    className ?: string;
+  className?: string;
 }
 
 export const MasterPage = memo((props: MasterPageProps) => {
-    const {
-        className,
-    } = props;
+  const { className } = props;
 
-    return (
-        <div className={classNames(cls.MasterPage, {}, [className])} >
-           
-        </div>
-    );
+  return (
+    <div className={classNames(cls.MasterPage, {}, [className])}>
+      Страница режима Мастер
+    </div>
+  );
 });

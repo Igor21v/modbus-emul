@@ -18,7 +18,7 @@ export const routeConfig = (): Record<AppRoutes, AppRouteProps> => {
       element: <SlavePage />,
     },
     listen: {
-      path: routerMap.slave,
+      path: routerMap.listen,
       element: <ListenPage />,
     },
     // last

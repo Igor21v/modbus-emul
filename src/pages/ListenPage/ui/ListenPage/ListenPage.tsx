@@ -3,17 +3,15 @@ import cls from './ListenPage.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 
 interface ListenPageProps {
-    className ?: string;
+  className?: string;
 }
 
 export const ListenPage = memo((props: ListenPageProps) => {
-    const {
-        className,
-    } = props;
+  const { className } = props;
 
-    return (
-        <div className={classNames(cls.ListenPage, {}, [className])} >
-           
-        </div>
-    );
+  return (
+    <div className={classNames(cls.ListenPage, {}, [className])}>
+      Страница прослушки
+    </div>
+  );
 });
