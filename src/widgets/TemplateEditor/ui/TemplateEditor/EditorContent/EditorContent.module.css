@@ -1,0 +1,11 @@
+.firstCol {
+  width: 150px;
+}
+
+.stringWrapper {
+  width: 100%;
+}
+
+.EditorContent {
+  overflow-y: auto;
+}

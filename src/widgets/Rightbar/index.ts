@@ -1,0 +1,1 @@
+export { Rightbar } from './ui/Rightbar/Rightbar';
