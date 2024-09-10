@@ -14,11 +14,13 @@
 
 .rightbar {
   grid-area: rightbar;
-  min-width: 200px;
+  min-width: 270px;
+  background: var(--bg-color);
 }
 
 .logbar {
   grid-area: logbar;
+  background: var(--bg-color);
 }
 
 .content {

@@ -22,5 +22,5 @@
 
 *::-webkit-scrollbar-thumb {
   background-color: var(--primary-color); /* цвет плашки */
-  border-radius: 20px; /* закругления плашки */
+  border-radius: 5px; /* закругления плашки */
 }
