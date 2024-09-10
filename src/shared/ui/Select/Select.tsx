@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Select.module.scss';
+import cls from './Select.module.css';
 import { genericMemo } from 'shared/lib/components/GenericMemo/GenericMemo';
 
 export interface SelectOption<T extends string> {
@@ -45,20 +45,17 @@ const Select = <T extends string>(props: SelectProps<T>) => {
 
   return (
     <p
-      className={classNames(cls.Wrapper, { [cls.column]: column }, [
-        className,
-        'scroll-thin',
-      ])}
+      className={classNames(cls.Wrapper, { [cls.column]: column }, [className])}
     >
-      <label htmlFor={label}>
-        {label && <span className={cls.label}>{`${label}>`}</span>}
+      <label htmlFor="label">
+        {label && <span className={cls.label}>{`${label}`}</span>}
       </label>
       <select
         disabled={readonly}
         className={classNames(
           cls.select,
           { [cls.validateError]: validateError },
-          ['scroll-thin'],
+          [],
         )}
         value={value}
         onChange={onChangeHandler}

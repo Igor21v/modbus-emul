@@ -1,0 +1,1 @@
+export { RateSelector } from './ui/RateSelector/RateSelector';
