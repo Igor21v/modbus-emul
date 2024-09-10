@@ -1,8 +1,9 @@
 import { memo } from 'react';
-import cls from './PortSettings.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { RateSelector } from '../RateSelector/RateSelector';
+import { Button } from 'shared/ui/Button';
+import { BitInByteSelector } from '../BitInByteSelector/BitInByteSelector';
 import { ParitySelector } from '../ParitySelector/ParitySelector';
+import { RateSelector } from '../RateSelector/RateSelector';
+import { StopBitSelector } from '../StopBitSelector/StopBitSelector';
 
 interface PortSettingsProps {
   className?: string;
@@ -15,6 +16,9 @@ export const PortSettings = memo((props: PortSettingsProps) => {
     <>
       <RateSelector />
       <ParitySelector />
+      <StopBitSelector />
+      <BitInByteSelector />
+      <Button>Выбрать порт</Button>
     </>
   );
 });

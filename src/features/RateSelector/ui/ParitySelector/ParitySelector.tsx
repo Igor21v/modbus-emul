@@ -13,7 +13,7 @@ export const ParitySelector = memo((props: ParitySelectorProps) => {
   const options: SelectOption<string>[] = [
     {
       value: `none`,
-      content: 'None (отключен)',
+      content: 'None (отключено)',
     },
     {
       value: `even`,
@@ -29,7 +29,7 @@ export const ParitySelector = memo((props: ParitySelectorProps) => {
     <Select
       className={classNames(cls.RateSelector, {}, [className])}
       options={options}
-      label="Контроль чётности"
+      label="Чётность"
       value={parity}
       onChange={setParity}
     />
