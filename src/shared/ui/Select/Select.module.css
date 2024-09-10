@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.labelWrap {
+  text-align: center;
+}
+
 .label {
   margin-right: 5px;
 }
