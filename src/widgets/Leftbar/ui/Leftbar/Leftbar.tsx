@@ -18,7 +18,6 @@ export const Leftbar = memo((props: LeftbarProps) => {
   const navFn = (path: TabItem<AppRoutePaths>) => {
     navigate(path.value);
   };
-  console.log(pathname);
   const tabs: TabItem<AppRoutePaths>[] = [
     {
       value: '/',
