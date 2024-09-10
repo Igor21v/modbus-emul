@@ -5,7 +5,7 @@ import cls from './AppLink.module.css';
 
 export type AppLinkTheme = 'primary' | 'secondary' | 'red';
 
-interface AppLinkProps extends LinkProps {
+export interface AppLinkProps extends LinkProps {
   className?: string;
   theme?: AppLinkTheme;
   children?: ReactNode;

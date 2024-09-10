@@ -1,4 +1,4 @@
-import { RouteProps } from 'react-router-dom';
+import { Navigate, RouteProps, redirect } from 'react-router-dom';
 import { AppRoutes } from 'shared/const/router';
 import { routerMap } from 'shared/const/router';
 import { MasterPage } from 'pages/MasterPage';
@@ -7,7 +7,10 @@ import { ListenPage } from 'pages/ListenPage';
 
 export type AppRouteProps = RouteProps;
 
-export const routeConfig = (): Record<AppRoutes, AppRouteProps> => {
+export const routeConfig = (): Record<
+  AppRoutes | 'not_found',
+  AppRouteProps
+> => {
   return {
     master: {
       path: routerMap.master,
@@ -24,7 +27,7 @@ export const routeConfig = (): Record<AppRoutes, AppRouteProps> => {
     // last
     not_found: {
       path: '*',
-      element: <MasterPage />,
+      element: <Navigate to="/" replace />,
     },
   };
 };

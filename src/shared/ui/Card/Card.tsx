@@ -1,11 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
-import cls from "./Card.module.css";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './Card.module.css';
 
-export enum CardTheme {
-  NORMAL = "normal",
-  OUTLINED = "outlined",
-}
+type CardTheme = 'normal' | 'outlined';
 
 interface CardProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -20,7 +17,7 @@ export const Card = (props: CardProps) => {
   const {
     className,
     children,
-    theme = CardTheme.NORMAL,
+    theme = 'normal',
     max,
     shadow,
     ...otherProps

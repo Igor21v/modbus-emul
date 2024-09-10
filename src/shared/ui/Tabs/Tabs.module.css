@@ -1,8 +1,7 @@
-.Tabs {
-    display: flex;
-    gap: 8px;
+.tab {
+  cursor: pointer;
 }
 
-.tab {
-    cursor: pointer;
+.tab:hover {
+  opacity: 0.8;
 }

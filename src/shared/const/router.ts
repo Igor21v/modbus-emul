@@ -1,8 +1,9 @@
-export type AppRoutes = 'master' | 'slave' | 'listen' | 'not_found';
+export type AppRoutes = 'master' | 'slave' | 'listen';
 
-export const routerMap: Record<AppRoutes, string> = {
+export type AppRoutePaths = '/' | '/slave' | '/listen';
+
+export const routerMap: Record<AppRoutes, AppRoutePaths> = {
   master: '/',
   slave: '/slave',
   listen: '/listen',
-  not_found: '/',
 };

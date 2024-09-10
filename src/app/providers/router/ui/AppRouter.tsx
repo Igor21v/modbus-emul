@@ -1,11 +1,5 @@
 import { Suspense, useCallback } from 'react';
-import {
-  Route,
-  RouteObject,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { PageLoader } from 'widgets/PageLoader';
 import { AppRouteProps, routeConfig } from '../config/routeConfig';
 

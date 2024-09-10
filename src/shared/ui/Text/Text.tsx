@@ -13,11 +13,7 @@ export enum TextTheme {
 
 type TextAlign = 'right' | 'left' | 'center';
 
-export enum TextSize {
-  S = 'size_s',
-  M = 'size_m',
-  L = 'size_l',
-}
+type TextSize = 'size_s' | 'size_m' | 'size_l';
 
 type HeaderTagType = 'h1' | 'h2' | 'h3' | 'p';
 
@@ -56,7 +52,7 @@ export const Text = memo((props: TextProps) => {
     text,
     theme = TextTheme.PRIMARY,
     align = 'left',
-    size = TextSize.M,
+    size = 'size_m',
     HeaderTag = 'p',
     italic,
     classNameTitle,
