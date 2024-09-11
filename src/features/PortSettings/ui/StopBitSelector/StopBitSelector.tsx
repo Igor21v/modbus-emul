@@ -12,7 +12,7 @@ interface StopBitSelectorProps {
 
 export const StopBitSelector = memo((props: StopBitSelectorProps) => {
   const { className } = props;
-  const stopBit = useSelector((state: RootState) => state.port.stopBit);
+  const stopBits = useSelector((state: RootState) => state.port.stopBits);
   const dispatch = useDispatch();
   const variants = [1, 1.5, 2];
   const options: SelectOption<string>[] = variants.map((rate) => {
@@ -27,7 +27,7 @@ export const StopBitSelector = memo((props: StopBitSelectorProps) => {
       className={classNames(cls.RateSelector, {}, [className])}
       options={options}
       label="Стоп бит"
-      value={stopBit}
+      value={stopBits}
       onChange={(value) => dispatch(portActions.setStopBit(value))}
     />
   );

@@ -13,7 +13,7 @@ interface BitInByteSelectorProps {
 export const BitInByteSelector = memo((props: BitInByteSelectorProps) => {
   const { className } = props;
   const dispatch = useDispatch();
-  const dataBits = useSelector((state: RootState) => state.port.dataBit);
+  const dataBits = useSelector((state: RootState) => state.port.dataBits);
   const variants = [8, 7];
   const options: SelectOption<string>[] = variants.map((rate) => {
     return {
