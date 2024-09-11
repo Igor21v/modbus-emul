@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { openPort } from '../services/openPort';
 
 export interface PortState {
   baudRate: string;
@@ -33,9 +34,11 @@ const portSlice = createSlice({
     setStopBit: (state, action: PayloadAction<string>) => {
       state.stopBits = action.payload;
     },
-    setPort: (state, action: PayloadAction<any>) => {
+  },
+  extraReducers: (builder) => {
+    builder.addCase(openPort.fulfilled, (state, action) => {
       state.port = action.payload;
-    },
+    });
   },
 });
 
