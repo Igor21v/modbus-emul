@@ -4,7 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Select, SelectOption } from 'shared/ui/Select';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/providers/StoreProvider/config/store';
-import { portActions } from 'features/RateSelector/model/slice/portSlice';
+import { portActions } from '../../model/slice/portSlice';
 
 interface RateSelectorProps {
   className?: string;

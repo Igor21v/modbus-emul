@@ -2,6 +2,9 @@ import { memo, useState } from 'react';
 import cls from './ParitySelector.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Select, SelectOption } from 'shared/ui/Select';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'app/providers/StoreProvider/config/store';
+import { portActions } from 'features/PortSettings/model/slice/portSlice';
 
 interface ParitySelectorProps {
   className?: string;
@@ -9,7 +12,8 @@ interface ParitySelectorProps {
 
 export const ParitySelector = memo((props: ParitySelectorProps) => {
   const { className } = props;
-  const [parity, setParity] = useState('none');
+  const dispatch = useDispatch();
+  const parity = useSelector((state: RootState) => state.port.parity);
   const options: SelectOption<string>[] = [
     {
       value: `none`,
@@ -31,7 +35,7 @@ export const ParitySelector = memo((props: ParitySelectorProps) => {
       options={options}
       label="Чётность"
       value={parity}
-      onChange={setParity}
+      onChange={(value) => dispatch(portActions.setParity(value))}
     />
   );
 });

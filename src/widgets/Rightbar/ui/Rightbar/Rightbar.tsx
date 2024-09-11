@@ -3,7 +3,7 @@ import { Card } from 'shared/ui/Card';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text';
 import cls from './Rightbar.module.css';
-import { PortSettings } from 'features/RateSelector';
+import { PortSettings } from 'features/PortSettings';
 
 interface RightbarProps {
   className?: string;

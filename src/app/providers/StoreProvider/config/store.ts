@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { portReducer } from 'features/RateSelector';
+import { portReducer } from 'features/PortSettings';
 
 export const store = configureStore({
   reducer: {
