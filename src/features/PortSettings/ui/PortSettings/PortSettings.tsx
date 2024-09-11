@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Button } from 'shared/ui/Button';
-import { BitInByteSelector } from '../BitInByteSelector/BitInByteSelector';
+import { BitInByteSelector } from '../DataBitSelector/DataBitSelector';
 import { ParitySelector } from '../ParitySelector/ParitySelector';
 import { RateSelector } from '../RateSelector/RateSelector';
 import { StopBitSelector } from '../StopBitSelector/StopBitSelector';

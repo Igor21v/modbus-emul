@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import cls from './BitInByteSelector.module.css';
+import cls from './DataBitSelector.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Select, SelectOption } from 'shared/ui/Select';
 
