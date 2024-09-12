@@ -1,16 +1,17 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { UnknownAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 
-export const openPort = createAsyncThunk(
+export const openPort = createAsyncThunk<any, void, ThunkConfig>(
   'port/openPort',
   async (_, thunkApi) => {
-    const { extra, rejectWithValue, getState } = thunkApi;
+    const { extra, rejectWithValue, getState, dispatch } = thunkApi;
     console.log('thunk enter');
     // @ts-ignore
     if (navigator.serial) {
       try {
         // @ts-ignore
         const port = await navigator.serial.requestPort();
-        const { baudRate, dataBits, parity, stopBits } = getState();
+        const { baudRate, dataBits, stopBits, parity } = getState().port;
 
         await port.open({
           baudRate,
@@ -19,7 +20,7 @@ export const openPort = createAsyncThunk(
           parity,
         });
         return port;
-        console.log(port);
+        /*         console.log(port);
         while (port.readable) {
           const reader = port.readable.getReader();
           try {
@@ -36,13 +37,14 @@ export const openPort = createAsyncThunk(
           } finally {
             reader.releaseLock();
           }
-        }
+        } */
         // Continue connecting to the device attached to |port|.
       } catch (e) {
         // The prompt has been dismissed without selecting a device.
       }
     } else {
       alert('Ваш браузер не поддерживает данное приложение');
+      rejectWithValue('Браузер не поддерживает');
     }
   },
 );
