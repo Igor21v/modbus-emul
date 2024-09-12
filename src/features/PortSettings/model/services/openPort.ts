@@ -1,25 +1,30 @@
-import { UnknownAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 
 export const openPort = createAsyncThunk<any, void, ThunkConfig>(
   'port/openPort',
   async (_, thunkApi) => {
-    const { extra, rejectWithValue, getState, dispatch } = thunkApi;
+    const { getState } = thunkApi;
     // @ts-ignore
     if (navigator.serial) {
-      try {
-        // @ts-ignore
-        const port = await navigator.serial.requestPort();
-        const { baudRate, dataBits, stopBits, parity } = getState().port;
-        console.log('thunk enter ' + baudRate + '  ' + dataBits);
-        await port.open({
-          baudRate,
-          dataBits,
-          stopBits,
-          parity,
-        });
-        return port;
-        /*         console.log(port);
+      // @ts-ignore
+      const port = await navigator.serial.requestPort();
+      const { baudRate, dataBits, stopBits, parity } = getState().port;
+      await port.open({
+        baudRate,
+        dataBits,
+        stopBits,
+        parity,
+      });
+      return port;
+    } else {
+      alert('Ваш браузер не поддерживает данное приложение');
+      throw new Error('Браузер не поддерживается');
+    }
+  },
+);
+
+/*         console.log(port);
         while (port.readable) {
           const reader = port.readable.getReader();
           try {
@@ -37,13 +42,4 @@ export const openPort = createAsyncThunk<any, void, ThunkConfig>(
             reader.releaseLock();
           }
         } */
-        // Continue connecting to the device attached to |port|.
-      } catch (e) {
-        // The prompt has been dismissed without selecting a device.
-      }
-    } else {
-      alert('Ваш браузер не поддерживает данное приложение');
-      rejectWithValue('Браузер не поддерживает');
-    }
-  },
-);
+// Continue connecting to the device attached to |port|.

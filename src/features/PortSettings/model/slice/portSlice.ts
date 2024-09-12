@@ -8,6 +8,7 @@ export interface PortState {
   stopBits: string;
   dataBits: string;
   port: any;
+  error: string | undefined;
 }
 
 const initialState: PortState = {
@@ -16,6 +17,7 @@ const initialState: PortState = {
   stopBits: '1',
   dataBits: '8',
   port: null,
+  error: undefined,
 };
 
 const portSlice = createSlice({
@@ -36,9 +38,18 @@ const portSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(openPort.fulfilled, (state, action) => {
-      state.port = action.payload;
-    });
+    builder
+      .addCase(openPort.pending, (state) => {
+        state.error = undefined;
+        state.port = null;
+      })
+      .addCase(openPort.fulfilled, (state, action) => {
+        state.port = action.payload;
+      })
+      .addCase(openPort.rejected, (state, action) => {
+        state.error = action.error.message;
+        console.log(action.error.message);
+      });
   },
 });
 
