@@ -1,10 +1,11 @@
-import { memo, useState } from 'react';
-import cls from './ParitySelector.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Select, SelectOption } from 'shared/ui/Select';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/providers/StoreProvider/config/store';
 import { portActions } from 'features/PortSettings/model/slice/portSlice';
+import { memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { Select, SelectOption } from 'shared/ui/Select';
+import cls from './ParitySelector.module.css';
 
 interface ParitySelectorProps {
   className?: string;
@@ -12,8 +13,8 @@ interface ParitySelectorProps {
 
 export const ParitySelector = memo((props: ParitySelectorProps) => {
   const { className } = props;
-  const dispatch = useDispatch();
-  const parity = useSelector((state: RootState) => state.port.parity);
+  const dispatch = useAppDispatch();
+  const parity = useAppSelector((state) => state.port.parity);
   const options: SelectOption<string>[] = [
     {
       value: `none`,

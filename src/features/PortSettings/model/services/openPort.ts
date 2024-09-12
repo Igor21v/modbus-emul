@@ -5,14 +5,13 @@ export const openPort = createAsyncThunk<any, void, ThunkConfig>(
   'port/openPort',
   async (_, thunkApi) => {
     const { extra, rejectWithValue, getState, dispatch } = thunkApi;
-    console.log('thunk enter');
     // @ts-ignore
     if (navigator.serial) {
       try {
         // @ts-ignore
         const port = await navigator.serial.requestPort();
         const { baudRate, dataBits, stopBits, parity } = getState().port;
-
+        console.log('thunk enter ' + baudRate + '  ' + dataBits);
         await port.open({
           baudRate,
           dataBits,

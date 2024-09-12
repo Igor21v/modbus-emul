@@ -1,10 +1,11 @@
-import { memo, useState } from 'react';
-import cls from './StopBitSelector.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Select, SelectOption } from 'shared/ui/Select';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'app/providers/StoreProvider/config/store';
 import { portActions } from 'features/PortSettings/model/slice/portSlice';
+import { memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { Select, SelectOption } from 'shared/ui/Select';
+import cls from './StopBitSelector.module.css';
 
 interface StopBitSelectorProps {
   className?: string;
@@ -12,8 +13,8 @@ interface StopBitSelectorProps {
 
 export const StopBitSelector = memo((props: StopBitSelectorProps) => {
   const { className } = props;
-  const stopBits = useSelector((state: RootState) => state.port.stopBits);
-  const dispatch = useDispatch();
+  const stopBits = useAppSelector((state: RootState) => state.port.stopBits);
+  const dispatch = useAppDispatch();
   const variants = [1, 1.5, 2];
   const options: SelectOption<string>[] = variants.map((rate) => {
     return {

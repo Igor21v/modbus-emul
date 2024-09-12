@@ -1,10 +1,10 @@
-import { memo, useState } from 'react';
-import cls from './DataBitSelector.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Select, SelectOption } from 'shared/ui/Select';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'app/providers/StoreProvider/config/store';
 import { portActions } from 'features/PortSettings/model/slice/portSlice';
+import { memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { Select, SelectOption } from 'shared/ui/Select';
+import cls from './DataBitSelector.module.css';
 
 interface BitInByteSelectorProps {
   className?: string;
@@ -12,8 +12,8 @@ interface BitInByteSelectorProps {
 
 export const BitInByteSelector = memo((props: BitInByteSelectorProps) => {
   const { className } = props;
-  const dispatch = useDispatch();
-  const dataBits = useSelector((state: RootState) => state.port.dataBits);
+  const dispatch = useAppDispatch();
+  const dataBits = useAppSelector((state) => state.port.dataBits);
   const variants = [8, 7];
   const options: SelectOption<string>[] = variants.map((rate) => {
     return {
