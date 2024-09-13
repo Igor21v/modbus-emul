@@ -1,0 +1,29 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ThunkConfig } from 'app/providers/StoreProvider';
+
+export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
+  'listen/start',
+  async (_, thunkApi) => {
+    const { getState } = thunkApi;
+    const { port } = getState().port;
+    while (port.readable) {
+      const reader = port.readable.getReader();
+      try {
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) {
+            // |reader| has been canceled.
+            break;
+          }
+          console.log(value);
+        }
+      } catch (error) {
+        // Handle |error|...
+      } finally {
+        reader.releaseLock();
+      }
+    }
+  },
+);
+
+// Continue connecting to the device attached to |port|.
