@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 
-export const openPort = createAsyncThunk<any, void, ThunkConfig>(
+export const openPort = createAsyncThunk<void, void, ThunkConfig>(
   'port/openPort',
   async (_, thunkApi) => {
     const { getState } = thunkApi;
@@ -16,30 +16,10 @@ export const openPort = createAsyncThunk<any, void, ThunkConfig>(
         stopBits,
         parity,
       });
-      return port;
+      window.comport = port;
     } else {
       alert('Ваш браузер не поддерживает данное приложение');
       throw new Error('Браузер не поддерживается');
     }
   },
 );
-
-/*         console.log(port);
-        while (port.readable) {
-          const reader = port.readable.getReader();
-          try {
-            while (true) {
-              const { value, done } = await reader.read();
-              if (done) {
-                // |reader| has been canceled.
-                break;
-              }
-              console.log(value);
-            }
-          } catch (error) {
-            // Handle |error|...
-          } finally {
-            reader.releaseLock();
-          }
-        } */
-// Continue connecting to the device attached to |port|.

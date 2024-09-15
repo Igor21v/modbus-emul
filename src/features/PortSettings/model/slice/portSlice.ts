@@ -7,7 +7,7 @@ export interface PortState {
   parity: string;
   stopBits: string;
   dataBits: string;
-  port: any;
+  portIsOpen: boolean;
   error: string | undefined;
 }
 
@@ -16,7 +16,7 @@ const initialState: PortState = {
   parity: 'none',
   stopBits: '1',
   dataBits: '8',
-  port: null,
+  portIsOpen: false,
   error: undefined,
 };
 
@@ -41,10 +41,10 @@ const portSlice = createSlice({
     builder
       .addCase(openPort.pending, (state) => {
         state.error = undefined;
-        state.port = null;
+        state.portIsOpen = false;
       })
-      .addCase(openPort.fulfilled, (state, action) => {
-        state.port = action.payload;
+      .addCase(openPort.fulfilled, (state) => {
+        state.portIsOpen = true;
       })
       .addCase(openPort.rejected, (state, action) => {
         state.error = action.error.message;

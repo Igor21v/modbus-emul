@@ -17,6 +17,9 @@ const listenSlice = createSlice({
     reset: (state) => {
       state.data = '';
     },
+    addData: (state, action: PayloadAction<string>) => {
+      state.data += action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(listenStart.fulfilled, (state, action) => {

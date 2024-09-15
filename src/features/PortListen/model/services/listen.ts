@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
+import { listenActions } from '../slice/listenSlice';
 
 export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
   'listen/start',
   async (_, thunkApi) => {
-    const { getState } = thunkApi;
-    const { port } = getState().port;
+    const { dispatch } = thunkApi;
+    const port = window.comport;
     while (port.readable) {
       const reader = port.readable.getReader();
       try {
@@ -16,6 +17,7 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
             break;
           }
           console.log(value);
+          dispatch(listenActions.addData(value));
         }
       } catch (error) {
         // Handle |error|...
@@ -25,5 +27,3 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
     }
   },
 );
-
-// Continue connecting to the device attached to |port|.
