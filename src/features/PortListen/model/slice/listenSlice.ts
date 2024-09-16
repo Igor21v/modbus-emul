@@ -3,11 +3,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { listenStart } from '../services/listen';
 
 export interface ListenState {
-  data: string;
+  data: string[];
 }
 
 const initialState: ListenState = {
-  data: '',
+  data: [],
 };
 
 const listenSlice = createSlice({
@@ -15,10 +15,10 @@ const listenSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.data = '';
+      state.data = [];
     },
     addData: (state, action: PayloadAction<string>) => {
-      state.data += action.payload;
+      state.data.push(action.payload);
     },
   },
   extraReducers: (builder) => {

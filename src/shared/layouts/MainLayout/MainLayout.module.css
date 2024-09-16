@@ -1,10 +1,10 @@
 .MainLayout {
-  min-height: 100vh;
   display: grid;
   grid-template: 3fr 1fr / auto minmax(800px, 1200px) auto;
   grid-template-areas:
     'leftbar content rightbar'
     'logbar logbar logbar';
+  height: 100vh;
 }
 
 .leftbar {
