@@ -7,16 +7,18 @@ interface MainLayoutProps {
   rightbar: ReactElement;
   logbar: ReactElement;
   content: ReactElement;
+  state: ReactElement;
 }
 
 export const MainLayout = (props: MainLayoutProps) => {
-  const { content, leftbar, logbar, rightbar } = props;
+  const { content, leftbar, logbar, rightbar, state } = props;
 
   return (
     <div className={classNames(cls.MainLayout, {}, ['app'])} id="app">
       <div className={cls.leftbar}>{leftbar}</div>
       <div className={cls.rightbar}>{rightbar}</div>
       <div className={cls.logbar}>{logbar}</div>
+      <div className={cls.state}>{state}</div>
       <div className={cls.content} id="content">
         {content}
       </div>

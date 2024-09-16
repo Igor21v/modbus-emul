@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Text.module.css';
 
-type TextTheme =
+export type TextTheme =
   | 'primary'
   | 'inverted'
   | 'error'

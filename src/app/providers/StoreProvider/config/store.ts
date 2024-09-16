@@ -1,4 +1,5 @@
 import { Reducer, configureStore } from '@reduxjs/toolkit';
+import { appStateReducer } from 'entities/AppState/model/slice/appStateSlice';
 import { listenReducer } from 'features/PortListen/model/slice/listenSlice';
 import { PortState, portReducer } from 'features/PortSettings';
 
@@ -8,6 +9,7 @@ export const store = configureStore({
   reducer: {
     port: portReducer,
     listen: listenReducer,
+    appState: appStateReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

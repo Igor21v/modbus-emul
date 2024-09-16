@@ -1,7 +1,8 @@
 .MainLayout {
   display: grid;
-  grid-template: 3fr 1fr / auto minmax(800px, 1200px) auto;
+  grid-template: 30px 3fr 1fr / auto minmax(800px, 1200px) auto;
   grid-template-areas:
+    'leftbar state rightbar'
     'leftbar content rightbar'
     'logbar logbar logbar';
   height: 100vh;
@@ -10,6 +11,7 @@
 .leftbar {
   grid-area: leftbar;
   min-width: 200px;
+  background: var(--bg-color);
 }
 
 .rightbar {
@@ -25,5 +27,13 @@
 
 .content {
   grid-area: content;
+  background: var(--bg-color);
+  overflow: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.state {
+  grid-area: state;
   background: var(--bg-color);
 }

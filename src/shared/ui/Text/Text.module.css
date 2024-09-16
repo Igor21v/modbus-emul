@@ -64,6 +64,9 @@
 .italic .text {
   font-style: italic;
 }
+.italic .title {
+  font-style: italic;
+}
 .minLineHeight .title {
   line-height: 1.2;
 }

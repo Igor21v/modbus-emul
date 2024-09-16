@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { listenStart } from '../services/listen';
+import { arr } from './stub';
 
 export interface ListenState {
   data: string[];
 }
 
 const initialState: ListenState = {
-  data: [],
+  data: arr,
 };
 
 const listenSlice = createSlice({
