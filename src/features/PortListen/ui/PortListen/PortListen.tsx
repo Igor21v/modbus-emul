@@ -1,13 +1,11 @@
+import { listenStart } from 'features/PortListen/model/services/listen';
 import { memo, useEffect } from 'react';
-import cls from './PortListen.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { listenActions } from 'features/PortListen/model/slice/listenSlice';
-import { listenStart } from 'features/PortListen/model/services/listen';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
-import { Text } from 'shared/ui/Text';
 import { VStack } from 'shared/ui/Stack';
 import { TextSpan } from 'shared/ui/TextSpan';
+import cls from './PortListen.module.css';
 
 interface PortListenProps {
   className?: string;
@@ -15,7 +13,6 @@ interface PortListenProps {
 
 export const PortListen = memo((props: PortListenProps) => {
   const { className } = props;
-  const data = useAppSelector((state) => state.listen);
   const { portIsOpen } = useAppSelector((state) => state.port);
   const dispatch = useAppDispatch();
 
@@ -26,9 +23,7 @@ export const PortListen = memo((props: PortListenProps) => {
 
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
-      {data.map((item, index) => (
-        <TextSpan text={item.message} key={index} />
-      ))}
+      Здесь будет схема
     </VStack>
   );
 });

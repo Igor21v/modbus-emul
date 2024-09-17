@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { listenActions } from '../slice/listenSlice';
+import { logActions } from 'entities/Log/model/slice/logSlice';
 
 export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
   'listen/start',
@@ -20,7 +20,7 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
           }
           console.log(value);
           dispatch(
-            listenActions.addData({ date: Date.now(), message: `${value}` }),
+            logActions.addRecord({ date: Date.now(), message: `${value}` }),
           );
         }
       } catch (error) {

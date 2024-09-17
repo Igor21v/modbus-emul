@@ -1,14 +1,14 @@
-import { Reducer, configureStore } from '@reduxjs/toolkit';
-import { appStateReducer } from 'entities/AppState/model/slice/appStateSlice';
-import { listenReducer } from 'features/PortListen/model/slice/listenSlice';
-import { PortState, portReducer } from 'features/PortSettings';
+import { configureStore } from '@reduxjs/toolkit';
+import { appStateReducer } from 'entities/AppState';
+import { logReducer } from 'entities/Log/';
+import { portReducer } from 'features/PortSettings';
 
 const extraArg = {};
 
 export const store = configureStore({
   reducer: {
     port: portReducer,
-    listen: listenReducer,
+    log: logReducer,
     appState: appStateReducer,
   },
   middleware: (getDefaultMiddleware) =>

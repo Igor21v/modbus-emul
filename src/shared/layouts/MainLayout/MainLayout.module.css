@@ -23,6 +23,7 @@
 .logbar {
   grid-area: logbar;
   background: var(--bg-color);
+  overflow: auto;
 }
 
 .content {
