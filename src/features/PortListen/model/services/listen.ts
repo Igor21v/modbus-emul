@@ -19,7 +19,9 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
             break;
           }
           console.log(value);
-          dispatch(listenActions.addData(`${value}`));
+          dispatch(
+            listenActions.addData({ date: Date.now(), message: `${value}` }),
+          );
         }
       } catch (error) {
         // Handle |error|...

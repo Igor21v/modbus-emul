@@ -15,7 +15,7 @@ interface PortListenProps {
 
 export const PortListen = memo((props: PortListenProps) => {
   const { className } = props;
-  const { data } = useAppSelector((state) => state.listen);
+  const data = useAppSelector((state) => state.listen);
   const { portIsOpen } = useAppSelector((state) => state.port);
   const dispatch = useAppDispatch();
 
@@ -27,7 +27,7 @@ export const PortListen = memo((props: PortListenProps) => {
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
       {data.map((item, index) => (
-        <TextSpan text={item} key={index} />
+        <TextSpan text={item.message} key={index} />
       ))}
     </VStack>
   );

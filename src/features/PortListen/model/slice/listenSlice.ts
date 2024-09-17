@@ -4,27 +4,26 @@ import { listenStart } from '../services/listen';
 import { arr } from './stub';
 
 export interface ListenState {
-  data: string[];
+  date: number;
+  message: string;
 }
 
-const initialState: ListenState = {
-  data: arr,
-};
+const initialState: ListenState[] = arr;
 
 const listenSlice = createSlice({
   name: 'listen',
   initialState,
   reducers: {
     reset: (state) => {
-      state.data = [];
+      state = [];
     },
-    addData: (state, action: PayloadAction<string>) => {
-      state.data.push(action.payload);
+    addData: (state, action: PayloadAction<ListenState>) => {
+      state.push(action.payload);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(listenStart.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state = action.payload;
     });
   },
 });
