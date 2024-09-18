@@ -6,6 +6,7 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 import { VStack } from 'shared/ui/Stack';
 import { TextSpan } from 'shared/ui/TextSpan';
 import cls from './PortListen.module.css';
+import { Text } from 'shared/ui/Text';
 
 interface PortListenProps {
   className?: string;
@@ -20,10 +21,23 @@ export const PortListen = memo((props: PortListenProps) => {
     dispatch(listenStart());
     console.log('port is open ' + portIsOpen);
   }, [portIsOpen]);
+  const d = new Date();
+  /* const dateStr = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}` */
+  var date =
+    d.getFullYear() +
+    '-' +
+    ('0' + (d.getMonth() + 1)).slice(-2) +
+    '-' +
+    ('0' + d.getDate()).slice(-2) +
+    ' ' +
+    d.toLocaleTimeString() +
+    ':' +
+    ('00' + d.getMilliseconds()).slice(-3);
 
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
-      Здесь будет схема
+      <Text title="Здесь будет схема" />
+      {date}
     </VStack>
   );
 });

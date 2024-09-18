@@ -19,9 +19,10 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
             break;
           }
           console.log(value);
-          dispatch(
-            logActions.addRecord({ date: Date.now(), message: `${value}` }),
-          );
+          const date = new Date();
+          /* const dateStr = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}` */
+          const dateStr = date.toString();
+          dispatch(logActions.addRecord({ date: dateStr, msg: `${value}` }));
         }
       } catch (error) {
         // Handle |error|...

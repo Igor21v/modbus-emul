@@ -3,8 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { arr } from './stub';
 
 export interface LogState {
-  date: number;
-  message: string;
+  date: string;
+  msg: string;
 }
 
 const initialState: LogState[] = arr;
