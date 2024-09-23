@@ -18,11 +18,18 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
             // |reader| has been canceled.
             break;
           }
-          console.log(value);
-          const date = new Date();
-          /* const dateStr = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}` */
-          const dateStr = date.toString();
-          dispatch(logActions.addRecord({ date: dateStr, msg: `${value}` }));
+          const d = new Date();
+          var date =
+            d.getFullYear() +
+            '-' +
+            ('0' + (d.getMonth() + 1)).slice(-2) +
+            '-' +
+            ('0' + d.getDate()).slice(-2) +
+            ' ' +
+            d.toLocaleTimeString() +
+            '.' +
+            ('00' + d.getMilliseconds()).slice(-3);
+          dispatch(logActions.addRecord({ date, msg: `${value}` }));
         }
       } catch (error) {
         // Handle |error|...

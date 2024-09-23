@@ -22,7 +22,6 @@ export const PortListen = memo((props: PortListenProps) => {
     console.log('port is open ' + portIsOpen);
   }, [portIsOpen]);
   const d = new Date();
-  /* const dateStr = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}` */
   var date =
     d.getFullYear() +
     '-' +
