@@ -1,12 +1,23 @@
 .MainLayout {
   display: grid;
+  height: 100vh;
+}
+
+.compr {
   grid-template: 30px 3fr 30px 1fr / auto minmax(800px, 1200px) auto;
   grid-template-areas:
     'leftbar state rightbar'
     'leftbar content rightbar'
     'logbar logbar logbar'
     'log log log';
-  height: 100vh;
+}
+
+.expandedLog {
+  grid-template: 30px 30px auto / auto;
+  grid-template-areas:
+    'state'
+    'logbar'
+    'log';
 }
 
 .leftbar {

@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 export interface AppState {
   content: string;
   error: boolean;
+  expandedLog: boolean;
 }
 
 const initialState: AppState = {
   content: 'Настройте параметры связи и выберите порт',
   error: true,
+  expandedLog: false,
 };
 
 const appStateSlice = createSlice({
@@ -22,6 +24,9 @@ const appStateSlice = createSlice({
     },
     resetError: (state) => {
       state.error = false;
+    },
+    expandedLog: (state, action) => {
+      state.expandedLog = action.payload;
     },
   },
 });

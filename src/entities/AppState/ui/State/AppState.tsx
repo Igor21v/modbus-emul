@@ -11,7 +11,6 @@ export const AppState = memo(() => {
   return (
     <Text
       title={content}
-      text={`${error}`}
       align="center"
       italic
       theme={theme}

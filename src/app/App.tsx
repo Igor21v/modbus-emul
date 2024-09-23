@@ -16,6 +16,7 @@ function App() {
         rightbar={<Rightbar />}
         logbar={<Logbar />}
         log={<Log />}
+        expandedLog={false}
       />
     </div>
   );
