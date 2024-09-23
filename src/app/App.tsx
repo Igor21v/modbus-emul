@@ -4,6 +4,7 @@ import { Rightbar } from 'widgets/Rightbar';
 import { Logbar } from 'widgets/Logbar';
 import { AppRouter } from './providers/router';
 import { AppState } from 'entities/AppState';
+import { Log } from 'entities/Log';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         leftbar={<Leftbar />}
         rightbar={<Rightbar />}
         logbar={<Logbar />}
+        log={<Log />}
       />
     </div>
   );

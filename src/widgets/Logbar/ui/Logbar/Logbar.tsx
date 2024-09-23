@@ -10,5 +10,5 @@ interface LogbarProps {
 export const Logbar = memo((props: LogbarProps) => {
   const { className } = props;
 
-  return <Log />;
+  return <>Панель настройки логов</>;
 });
