@@ -16,7 +16,7 @@ export const Log = memo((props: LogProps) => {
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
       {log.map((item, index) => (
-        <HStack key={index} max gap="32">
+        <HStack key={index} max gap="32" className={cls.string}>
           <TextSpan text={item.date} />
           <TextSpan text={item.msg} />
         </HStack>
