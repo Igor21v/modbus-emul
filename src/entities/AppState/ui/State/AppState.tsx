@@ -7,7 +7,7 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 export const AppState = memo(() => {
   const { content, error } = useAppSelector((state) => state.appState);
   const theme: TextTheme = error ? 'error' : 'success';
-  console.log();
+
   return (
     <Text
       title={content}

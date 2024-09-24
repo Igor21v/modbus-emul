@@ -5,8 +5,10 @@ import { Logbar } from 'widgets/Logbar';
 import { AppRouter } from './providers/router';
 import { AppState } from 'entities/AppState';
 import { Log } from 'entities/Log';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 
 function App() {
+  const expandedLog = useAppSelector((state) => state.appState.expandedLog);
   return (
     <div className="app">
       <MainLayout
@@ -16,7 +18,7 @@ function App() {
         rightbar={<Rightbar />}
         logbar={<Logbar />}
         log={<Log />}
-        expandedLog={false}
+        expandedLog={expandedLog}
       />
     </div>
   );
