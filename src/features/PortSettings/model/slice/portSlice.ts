@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { openPort } from '../services/openPort';
+import { closePort } from '../services/closePort';
 
 export interface PortState {
   baudRate: string;
@@ -9,6 +10,7 @@ export interface PortState {
   dataBits: string;
   portIsOpen: boolean;
   error: string | undefined;
+  needClose: boolean;
 }
 
 const initialState: PortState = {
@@ -18,6 +20,7 @@ const initialState: PortState = {
   dataBits: '8',
   portIsOpen: false,
   error: undefined,
+  needClose: false,
 };
 
 const portSlice = createSlice({
@@ -36,6 +39,12 @@ const portSlice = createSlice({
     setStopBit: (state, action: PayloadAction<string>) => {
       state.stopBits = action.payload;
     },
+    needClose: (state, action: PayloadAction<boolean>) => {
+      state.needClose = action.payload;
+    },
+    setPortOpen: (state, action: PayloadAction<boolean>) => {
+      state.portIsOpen = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -47,6 +56,15 @@ const portSlice = createSlice({
         state.portIsOpen = true;
       })
       .addCase(openPort.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(closePort.pending, (state) => {
+        state.error = undefined;
+      })
+      .addCase(closePort.fulfilled, (state) => {
+        state.portIsOpen = false;
+      })
+      .addCase(closePort.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

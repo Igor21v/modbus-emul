@@ -2,6 +2,8 @@ import { memo } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Button } from 'shared/ui/Button';
 import { openPort } from '../../model/services/openPort';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { closePort } from 'features/PortSettings/model/services/closePort';
 
 interface OpenPortButtonProps {
   className?: string;
@@ -9,8 +11,20 @@ interface OpenPortButtonProps {
 
 export const OpenPortButton = memo((props: OpenPortButtonProps) => {
   const dispatch = useAppDispatch();
-  const buttonHandler = () => {
+  const openHandler = () => {
     dispatch(openPort());
   };
-  return <Button onClick={buttonHandler}>Выбрать порт</Button>;
+  const closeHandler = () => {
+    dispatch(closePort());
+  };
+  const { portIsOpen } = useAppSelector((state) => state.port);
+
+  if (portIsOpen) {
+    return <Button onClick={closeHandler}>Закрыть порт</Button>;
+  }
+  return (
+    <Button onClick={openHandler} theme="outlineRed">
+      Выбрать порт
+    </Button>
+  );
 });

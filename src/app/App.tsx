@@ -9,6 +9,11 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 
 function App() {
   const expandedLog = useAppSelector((state) => state.appState.expandedLog);
+  window.comport = {
+    needClose: false,
+    port: undefined,
+    reader: undefined,
+  };
   return (
     <div className="app">
       <MainLayout

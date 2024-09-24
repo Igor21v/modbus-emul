@@ -5,7 +5,7 @@ import { appStateActions } from 'entities/AppState';
 export const openPort = createAsyncThunk<void, void, ThunkConfig>(
   'port/openPort',
   async (_, thunkApi) => {
-    const { getState } = thunkApi;
+    const { getState, dispatch } = thunkApi;
     // @ts-ignore
     if (navigator.serial) {
       try {
@@ -18,12 +18,13 @@ export const openPort = createAsyncThunk<void, void, ThunkConfig>(
           stopBits,
           parity,
         });
-        window.comport = port;
+        window.comport.port = port;
+        window.comport.needClose = false;
+        dispatch(appStateActions.setState('Порт открыт'));
+        dispatch(appStateActions.resetError());
       } catch (e) {
-        thunkApi.dispatch(
-          appStateActions.setState('Ошибка открытия COM-порта ' + e),
-        );
-        thunkApi.dispatch(appStateActions.setError());
+        dispatch(appStateActions.setState('Ошибка открытия COM-порта ' + e));
+        dispatch(appStateActions.setError());
         throw new Error('Ошибка открытия порта');
       }
     } else {
