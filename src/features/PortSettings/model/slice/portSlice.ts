@@ -48,7 +48,6 @@ const portSlice = createSlice({
       })
       .addCase(openPort.rejected, (state, action) => {
         state.error = action.error.message;
-        console.log(action.error.message);
       });
   },
 });

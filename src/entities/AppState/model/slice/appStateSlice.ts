@@ -6,8 +6,13 @@ export interface AppState {
   expandedLog: boolean;
 }
 
+// @ts-ignore
+let initContent = navigator.serial
+  ? 'Подключите преобразователь, настройте параметры связи и выберите порт'
+  : 'Ваш браузер не поддреживает работу с COM-портами, попробуйте открыть приложение в другом';
+
 const initialState: AppState = {
-  content: 'Настройте параметры связи и выберите порт',
+  content: initContent,
   error: true,
   expandedLog: false,
 };

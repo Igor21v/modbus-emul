@@ -10,7 +10,6 @@ interface OpenPortButtonProps {
 export const OpenPortButton = memo((props: OpenPortButtonProps) => {
   const dispatch = useAppDispatch();
   const buttonHandler = () => {
-    console.log('Button enter');
     dispatch(openPort());
   };
   return <Button onClick={buttonHandler}>Выбрать порт</Button>;

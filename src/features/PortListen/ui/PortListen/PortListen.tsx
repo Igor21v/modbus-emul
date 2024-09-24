@@ -4,9 +4,8 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 import { VStack } from 'shared/ui/Stack';
-import { TextSpan } from 'shared/ui/TextSpan';
-import cls from './PortListen.module.css';
 import { Text } from 'shared/ui/Text';
+import cls from './PortListen.module.css';
 
 interface PortListenProps {
   className?: string;
