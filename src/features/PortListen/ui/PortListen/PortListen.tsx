@@ -19,24 +19,12 @@ export const PortListen = memo((props: PortListenProps) => {
 
   useEffect(() => {
     dispatch(listenStart());
-    console.log('port is open ' + portIsOpen);
+    console.log('port open? ' + portIsOpen);
   }, [portIsOpen]);
-  const d = new Date();
-  var date =
-    d.getFullYear() +
-    '-' +
-    ('0' + (d.getMonth() + 1)).slice(-2) +
-    '-' +
-    ('0' + d.getDate()).slice(-2) +
-    ' ' +
-    d.toLocaleTimeString() +
-    ':' +
-    ('00' + d.getMilliseconds()).slice(-3);
 
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
       <Text title="Здесь будет схема" />
-      {date}
     </VStack>
   );
 });
