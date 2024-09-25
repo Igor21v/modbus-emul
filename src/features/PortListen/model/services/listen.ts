@@ -10,10 +10,9 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
     const { dispatch } = thunkApi;
     const port = window.comport.port;
     while (port?.readable && !window.comport.needClose) {
+      let prevTime = Date.now();
       const reader = port.readable.getReader();
       window.comport.reader = reader;
-      console.log('новый риэдр');
-      console.log(reader + ' reader');
       try {
         while (true) {
           const { value, done } = await reader.read();
@@ -21,7 +20,16 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
             // |reader| has been canceled.
             break;
           }
-          dispatch(logActions.addRecord({ date: getDate(), msg: `${value}` }));
+          const currTime = Date.now();
+          const diffTime = currTime - prevTime;
+          prevTime = currTime;
+          dispatch(
+            logActions.addRecord({
+              date: getDate(),
+              msg: `${value}`,
+              diffTime,
+            }),
+          );
         }
       } catch (error) {
         // Handle |error|...
@@ -29,7 +37,10 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
         reader.releaseLock();
       }
     }
-    await port.close();
-    dispatch(portActions.setPortOpen(false));
+    if (port) {
+      await port.close();
+      dispatch(portActions.setPortOpen(false));
+      window.comport.port = undefined;
+    }
   },
 );

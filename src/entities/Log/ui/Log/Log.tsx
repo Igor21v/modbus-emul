@@ -12,13 +12,16 @@ interface LogProps {
 export const Log = memo((props: LogProps) => {
   const { className } = props;
   const log = useAppSelector((state) => state.log);
+  const copyLog = [...log];
+  copyLog.reverse();
 
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
-      {log.map((item, index) => (
-        <HStack key={index} max gap="32" className={cls.string}>
-          <TextSpan text={String(index)} className={cls.number} />
+      {copyLog.map((item) => (
+        <HStack key={item.num} max gap="32" className={cls.string}>
+          <TextSpan text={String(item.num)} className={cls.number} />
           <TextSpan text={item.date} />
+          <TextSpan text={'+' + item.diffTime} className={cls.diffTime} />
           <TextSpan text={item.msg} />
         </HStack>
       ))}

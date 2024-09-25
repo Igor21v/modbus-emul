@@ -3,11 +3,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { arr } from './stub';
 
 export interface LogState {
+  num: number;
   date: string;
   msg: string;
+  diffTime?: number;
+  prior?: number;
 }
 
-const initialState: LogState[] = arr;
+const initialState: LogState[] = [];
 
 const logSlice = createSlice({
   name: 'log',
@@ -16,8 +19,10 @@ const logSlice = createSlice({
     reset: (state) => {
       state = [];
     },
-    addRecord: (state, action: PayloadAction<LogState>) => {
-      state.push(action.payload);
+    addRecord: (state, action: PayloadAction<Omit<LogState, 'num'>>) => {
+      const prevNum = state.at(-1)?.num || 0;
+      const num = prevNum + 1;
+      state.push({ ...action.payload, num });
     },
   },
 });

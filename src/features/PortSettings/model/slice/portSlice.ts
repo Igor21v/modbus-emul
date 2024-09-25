@@ -19,6 +19,7 @@ const initialState: PortState = {
   stopBits: '1',
   dataBits: '8',
   portIsOpen: false,
+  // Пока в резерве:
   error: undefined,
   needClose: false,
 };
