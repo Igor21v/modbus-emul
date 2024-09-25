@@ -1,10 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { appStateActions } from 'entities/AppState';
+import { logActions } from 'entities/Log';
 
 export const closePort = createAsyncThunk<void, void, ThunkConfig>(
   'port/closePort',
   async (_, thunkApi) => {
+    const { dispatch } = thunkApi;
     try {
       if (window.comport.port) {
         window.comport.needClose = true;
@@ -12,14 +14,18 @@ export const closePort = createAsyncThunk<void, void, ThunkConfig>(
         // Можно закрывать порт здесь, сейчас реализовано по рекомендации из документации в listen сервисе
         /* const port = window.comport.port;
         port.close(); */
-        thunkApi.dispatch(appStateActions.setState('Порт закрыт'));
-        thunkApi.dispatch(appStateActions.setError());
+        dispatch(appStateActions.setState('Порт закрыт'));
+        dispatch(appStateActions.setError());
+        dispatch(
+          logActions.addRecord({
+            msg: 'Порт закрыт',
+            priority: 1,
+          }),
+        );
       }
     } catch (e) {
-      thunkApi.dispatch(
-        appStateActions.setState('Ошибка закрытия COM-порта ' + e),
-      );
-      thunkApi.dispatch(appStateActions.setError());
+      dispatch(appStateActions.setState('Ошибка закрытия COM-порта ' + e));
+      dispatch(appStateActions.setError());
       throw new Error('Ошибка закрытия порта');
     }
   },

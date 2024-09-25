@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { appStateActions } from 'entities/AppState';
+import { logActions } from 'entities/Log';
 
 export const openPort = createAsyncThunk<void, void, ThunkConfig>(
   'port/openPort',
@@ -22,6 +23,12 @@ export const openPort = createAsyncThunk<void, void, ThunkConfig>(
         window.comport.needClose = false;
         dispatch(appStateActions.setState('Порт открыт'));
         dispatch(appStateActions.resetError());
+        dispatch(
+          logActions.addRecord({
+            msg: 'Порт открыт',
+            priority: 9,
+          }),
+        );
       } catch (e) {
         dispatch(appStateActions.setState('Ошибка открытия COM-порта ' + e));
         dispatch(appStateActions.setError());

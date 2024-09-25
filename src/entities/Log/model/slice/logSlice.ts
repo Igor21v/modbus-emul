@@ -8,7 +8,7 @@ export interface LogState {
   date: string;
   msg: string;
   diffTime?: number;
-  prior?: number;
+  priority?: number;
 }
 
 const initialState: LogState[] = [];

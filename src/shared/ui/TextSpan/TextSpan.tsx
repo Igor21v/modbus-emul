@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './TextSpan.module.css';
 
-type TextTheme =
+export type TextSpanTheme =
   | 'primary'
   | 'inverted'
   | 'error'
@@ -15,7 +15,7 @@ type TextSize = 'size_s' | 'size_m' | 'size_l';
 export interface TextSpanProps {
   className?: string;
   text: string;
-  theme?: TextTheme;
+  theme?: TextSpanTheme;
   align?: TextAlign;
   size?: TextSize;
   italic?: boolean;
