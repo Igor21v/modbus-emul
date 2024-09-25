@@ -4,7 +4,18 @@
   stroke: var(--primary-color);
 }
 
+.Icon:hover {
+  fill: var(--hover-color);
+  color: var(--hover-color);
+  stroke: var(--hover-color);
+}
+
 .inverted {
   fill: var(--inverted-primary-color);
   color: var(--inverted-primary-color);
+}
+
+.button {
+  background-color: transparent;
+  border: none;
 }

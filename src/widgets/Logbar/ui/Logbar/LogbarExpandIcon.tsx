@@ -17,20 +17,16 @@ export const LogbarExpandIcon = memo((props: LogbarProps) => {
   const expandedLog = useAppSelector((state) => state.appState.expandedLog);
   if (expandedLog) {
     return (
-      <Button
-        theme="clear"
+      <Icon
+        Svg={Minimize}
         onClick={() => dispatch(appStateActions.expandedLog(false))}
-      >
-        <Icon Svg={Minimize} />
-      </Button>
+      />
     );
   }
   return (
-    <Button
-      theme="clear"
+    <Icon
+      Svg={Expand}
       onClick={() => dispatch(appStateActions.expandedLog(true))}
-    >
-      <Icon Svg={Expand} />
-    </Button>
+    />
   );
 });
