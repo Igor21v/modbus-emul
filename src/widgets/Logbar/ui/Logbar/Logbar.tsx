@@ -18,6 +18,7 @@ export const Logbar = memo((props: LogbarProps) => {
       <HStack gap="16">
         <Icon Svg={Clear} />
         <LogbarExpandIcon />
+        <button> sdfsd </button>
       </HStack>
     </HStack>
   );

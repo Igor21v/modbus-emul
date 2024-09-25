@@ -3,5 +3,9 @@
 }
 
 .tab:hover {
+  scale: 1.05;
+}
+
+.tab:active {
   opacity: 0.8;
 }

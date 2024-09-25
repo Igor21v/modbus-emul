@@ -5,6 +5,9 @@
   border-radius: 8px;
 }
 .Button:hover {
+  scale: 1.1;
+}
+.Button:active {
   opacity: 0.8;
   fill-opacity: 0.8;
   stroke-opacity: 0.8;
