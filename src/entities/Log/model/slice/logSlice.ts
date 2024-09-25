@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { arr } from './stub';
+import { getDate } from 'shared/lib/getDate';
 
 export interface LogState {
   num: number;
@@ -19,10 +20,14 @@ const logSlice = createSlice({
     reset: (state) => {
       state = [];
     },
-    addRecord: (state, action: PayloadAction<Omit<LogState, 'num'>>) => {
+    addRecord: (
+      state,
+      action: PayloadAction<Omit<LogState, 'num' | 'date'>>,
+    ) => {
       const prevNum = state.at(-1)?.num || 0;
       const num = prevNum + 1;
-      state.push({ ...action.payload, num });
+      const date = getDate();
+      state.push({ ...action.payload, num, date });
     },
   },
 });

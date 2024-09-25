@@ -25,7 +25,6 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
           prevTime = currTime;
           dispatch(
             logActions.addRecord({
-              date: getDate(),
               msg: `${value}`,
               diffTime,
             }),

@@ -21,7 +21,9 @@ export const Log = memo((props: LogProps) => {
         <HStack key={item.num} max gap="32" className={cls.string}>
           <TextSpan text={String(item.num)} className={cls.number} />
           <TextSpan text={item.date} />
-          <TextSpan text={'+' + item.diffTime} className={cls.diffTime} />
+          {item.diffTime && (
+            <TextSpan text={'+' + item.diffTime} className={cls.diffTime} />
+          )}
           <TextSpan text={item.msg} />
         </HStack>
       ))}
