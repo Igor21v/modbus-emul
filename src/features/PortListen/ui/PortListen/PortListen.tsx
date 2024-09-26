@@ -29,10 +29,10 @@ export const PortListen = memo((props: PortListenProps) => {
   return (
     <VStack
       align="center"
-      gap="32"
+      gap="8"
       className={classNames(cls.PortListen, {}, [className])}
     >
-      <Text title="Подключите преобразоватьель в линию RS485 для прослушивания сообщений" />
+      <Text title="Схема подключения" />
       <ListenScheme />
     </VStack>
   );

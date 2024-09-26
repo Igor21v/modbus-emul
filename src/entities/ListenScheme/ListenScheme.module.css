@@ -1,5 +1,65 @@
 .ListenScheme {
   border: 1px solid;
-  border-image: linear-gradient(45deg, white, blue) 1;
-  background-color: white;
+  border-radius: 10px;
+  border-image: var(--hover-color);
+  position: relative;
+  width: 700px;
+  height: 450px;
+}
+
+.text {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas {
+  /* background-color: aqua; */
+}
+
+.master {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  top: 20px;
+  left: 20px;
+}
+
+.slave1 {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  bottom: 20px;
+  left: 20px;
+}
+
+.slave2 {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  bottom: 20px;
+  left: 270px;
+}
+
+.slave3 {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  bottom: 20px;
+  right: 20px;
+}
+
+.converter {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  top: 130px;
+  right: 300px;
+}
+
+.laptop {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
