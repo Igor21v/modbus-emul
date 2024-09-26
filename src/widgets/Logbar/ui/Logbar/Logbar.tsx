@@ -17,7 +17,7 @@ export const Logbar = memo((props: LogbarProps) => {
 
   return (
     <HStack justify="between" className={cls.Logbar}>
-      Панель настройки логов
+      Панель постраничной навигации логов
       <HStack gap="16">
         <Icon Svg={Clear} onClick={() => dispatch(logActions.reset())} />
         <LogbarExpandIcon />

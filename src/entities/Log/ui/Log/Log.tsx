@@ -1,10 +1,10 @@
+import { LogItem } from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { TextSpan, TextSpanTheme } from 'shared/ui/TextSpan';
 import cls from './Log.module.css';
-import { LogState } from 'entities/Log/model/slice/logSlice';
 
 interface LogProps {
   className?: string;
@@ -12,11 +12,11 @@ interface LogProps {
 
 export const Log = memo((props: LogProps) => {
   const { className } = props;
-  const log = useAppSelector((state) => state.log);
+  const { log } = useAppSelector((state) => state.log);
   const copyLog = [...log];
   copyLog.reverse();
 
-  const LogItem = (item: LogState) => {
+  const LogItem = (item: LogItem) => {
     let theme: TextSpanTheme = 'primary';
     if (item.priority === 1) {
       theme = 'error';
