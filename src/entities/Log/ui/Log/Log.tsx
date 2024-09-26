@@ -13,7 +13,7 @@ interface LogProps {
 export const Log = memo((props: LogProps) => {
   const { className } = props;
   const { log } = useAppSelector((state) => state.log);
-  const copyLog = [...log];
+  const copyLog = log.slice();
   copyLog.reverse();
 
   const LogItem = (item: LogItem) => {
