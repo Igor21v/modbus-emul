@@ -7,6 +7,7 @@ import { VStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text';
 import cls from './PortListen.module.css';
 import { closePort } from 'features/PortSettings/model/services/closePort';
+import { ListenScheme } from 'entities/ListenScheme/ListenScheme';
 
 interface PortListenProps {
   className?: string;
@@ -16,10 +17,8 @@ export const PortListen = memo((props: PortListenProps) => {
   const { className } = props;
   const { portIsOpen } = useAppSelector((state) => state.port);
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     dispatch(listenStart());
-    console.log('port open? ' + portIsOpen);
   }, [portIsOpen]);
   useEffect(() => {
     return () => {
@@ -28,8 +27,13 @@ export const PortListen = memo((props: PortListenProps) => {
   }, []);
 
   return (
-    <VStack className={classNames(cls.PortListen, {}, [className])}>
-      <Text title="Здесь будет схема" />
+    <VStack
+      align="center"
+      gap="32"
+      className={classNames(cls.PortListen, {}, [className])}
+    >
+      <Text title="Подключите преобразоватьель в линию RS485 для прослушивания сообщений" />
+      <ListenScheme />
     </VStack>
   );
 });

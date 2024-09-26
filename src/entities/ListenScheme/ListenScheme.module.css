@@ -1,0 +1,5 @@
+.ListenScheme {
+  border: 1px solid;
+  border-image: linear-gradient(45deg, white, blue) 1;
+  background-color: white;
+}
