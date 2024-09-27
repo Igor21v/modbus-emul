@@ -31,7 +31,6 @@ export const ListenScheme = memo((props: ListenSchemeProps) => {
         <Text
           text="Преобразователь интерфейса"
           align="center"
-          italic
           className={cls.text}
         />
       </div>
