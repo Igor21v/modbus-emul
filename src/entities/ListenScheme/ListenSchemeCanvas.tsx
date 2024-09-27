@@ -12,6 +12,7 @@ export const ListenSchemeCanvas = memo(() => {
       if (ctx) {
         ctx.fillStyle = 'blue';
         ctx.strokeStyle = '#dbdbdb';
+        ctx.lineWidth = 1;
         ctx.strokeRect(85, 50, 20, 300);
         ctx.strokeRect(140, 365, 500, 20);
         ctx.beginPath();
@@ -23,9 +24,9 @@ export const ListenSchemeCanvas = memo(() => {
         ctx.lineTo(105, 120);
         ctx.stroke();
 
+        ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(390, 175);
-        ctx.lineWidth = 1;
         ctx.lineTo(600, 90);
         ctx.stroke();
       }
