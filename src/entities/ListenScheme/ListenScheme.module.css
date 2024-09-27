@@ -42,10 +42,23 @@
   left: 270px;
 }
 
-.slave3 {
+.device {
   position: absolute;
   width: 150px;
   height: 100px;
+  border-radius: 10px;
+  background: var(--second-bg-color)
+    radial-gradient(
+      circle at 0 0,
+      rgba(255, 255, 255, 0.273),
+      rgba(255, 255, 255, 0.116)
+    );
+  box-shadow: inset rgba(0, 0, 0, 0.4) -3px -3px 8px,
+    inset rgba(255, 255, 255, 0.596) 3px 3px 8px,
+    rgba(0, 0, 0, 0.6) 3px 3px 8px -3px;
+}
+
+.slave3 {
   bottom: 20px;
   right: 20px;
 }
