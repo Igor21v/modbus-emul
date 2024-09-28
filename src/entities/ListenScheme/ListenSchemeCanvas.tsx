@@ -21,7 +21,6 @@ export const ListenSchemeCanvas = memo(() => {
         // Надписи
         ctx.fillText('RS485', 448, 350);
         ctx.fillText('RS485', 192, 350);
-        ctx.fillText('RS485', 125, 210);
 
         // Анимация для линии
         let pos = 0;
@@ -32,6 +31,7 @@ export const ListenSchemeCanvas = memo(() => {
           ctx.clearRect(80, 110, 180, 220);
           // Прямоугольник для линии между мастером  и слейвами
           ctx.strokeRect(85, 50, 20, 300);
+          ctx.fillText('RS485', 125, 210);
           ctx.lineWidth = 2;
           ctx.beginPath();
           if (step1) {
