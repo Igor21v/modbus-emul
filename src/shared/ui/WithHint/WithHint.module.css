@@ -1,0 +1,13 @@
+.WithHint {
+  position: relative;
+}
+
+.hint {
+  position: absolute;
+  bottom: 100%;
+}
+
+.pressEvent:hover {
+  scale: 1.02;
+  cursor: help;
+}
