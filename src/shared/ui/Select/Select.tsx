@@ -47,7 +47,7 @@ const Select = <T extends string>(props: SelectProps<T>) => {
     <p
       className={classNames(cls.Wrapper, { [cls.column]: column }, [className])}
     >
-      <label htmlFor="label" className={cls.labelWrap}>
+      <label htmlFor={label} className={cls.labelWrap}>
         {label && <span className={cls.label}>{`${label}`}</span>}
       </label>
       <select
