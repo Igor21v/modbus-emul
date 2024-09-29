@@ -19,7 +19,11 @@ export const Logbar = memo((props: LogbarProps) => {
     <HStack justify="between" className={cls.Logbar}>
       Панель постраничной навигации логов
       <HStack gap="16">
-        <Icon Svg={Clear} onClick={() => dispatch(logActions.reset())} />
+        <Icon
+          Svg={Clear}
+          onClick={() => dispatch(logActions.reset())}
+          hint="Очистить лог"
+        />
         <LogbarExpandIcon />
       </HStack>
     </HStack>

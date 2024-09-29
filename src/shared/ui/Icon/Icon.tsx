@@ -7,6 +7,7 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
   inverted?: boolean;
   Svg: (props: SVGProps<SVGSVGElement>) => JSX.Element;
   onClick?: () => void;
+  hint?: string;
 }
 
 export const Icon = memo((props: IconProps) => {
@@ -17,10 +18,11 @@ export const Icon = memo((props: IconProps) => {
     height = 24,
     width = 24,
     onClick,
+    hint,
     ...otherProps
   } = props;
   return (
-    <button className={cls.button} onClick={onClick}>
+    <button className={cls.button} onClick={onClick} title={hint}>
       <Svg
         className={classNames(inverted ? cls.inverted : cls.Icon, {}, [
           className,

@@ -4,7 +4,6 @@ import Expand from 'shared/icons/Expand';
 import Minimize from 'shared/icons/Minimize';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
-import { Button } from 'shared/ui/Button';
 import { Icon } from 'shared/ui/Icon';
 
 interface LogbarProps {
@@ -20,6 +19,7 @@ export const LogbarExpandIcon = memo((props: LogbarProps) => {
       <Icon
         Svg={Minimize}
         onClick={() => dispatch(appStateActions.expandedLog(false))}
+        hint="Свернуть лог"
       />
     );
   }
@@ -27,6 +27,7 @@ export const LogbarExpandIcon = memo((props: LogbarProps) => {
     <Icon
       Svg={Expand}
       onClick={() => dispatch(appStateActions.expandedLog(true))}
+      hint="Развернуть лог"
     />
   );
 });
