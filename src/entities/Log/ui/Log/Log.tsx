@@ -1,4 +1,8 @@
-import { LogItem, maxLengthLog } from 'entities/Log/model/slice/logSlice';
+import {
+  LogItem,
+  limitPage,
+  limitLog,
+} from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
@@ -12,7 +16,7 @@ interface LogProps {
 
 export const Log = memo((props: LogProps) => {
   const { className } = props;
-  const { log, logCounter } = useAppSelector((state) => state.log);
+  const { log, logCounter, activePage } = useAppSelector((state) => state.log);
   const copyLog = log.slice();
   copyLog.reverse();
 
@@ -35,16 +39,43 @@ export const Log = memo((props: LogProps) => {
     );
   };
 
+  // Рендерим логи против часовой стрелки кольцевого буфера index1 - индексы по часовой стрелке, index2 - против часовой
   const LogRendered = [];
+  // Индекс начала круга буфера
+  const startIndexBuffer = logCounter % limitLog;
+  // Количестово сообщений которых нужно пропустить
+  const missLogs = (activePage - 1) * limitPage;
+  // Индекс с учетом страницы
+  const startIndex1 = startIndexBuffer - missLogs;
+  const maxEl = limitLog - 1;
 
-  // Рендерим логи против часовой стрелки кольцевого буфера
-  // Индекс начала круга бувера
-  let startIndex = logCounter % maxLengthLog;
-  for (let i = startIndex; i >= 0; i--) {
+  let endIndex1 = startIndex1 - limitPage;
+  if (endIndex1 < 0) {
+    endIndex1 = 0;
+  }
+
+  let startIndex2 = maxEl - (missLogs - startIndex1);
+  if (startIndex2 > maxEl) {
+    startIndex2 = maxEl;
+  }
+
+  let endIndex2 = startIndex2 - limitPage + startIndex1;
+  if (endIndex2 < startIndex1) {
+    endIndex2 = startIndex1;
+  }
+
+  console.log('------------' + logCounter);
+  console.log('startIndex1  ' + startIndex1);
+  console.log('endIndex1  ' + endIndex1);
+  console.log('startIndex2  ' + startIndex2);
+  console.log('endIndex2  ' + endIndex2);
+
+  for (let i = startIndex1; i >= endIndex1; i--) {
     LogRendered.push(LogItem(log[i]));
   }
-  if (logCounter >= maxLengthLog) {
-    for (let i = maxLengthLog - 1; i > startIndex; i--) {
+
+  if (logCounter >= limitLog) {
+    for (let i = startIndex2; i > endIndex2; i--) {
       LogRendered.push(LogItem(log[i]));
     }
   }

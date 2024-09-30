@@ -6,6 +6,7 @@ import { Icon } from 'shared/ui/Icon';
 import cls from './Logbar.module.css';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { logActions } from 'entities/Log';
+import { LogNavigation } from 'features/LogNavigation';
 
 interface LogbarProps {
   className?: string;
@@ -17,7 +18,7 @@ export const Logbar = memo((props: LogbarProps) => {
 
   return (
     <HStack justify="between" className={cls.Logbar}>
-      Панель постраничной навигации логов
+      <LogNavigation />
       <HStack gap="16">
         <Icon
           Svg={Clear}
