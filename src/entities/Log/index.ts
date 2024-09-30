@@ -1,2 +1,6 @@
 export { Log } from './ui/Log/Log';
-export { logActions, logReducer } from './model/slice/logSlice';
+export {
+  logActions,
+  logReducer,
+  maxLengthLog as maxLength,
+} from './model/slice/logSlice';

@@ -1,4 +1,4 @@
-import { LogItem } from 'entities/Log/model/slice/logSlice';
+import { LogItem, maxLengthLog } from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
@@ -12,7 +12,7 @@ interface LogProps {
 
 export const Log = memo((props: LogProps) => {
   const { className } = props;
-  const { log } = useAppSelector((state) => state.log);
+  const { log, logCounter } = useAppSelector((state) => state.log);
   const copyLog = log.slice();
   copyLog.reverse();
 
@@ -35,9 +35,24 @@ export const Log = memo((props: LogProps) => {
     );
   };
 
+  const LogRendered = [];
+
+  // Рендерим логи против часовой стрелки кольцевого буфера
+  // Индекс начала круга бувера
+  let startIndex = logCounter % maxLengthLog;
+  for (let i = startIndex; i >= 0; i--) {
+    LogRendered.push(LogItem(log[i]));
+  }
+  if (logCounter >= maxLengthLog) {
+    for (let i = maxLengthLog - 1; i > startIndex; i--) {
+      LogRendered.push(LogItem(log[i]));
+    }
+  }
+
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
-      {copyLog.map((item) => LogItem(item))}
+      {/* copyLog.map((item) => LogItem(item)) */}
+      {LogRendered}
     </VStack>
   );
 });
