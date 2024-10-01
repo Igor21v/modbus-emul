@@ -16,7 +16,7 @@ export const LogNavigation = memo((props: LogNavigationProps) => {
   const { className } = props;
   const dispatch = useAppDispatch();
   const { activePage, logCounter } = useAppSelector((state) => state.log);
-  const amountPages = Math.ceil((logCounter + 2) / (limitPage + 1));
+  const amountPages = Math.ceil((logCounter + 1) / limitPage);
   const pages = Array.from(Array(amountPages), (_, index) => {
     return index + 1;
   });

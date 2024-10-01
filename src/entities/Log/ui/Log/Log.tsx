@@ -49,7 +49,7 @@ export const Log = memo((props: LogProps) => {
   const startIndex1 = startIndexBuffer - missLogs;
   const maxEl = limitLog - 1;
 
-  let endIndex1 = startIndex1 - limitPage;
+  let endIndex1 = startIndex1 + 1 - limitPage;
   if (endIndex1 < 0) {
     endIndex1 = 0;
   }
@@ -64,11 +64,11 @@ export const Log = memo((props: LogProps) => {
     endIndex2 = startIndex1;
   }
 
-  console.log('------------' + logCounter);
+  /*   console.log('------------' + logCounter);
   console.log('startIndex1  ' + startIndex1);
   console.log('endIndex1  ' + endIndex1);
   console.log('startIndex2  ' + startIndex2);
-  console.log('endIndex2  ' + endIndex2);
+  console.log('endIndex2  ' + endIndex2); */
 
   for (let i = startIndex1; i >= endIndex1; i--) {
     LogRendered.push(LogItem(log[i]));
