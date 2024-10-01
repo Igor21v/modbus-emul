@@ -14,24 +14,40 @@ export const ListenSchemeCanvas = memo(() => {
         ctx.fillStyle = '#dbdbdb';
         ctx.strokeStyle = '#dbdbdb';
         ctx.lineWidth = 2;
-        // Прямоугольник для отображения линий между слейв устройствами
-        ctx.strokeRect(140, 365, 500, 20);
 
-        ctx.font = '18px serif';
+        //  линии связи между мастером  и слейвами (статика)
+        ctx.beginPath();
+        ctx.moveTo(85, 190);
+        ctx.lineTo(85, 330);
+        ctx.lineTo(135, 280);
+        // Связи между слейв устройствами
+
+        ctx.moveTo(105, 190);
+        ctx.lineTo(105, 330);
+        ctx.lineTo(135, 300);
+        ctx.lineTo(340, 300);
+        ctx.lineTo(360, 330);
+        ctx.stroke();
+
         // Надписи
+        ctx.font = '18px serif';
         ctx.fillText('RS485', 448, 350);
         ctx.fillText('RS485', 192, 350);
-
+        ctx.fillText('RS485', 125, 210);
         // Анимация для линии
         let pos = 0;
         let step1 = true;
         let count = 0;
-
         const drawAnim = () => {
-          ctx.clearRect(80, 110, 180, 220);
-          // Прямоугольник для линии между мастером  и слейвами
-          ctx.strokeRect(85, 50, 20, 300);
-          ctx.fillText('RS485', 125, 210);
+          ctx.clearRect(80, 110, 180, 80);
+          //  линии связи между мастером  и слейвами (динамика)
+          ctx.beginPath();
+          ctx.moveTo(85, 50);
+          ctx.lineTo(85, 190);
+          ctx.moveTo(105, 50);
+          ctx.lineTo(105, 190);
+          ctx.stroke();
+
           ctx.lineWidth = 2;
           ctx.beginPath();
           if (step1) {
