@@ -61,12 +61,12 @@ export const Log = memo((props: LogProps) => {
     endIndex2 = startIndex1;
   }
 
-  console.log('------------' + logCounter);
+  /* console.log('------------' + logCounter);
   console.log('missLogs  ' + missLogs);
   console.log('startIndex1  ' + startIndex1);
   console.log('endIndex1  ' + endIndex1);
   console.log('startIndex2  ' + startIndex2);
-  console.log('endIndex2  ' + endIndex2);
+  console.log('endIndex2  ' + endIndex2); */
 
   for (let i = startIndex1; i >= endIndex1; i--) {
     LogRendered.push(LogItem(log[i]));
