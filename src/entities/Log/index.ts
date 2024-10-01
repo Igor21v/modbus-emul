@@ -2,5 +2,7 @@ export { Log } from './ui/Log/Log';
 export {
   logActions,
   logReducer,
-  limitLog as maxLength,
+  limitLogs,
+  logOnPage,
+  limitPages,
 } from './model/slice/logSlice';

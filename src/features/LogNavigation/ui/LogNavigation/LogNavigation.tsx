@@ -1,4 +1,4 @@
-import { limitPage, logActions } from 'entities/Log/model/slice/logSlice';
+import { logOnPage, logActions, limitPages } from 'entities/Log/';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
@@ -16,7 +16,10 @@ export const LogNavigation = memo((props: LogNavigationProps) => {
   const { className } = props;
   const dispatch = useAppDispatch();
   const { activePage, logCounter } = useAppSelector((state) => state.log);
-  const amountPages = Math.ceil((logCounter + 1) / limitPage);
+  const amountPages = Math.min(
+    Math.ceil((logCounter + 1) / logOnPage),
+    limitPages,
+  );
   const pages = Array.from(Array(amountPages), (_, index) => {
     return index + 1;
   });

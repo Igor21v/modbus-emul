@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getDate } from 'shared/lib/getDate';
 
 // В целях оптимизации производительности логи храним в кольцевом буфере
-export const limitLog = 20;
-export const limitPage = 5;
+export const logOnPage = 5;
+export const limitPages = 4;
+export const limitLogs = logOnPage * limitPages;
 
 export interface LogItem {
   num: number;
@@ -21,7 +22,7 @@ export interface LogState {
 }
 
 const initialState: LogState = {
-  log: Array(limitLog),
+  log: Array(limitLogs),
   logCounter: -1,
   activePage: 1,
 };
@@ -42,7 +43,7 @@ const logSlice = createSlice({
       state.logCounter++;
       const num = state.logCounter;
       const date = getDate();
-      const index = num % limitLog;
+      const index = num % limitLogs;
       state.log[index] = { ...action.payload, num, date };
     },
     setActivePage: (state, action) => {

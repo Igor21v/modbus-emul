@@ -1,7 +1,7 @@
 import {
   LogItem,
-  limitPage,
-  limitLog,
+  logOnPage,
+  limitLogs,
 } from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -42,39 +42,37 @@ export const Log = memo((props: LogProps) => {
   // Рендерим логи против часовой стрелки кольцевого буфера index1 - индексы по часовой стрелке, index2 - против часовой
   const LogRendered = [];
   // Индекс начала круга буфера
-  const startIndexBuffer = logCounter % limitLog;
+  const startIndexBuffer = logCounter % limitLogs;
   // Количестово сообщений которых нужно пропустить
-  const missLogs = (activePage - 1) * limitPage;
+  const missLogs = (activePage - 1) * logOnPage;
   // Индекс с учетом страницы
-  const startIndex1 = startIndexBuffer - missLogs;
-  const maxEl = limitLog - 1;
+  const startIndex1 = (logCounter - missLogs) % limitLogs;
+  const maxEl = limitLogs - 1;
 
-  let endIndex1 = startIndex1 + 1 - limitPage;
+  let endIndex1 = startIndex1 + 1 - logOnPage;
   if (endIndex1 < 0) {
     endIndex1 = 0;
   }
 
-  let startIndex2 = maxEl - (missLogs - startIndex1);
-  if (startIndex2 > maxEl) {
-    startIndex2 = maxEl;
-  }
+  let startIndex2 = maxEl;
 
-  let endIndex2 = startIndex2 - limitPage + startIndex1;
+  let endIndex2 = startIndex2 - logOnPage + startIndex1 + 1;
   if (endIndex2 < startIndex1) {
     endIndex2 = startIndex1;
   }
 
-  /*   console.log('------------' + logCounter);
+  console.log('------------' + logCounter);
+  console.log('missLogs  ' + missLogs);
   console.log('startIndex1  ' + startIndex1);
   console.log('endIndex1  ' + endIndex1);
   console.log('startIndex2  ' + startIndex2);
-  console.log('endIndex2  ' + endIndex2); */
+  console.log('endIndex2  ' + endIndex2);
 
   for (let i = startIndex1; i >= endIndex1; i--) {
     LogRendered.push(LogItem(log[i]));
   }
 
-  if (logCounter >= limitLog) {
+  if (logCounter >= limitLogs) {
     for (let i = startIndex2; i > endIndex2; i--) {
       LogRendered.push(LogItem(log[i]));
     }
