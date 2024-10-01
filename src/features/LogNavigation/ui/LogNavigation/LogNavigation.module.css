@@ -1,3 +1,17 @@
 .LogNavigation {
+}
 
+.active {
+  color: var(--green-dark-color);
+  /* text-decoration: underline;
+  font-weight: bold; */
+}
+
+.button {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.text {
+  margin-right: 8px;
 }

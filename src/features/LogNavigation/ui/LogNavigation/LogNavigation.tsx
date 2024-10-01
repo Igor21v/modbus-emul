@@ -1,7 +1,12 @@
+import { limitPage, logActions } from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
-import cls from './LogNavigation.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { Button } from 'shared/ui/Button';
 import { HStack } from 'shared/ui/Stack';
+import { TextSpan } from 'shared/ui/TextSpan';
+import cls from './LogNavigation.module.css';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 
 interface LogNavigationProps {
   className?: string;
@@ -9,15 +14,37 @@ interface LogNavigationProps {
 
 export const LogNavigation = memo((props: LogNavigationProps) => {
   const { className } = props;
-  const length = 3;
-  const pages = Array.from(Array(length), (range, index) => {
-    return index;
+  const dispatch = useAppDispatch();
+  const { activePage, logCounter } = useAppSelector((state) => state.log);
+  const amountPages = Math.ceil((logCounter + 2) / (limitPage + 1));
+  const pages = Array.from(Array(amountPages), (_, index) => {
+    return index + 1;
   });
-  console.log(pages);
 
-  return (
-    <HStack className={classNames(cls.LogNavigation, {}, [className])}>
-      sdf
-    </HStack>
-  );
+  const ItemPage = (item: number) => {
+    const mods = {
+      [cls.active]: item === activePage,
+    };
+    return (
+      <Button
+        theme="clear"
+        key={item}
+        className={classNames(cls.button, mods)}
+        onClick={() => dispatch(logActions.setActivePage(item))}
+      >
+        {item}
+      </Button>
+    );
+  };
+
+  if (amountPages > 1) {
+    return (
+      <HStack className={classNames(cls.LogNavigation, {}, [className])}>
+        <TextSpan text="Страница" className={cls.text} />
+        {pages.map((item) => ItemPage(item))}
+      </HStack>
+    );
+  }
+
+  return <div></div>;
 });

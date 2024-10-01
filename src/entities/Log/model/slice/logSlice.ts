@@ -33,6 +33,7 @@ const logSlice = createSlice({
     reset: (state) => {
       state.log = [];
       state.logCounter = -1;
+      state.activePage = 1;
     },
     addRecord: (
       state,

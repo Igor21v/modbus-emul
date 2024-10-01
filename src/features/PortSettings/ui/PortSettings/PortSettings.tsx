@@ -5,6 +5,8 @@ import { ParitySelector } from '../ParitySelector/ParitySelector';
 import { RateSelector } from '../RateSelector/RateSelector';
 import { StopBitSelector } from '../StopBitSelector/StopBitSelector';
 import { OpenPortButton } from '../OpenPortButton/OpenPortButton';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { logActions } from 'entities/Log';
 
 interface PortSettingsProps {
   className?: string;
@@ -12,6 +14,7 @@ interface PortSettingsProps {
 
 export const PortSettings = memo((props: PortSettingsProps) => {
   const { className } = props;
+  const dispatch = useAppDispatch();
   return (
     <>
       <RateSelector />
@@ -19,6 +22,13 @@ export const PortSettings = memo((props: PortSettingsProps) => {
       <StopBitSelector />
       <BitInByteSelector />
       <OpenPortButton />
+      <Button
+        onClick={() =>
+          dispatch(logActions.addRecord({ msg: 'Тестовый лог', priority: 9 }))
+        }
+      >
+        Add test log
+      </Button>
     </>
   );
 });
