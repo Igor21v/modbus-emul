@@ -54,13 +54,6 @@ export const Log = memo((props: LogProps) => {
     endIndex1 = 0;
   }
 
-  let startIndex2 = maxEl;
-
-  let endIndex2 = startIndex2 - logOnPage + startIndex1 + 1;
-  if (endIndex2 < startIndex1) {
-    endIndex2 = startIndex1;
-  }
-
   /* console.log('------------' + logCounter);
   console.log('missLogs  ' + missLogs);
   console.log('startIndex1  ' + startIndex1);
@@ -72,7 +65,14 @@ export const Log = memo((props: LogProps) => {
     LogRendered.push(LogItem(log[i]));
   }
 
+  // Добавляем при необходимости конец кольцеого буфера
   if (logCounter >= limitLogs) {
+    let startIndex2 = maxEl;
+    let endIndex2 = startIndex2 - logOnPage + startIndex1 + 1;
+    if (endIndex2 < startIndex1) {
+      endIndex2 = startIndex1;
+    }
+
     for (let i = startIndex2; i > endIndex2; i--) {
       LogRendered.push(LogItem(log[i]));
     }
@@ -80,7 +80,6 @@ export const Log = memo((props: LogProps) => {
 
   return (
     <VStack className={classNames(cls.PortListen, {}, [className])}>
-      {/* copyLog.map((item) => LogItem(item)) */}
       {LogRendered}
     </VStack>
   );
