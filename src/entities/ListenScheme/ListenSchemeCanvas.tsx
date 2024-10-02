@@ -15,25 +15,31 @@ export const ListenSchemeCanvas = memo(() => {
         ctx.strokeStyle = '#dbdbdb';
         ctx.lineWidth = 2;
 
-        //  линии связи между мастером  и слейвами (статика)
+        //  линии связи между мастером  и слейвами (статика) + линии между слейвами
         ctx.beginPath();
         ctx.moveTo(85, 190);
         ctx.lineTo(85, 330);
-        ctx.lineTo(135, 280);
-        // Связи между слейв устройствами
-
+        ctx.lineTo(130, 285);
+        ctx.lineTo(305, 285);
+        ctx.lineTo(340, 330);
+        ctx.lineTo(385, 285);
+        ctx.lineTo(545, 285);
+        ctx.lineTo(590, 330);
+        //  линии связи между мастером  и слейвами (статика) + линии между слейвами
         ctx.moveTo(105, 190);
         ctx.lineTo(105, 330);
         ctx.lineTo(135, 300);
-        ctx.lineTo(340, 300);
+        ctx.lineTo(335, 300);
         ctx.lineTo(360, 330);
+        ctx.lineTo(390, 300);
+        ctx.lineTo(580, 300);
+        ctx.lineTo(610, 330);
         ctx.stroke();
 
         // Надписи
         ctx.font = '18px serif';
-        ctx.fillText('RS485', 448, 350);
-        ctx.fillText('RS485', 192, 350);
-        ctx.fillText('RS485', 125, 210);
+        ctx.fillText('RS485', 448, 299);
+        ctx.fillText('RS485', 192, 299);
         // Анимация для линии
         let pos = 0;
         let step1 = true;
@@ -41,6 +47,7 @@ export const ListenSchemeCanvas = memo(() => {
         const drawAnim = () => {
           ctx.clearRect(80, 110, 180, 80);
           //  линии связи между мастером  и слейвами (динамика)
+          ctx.lineWidth = 2;
           ctx.beginPath();
           ctx.moveTo(85, 50);
           ctx.lineTo(85, 190);
@@ -48,7 +55,7 @@ export const ListenSchemeCanvas = memo(() => {
           ctx.lineTo(105, 190);
           ctx.stroke();
 
-          ctx.lineWidth = 2;
+          // Линии между преобразователем и мастером
           ctx.beginPath();
           if (step1) {
             ctx.moveTo(250, 185);
@@ -65,6 +72,7 @@ export const ListenSchemeCanvas = memo(() => {
             ctx.lineTo(150, 165);
             ctx.lineTo(150 - pos, 165 - pos);
           }
+          ctx.fillText('RS485', 175, 181);
           if ((pos === 100 && step1) || (pos === 65 && !step1)) {
             pos = 0;
             step1 = !step1;
