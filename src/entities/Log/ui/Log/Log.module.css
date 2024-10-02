@@ -1,4 +1,4 @@
-.string:nth-child(odd) {
+.evenLog {
   background-color: var(--second-bg-color);
 }
 

@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getDate } from 'shared/lib/getDate';
 
 // В целях оптимизации производительности логи храним в кольцевом буфере
-export const logOnPage = 5;
-export const limitPages = 4;
+export const logOnPage = 1000;
+export const limitPages = 30;
 export const limitLogs = logOnPage * limitPages;
 
 export interface LogItem {
