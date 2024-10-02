@@ -7,7 +7,7 @@ export const logOnPage = 1000;
 export const limitPages = 30;
 export const limitLogs = logOnPage * limitPages;
 
-export interface LogItem {
+export interface LogItemType {
   num: number;
   date: string;
   msg: string;
@@ -16,7 +16,7 @@ export interface LogItem {
 }
 
 export interface LogState {
-  log: LogItem[];
+  log: LogItemType[];
   logCounter: number;
   activePage: number;
 }
@@ -38,7 +38,7 @@ const logSlice = createSlice({
     },
     addRecord: (
       state,
-      action: PayloadAction<Omit<LogItem, 'num' | 'date'>>,
+      action: PayloadAction<Omit<LogItemType, 'num' | 'date'>>,
     ) => {
       state.logCounter++;
       const num = state.logCounter;
