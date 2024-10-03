@@ -1,9 +1,9 @@
-import { LogItemType } from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { HStack } from 'shared/ui/Stack';
 import { TextSpan, TextSpanTheme } from 'shared/ui/TextSpan';
 import cls from './Log.module.css';
+import { LogItemType } from 'entities/Log/model/types/logTypes';
 
 interface LogItemProps {
   item: LogItemType;

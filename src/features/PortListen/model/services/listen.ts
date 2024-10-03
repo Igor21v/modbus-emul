@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
+import { addLog } from 'entities/Log/model/services/addLog';
 import { logActions } from 'entities/Log/model/slice/logSlice';
 import { portActions } from 'features/PortSettings';
 import { getDate } from 'shared/lib/getDate';
@@ -24,7 +25,7 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
           const diffTime = currTime - prevTime;
           prevTime = currTime;
           dispatch(
-            logActions.addRecord({
+            addLog({
               msg: `${value}`,
               diffTime,
             }),

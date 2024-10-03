@@ -7,6 +7,7 @@ import { HStack } from 'shared/ui/Stack';
 import { TextSpan } from 'shared/ui/TextSpan';
 import cls from './LogNavigation.module.css';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { logCounter } from 'entities/Log/model/slice/logSlice';
 
 interface LogNavigationProps {
   className?: string;
@@ -15,7 +16,7 @@ interface LogNavigationProps {
 export const LogNavigation = memo((props: LogNavigationProps) => {
   const { className } = props;
   const dispatch = useAppDispatch();
-  const { activePage, logCounter } = useAppSelector((state) => state.log);
+  const { activePage } = useAppSelector((state) => state.log);
   const amountPages = Math.min(
     Math.ceil((logCounter + 1) / logOnPage),
     limitPages,

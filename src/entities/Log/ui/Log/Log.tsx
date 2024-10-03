@@ -1,4 +1,8 @@
-import { limitLogs, logOnPage } from 'entities/Log/model/slice/logSlice';
+import {
+  limitLogs,
+  logCounter,
+  logOnPage,
+} from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
@@ -12,7 +16,7 @@ interface LogProps {
 
 export const Log = memo((props: LogProps) => {
   const { className } = props;
-  const { log, logCounter, activePage } = useAppSelector((state) => state.log);
+  const { log, activePage } = useAppSelector((state) => state.log);
   const copyLog = log.slice();
   copyLog.reverse();
 

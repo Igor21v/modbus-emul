@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { appStateActions } from 'entities/AppState';
 import { logActions } from 'entities/Log';
+import { addLog } from 'entities/Log/model/services/addLog';
 
 export const closePort = createAsyncThunk<void, void, ThunkConfig>(
   'port/closePort',
@@ -17,7 +18,7 @@ export const closePort = createAsyncThunk<void, void, ThunkConfig>(
         dispatch(appStateActions.setState('Порт закрыт'));
         dispatch(appStateActions.setError());
         dispatch(
-          logActions.addRecord({
+          addLog({
             msg: 'Порт закрыт',
             priority: 1,
           }),
