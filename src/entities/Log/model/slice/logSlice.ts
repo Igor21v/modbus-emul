@@ -1,6 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { LogBuffer, LogState } from '../types/logTypes';
+import { clearNum } from '../services/addLog';
 
 // В целях оптимизации производительности логи храним в кольцевом буфере
 export const logOnPage = 100;
@@ -25,6 +26,7 @@ const logSlice = createSlice({
     reset: (state) => {
       state.log = [];
       logCounter = -1;
+      clearNum();
       state.activePage = 1;
     },
     addRecords: (state, action: PayloadAction<LogBuffer>) => {

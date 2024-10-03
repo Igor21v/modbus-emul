@@ -17,8 +17,6 @@ interface LogProps {
 export const Log = memo((props: LogProps) => {
   const { className } = props;
   const { log, activePage } = useAppSelector((state) => state.log);
-  const copyLog = log.slice();
-  copyLog.reverse();
 
   // Рендерим логи в обратном порядкекольцевого буфера. index1 - индексы с буфера по часовой стрелке, index2 - против часовой
   const LogRendered = [];

@@ -9,8 +9,8 @@ interface MasterPageProps {
 export const MasterPage = memo((props: MasterPageProps) => {
   const { className } = props;
 
-  const Modbus = require('jsmodbus');
-  const net = require('net');
+  /*  const Modbus = require('jsmodbus');
+  const net = require('net'); */
   /*   const socket = new net.Socket();
   const client = new Modbus.client.TCP(socket, 1);
   const options = {
