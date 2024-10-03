@@ -1,17 +1,16 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { getDate } from 'shared/lib/getDate';
-import { LogBuffer, LogItemType, LogState } from '../types/logTypes';
+import { LogBuffer, LogState } from '../types/logTypes';
 
 // В целях оптимизации производительности логи храним в кольцевом буфере
-export const logOnPage = 300;
-export const limitPages = 10;
+export const logOnPage = 100;
+export const limitPages = 30;
 export const limitLogs = logOnPage * limitPages;
 
 // Счетчик храним не в стейте чтобы не вызывать лишние обновления при накоплении буфера
 export let logCounter = -1;
-export const addLogCounter = () => {
-  logCounter++;
+export const setLogCounter = (count: number) => {
+  logCounter = count;
 };
 
 const initialState: LogState = {

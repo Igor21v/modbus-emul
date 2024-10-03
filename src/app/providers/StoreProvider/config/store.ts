@@ -16,6 +16,7 @@ export const store = configureStore({
       thunk: {
         extraArgument: extraArg,
       },
+      serializableCheck: false,
     }),
 });
 
