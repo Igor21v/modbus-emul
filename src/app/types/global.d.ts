@@ -1,6 +1,7 @@
 /// <reference types="react-scripts" />
-const Buffer = require('buffer');
-window.Buffer = Buffer;
+
+type Buffer = import('Buffer');
+declare var Buffer: Buffer;
 
 declare var comport: {
   port: any;
