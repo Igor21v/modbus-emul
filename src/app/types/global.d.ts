@@ -1,8 +1,5 @@
 /// <reference types="react-scripts" />
 
-type Buffer = import('Buffer');
-declare var Buffer: Buffer;
-
 declare var comport: {
   port: any;
   reader: any;
