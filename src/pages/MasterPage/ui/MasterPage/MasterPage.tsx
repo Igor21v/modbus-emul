@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import cls from './MasterPage.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { crc16 } from 'shared/lib/crc16';
 /* const Buffer = require('buffer'); */
 
 interface MasterPageProps {
