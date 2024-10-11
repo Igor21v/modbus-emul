@@ -1,5 +1,7 @@
 /// <reference types="react-scripts" />
 
+declare var portWorker: Worker;
+
 declare var comport: {
   port: any;
   reader: any;

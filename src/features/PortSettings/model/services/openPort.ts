@@ -9,19 +9,38 @@ export const openPort = createAsyncThunk<void, void, ThunkConfig>(
   async (_, thunkApi) => {
     const { getState, dispatch } = thunkApi;
     // @ts-ignore
-    if (navigator.serial) {
+    const serial = navigator.serial;
+    if (serial) {
       try {
-        // @ts-ignore
-        const port = await navigator.serial.requestPort();
-        const { baudRate, dataBits, stopBits, parity } = getState().port;
-        await port.open({
-          baudRate,
-          dataBits,
-          stopBits,
-          parity,
+        // Очищаем список зарегистрированных портов
+        let ports = await serial.getPorts();
+        ports.forEach((port: any) => {
+          port.forget();
         });
-        window.comport.port = port;
-        window.comport.needClose = false;
+        // Регистрируем выбранный пользователем порт
+        const port = await serial.requestPort();
+
+        const { baudRate, dataBits, stopBits, parity } = getState().port;
+        window.portWorker.postMessage({
+          type: 'open',
+          props: {
+            baudRate,
+            dataBits,
+            stopBits,
+            parity,
+          },
+        });
+
+        await new Promise<void>((resolve, reject) => {
+          window.portWorker.onmessage = ({ data }) => {
+            if (data.type === 'open' && data.state === 'OK') {
+              resolve();
+            }
+            if (data.type === 'open' && data.state === 'ERROR') {
+              reject(data.e);
+            }
+          };
+        });
         dispatch(appStateActions.setState('Порт открыт'));
         dispatch(appStateActions.resetError());
         dispatch(

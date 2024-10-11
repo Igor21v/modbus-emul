@@ -9,8 +9,11 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
   'listen/start',
   async (_, thunkApi) => {
     const { dispatch } = thunkApi;
-    const port = window.comport.port;
-    while (port?.readable && !window.comport.needClose) {
+
+    //@ts-ignore
+    /* await navigator.serial.requestPort(); */
+
+    /* while (port?.readable && !window.comport.needClose) {
       let prevTime = Date.now();
       const reader = port.readable.getReader();
       window.comport.reader = reader;
@@ -41,6 +44,6 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
       await port.close();
       dispatch(portActions.setPortOpen(false));
       window.comport.port = undefined;
-    }
+    } */
   },
 );

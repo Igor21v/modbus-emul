@@ -14,6 +14,7 @@ function App() {
     port: undefined,
     reader: undefined,
   };
+  window.portWorker = new Worker(new URL('./workers/port.js', import.meta.url));
   return (
     <div className="app">
       <MainLayout
