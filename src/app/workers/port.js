@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 let port;
+let reader;
 let needClose = false;
 
 self.onmessage = ({ data }) => {
@@ -14,7 +15,7 @@ async function open(props) {
   try {
     const ports = await navigator.serial.getPorts();
     port = ports[0];
-    await port.open({ baudRate: 9600 });
+    await port.open(props);
     needClose = false;
     postMessage({ type: 'open', state: 'OK' });
   } catch (e) {
@@ -22,18 +23,16 @@ async function open(props) {
   }
 }
 
-async function close() {}
-
-/* 
-worker.onmessage = ({ data }) => {
-  if (data.type === 'open' && data.state === 'OK') {
-    dispatch(appStateActions.setState('Порт открыт'));
-    dispatch(appStateActions.resetError());
-    dispatch(
-      addLog({
-        msg: 'Порт открыт',
-        priority: 9,
-      }),
-    );
+async function close() {
+  try {
+    if (port) {
+      needClose = true;
+      await reader?.cancel();
+      // Можно закрывать порт здесь, сейчас реализовано по рекомендации из документации в listen функции
+      // port.close();
+    }
+    postMessage({ type: 'close', state: 'OK' });
+  } catch (e) {
+    postMessage({ type: 'close', state: 'ERROR', data: e });
   }
-}; */
+}

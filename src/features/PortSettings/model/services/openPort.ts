@@ -18,7 +18,7 @@ export const openPort = createAsyncThunk<void, void, ThunkConfig>(
           port.forget();
         });
         // Регистрируем выбранный пользователем порт
-        const port = await serial.requestPort();
+        await serial.requestPort();
 
         const { baudRate, dataBits, stopBits, parity } = getState().port;
         window.portWorker.postMessage({

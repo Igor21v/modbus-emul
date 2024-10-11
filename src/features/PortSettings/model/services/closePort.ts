@@ -9,21 +9,27 @@ export const closePort = createAsyncThunk<void, void, ThunkConfig>(
   async (_, thunkApi) => {
     const { dispatch } = thunkApi;
     try {
-      if (window.comport.port) {
-        window.comport.needClose = true;
-        await window.comport.reader?.cancel();
-        // Можно закрывать порт здесь, сейчас реализовано по рекомендации из документации в listen сервисе
-        /* const port = window.comport.port;
-        port.close(); */
-        dispatch(appStateActions.setState('Порт закрыт'));
-        dispatch(appStateActions.setError());
-        dispatch(
-          addLog({
-            msg: 'Порт закрыт',
-            priority: 1,
-          }),
-        );
-      }
+      window.portWorker.postMessage({
+        type: 'close',
+      });
+      await new Promise<void>((resolve, reject) => {
+        window.portWorker.onmessage = ({ data }) => {
+          if (data.type === 'close' && data.state === 'OK') {
+            resolve();
+          }
+          if (data.type === 'close' && data.state === 'ERROR') {
+            reject(data.e);
+          }
+        };
+      });
+      dispatch(appStateActions.setState('Порт закрыт'));
+      dispatch(appStateActions.setError());
+      dispatch(
+        addLog({
+          msg: 'Порт закрыт',
+          priority: 1,
+        }),
+      );
     } catch (e) {
       dispatch(appStateActions.setState('Ошибка закрытия COM-порта ' + e));
       dispatch(appStateActions.setError());
