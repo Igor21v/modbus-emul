@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { appStateActions } from 'entities/AppState';
-import { logActions } from 'entities/Log';
 import { addLog } from 'entities/Log/model/services/addLog';
+import { listenStart } from 'features/PortListen/model/services/listen';
 
 export const openPort = createAsyncThunk<void, void, ThunkConfig>(
   'port/openPort',
@@ -37,7 +37,7 @@ export const openPort = createAsyncThunk<void, void, ThunkConfig>(
               resolve();
             }
             if (data.type === 'open' && data.state === 'ERROR') {
-              reject(data.e);
+              reject(data.error);
             }
           };
         });

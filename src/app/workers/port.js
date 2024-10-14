@@ -9,7 +9,39 @@ self.onmessage = ({ data }) => {
   else if (data.type === 'listen') listen();
 };
 
-async function listen() {}
+async function listen() {
+  while (port?.readable && !needClose) {
+    let prevTime = Date.now();
+    /*    if (!port.readable.locked) { */
+    reader = port.readable.getReader();
+
+    console.log(port.readable);
+
+    try {
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) {
+          break;
+        }
+        const currTime = Date.now();
+        const diffTime = currTime - prevTime;
+        prevTime = currTime;
+        postMessage({
+          type: 'listen',
+          state: 'MSG',
+          payload: { msg: `${value}`, diffTime },
+        });
+      }
+    } catch (error) {
+    } finally {
+      reader.releaseLock();
+    }
+  }
+  if (port) {
+    await port.close();
+    port = undefined;
+  }
+}
 
 async function open(props) {
   try {
@@ -18,8 +50,8 @@ async function open(props) {
     await port.open(props);
     needClose = false;
     postMessage({ type: 'open', state: 'OK' });
-  } catch (e) {
-    postMessage({ type: 'open', state: 'ERROR', data: e });
+  } catch (error) {
+    postMessage({ type: 'open', state: 'ERROR', error });
   }
 }
 
@@ -32,7 +64,7 @@ async function close() {
       // port.close();
     }
     postMessage({ type: 'close', state: 'OK' });
-  } catch (e) {
-    postMessage({ type: 'close', state: 'ERROR', data: e });
+  } catch (error) {
+    postMessage({ type: 'close', state: 'ERROR', error });
   }
 }

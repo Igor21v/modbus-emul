@@ -1,49 +1,30 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { addLog } from 'entities/Log/model/services/addLog';
-import { logActions } from 'entities/Log/model/slice/logSlice';
 import { portActions } from 'features/PortSettings';
-import { getDate } from 'shared/lib/getDate';
 
 export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
   'listen/start',
   async (_, thunkApi) => {
-    const { dispatch } = thunkApi;
-
-    //@ts-ignore
-    /* await navigator.serial.requestPort(); */
-
-    /* while (port?.readable && !window.comport.needClose) {
-      let prevTime = Date.now();
-      const reader = port.readable.getReader();
-      window.comport.reader = reader;
-      try {
-        while (true) {
-          const { value, done } = await reader.read();
-          if (done) {
-            // |reader| has been canceled.
-            break;
-          }
-          const currTime = Date.now();
-          const diffTime = currTime - prevTime;
-          prevTime = currTime;
+    const { dispatch, getState } = thunkApi;
+    if (getState().port.portIsOpen) {
+      window.portWorker.postMessage({
+        type: 'listen',
+      });
+      window.portWorker.onmessage = ({ data }) => {
+        console.log('LISTEN ' + data.type + '  ' + data.state);
+        if (data.type === 'listen' && data.state === 'MSG') {
           dispatch(
             addLog({
-              msg: `${value}`,
-              diffTime,
+              msg: data.payload.msg,
+              diffTime: data.payload.diffTime,
             }),
           );
         }
-      } catch (error) {
-        // Handle |error|...
-      } finally {
-        reader.releaseLock();
-      }
+        if (data.type === 'listen' && data.state === 'close') {
+          dispatch(portActions.setPortOpen(false));
+        }
+      };
     }
-    if (port) {
-      await port.close();
-      dispatch(portActions.setPortOpen(false));
-      window.comport.port = undefined;
-    } */
   },
 );

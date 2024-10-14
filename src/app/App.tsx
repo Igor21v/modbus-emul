@@ -9,11 +9,6 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 
 function App() {
   const expandedLog = useAppSelector((state) => state.appState.expandedLog);
-  window.comport = {
-    needClose: false,
-    port: undefined,
-    reader: undefined,
-  };
   window.portWorker = new Worker(new URL('./workers/port.js', import.meta.url));
   return (
     <div className="app">
