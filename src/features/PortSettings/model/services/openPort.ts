@@ -49,6 +49,7 @@ export const openPort = createAsyncThunk<void, void, ThunkConfig>(
             priority: 9,
           }),
         );
+        dispatch(listenStart());
       } catch (e) {
         dispatch(appStateActions.setState('Ошибка открытия COM-порта ' + e));
         dispatch(appStateActions.setError());

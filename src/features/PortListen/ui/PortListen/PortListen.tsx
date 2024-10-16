@@ -17,9 +17,9 @@ export const PortListen = memo((props: PortListenProps) => {
   const { className } = props;
   const { portIsOpen } = useAppSelector((state) => state.port);
   const dispatch = useAppDispatch();
-  useEffect(() => {
+  /*   useEffect(() => {
     dispatch(listenStart());
-  }, [portIsOpen]);
+  }, [portIsOpen]); */
   useEffect(() => {
     return () => {
       dispatch(closePort());
