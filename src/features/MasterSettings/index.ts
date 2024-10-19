@@ -1,0 +1,1 @@
+export { MasterSettings } from './ui/MasterSettings/MasterSettings';

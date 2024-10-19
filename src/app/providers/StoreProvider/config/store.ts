@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { appStateReducer } from 'entities/AppState';
 import { logReducer } from 'entities/Log/';
+import { requestsReducer } from 'features/MasterRequests';
 import { portReducer } from 'features/PortSettings';
 
 const extraArg = {};
@@ -10,6 +11,7 @@ export const store = configureStore({
     port: portReducer,
     log: logReducer,
     appState: appStateReducer,
+    requests: requestsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
