@@ -1,26 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { masterReq } from '../services/masterReq';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface Request {
   register: number;
   quantity: number;
 }
 
-export interface RequestState {
-  requests: Request[];
+export interface OneRequest {
+  adress: number;
+  request: Request;
 }
 
-const initialState: RequestState = {
-  requests: [],
-};
+export type RequestState = Record<number, Record<number, Request>>;
+
+const initialState: RequestState = {};
 
 const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
-    setRequests: (state, action: PayloadAction<Request[]>) => {
-      state.requests = action.payload;
+    addSlave: (state, action: PayloadAction<number>) => {
+      const id = Date.now();
+      state[action.payload] = { [id]: { register: 1, quantity: 1 } };
+    },
+    addRequest: (state, action: PayloadAction<number>) => {
+      const id = Date.now();
+      console.log(action.payload);
+      state[action.payload][id] = { register: 1, quantity: 1 };
     },
   },
 });

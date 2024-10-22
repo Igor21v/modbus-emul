@@ -1,9 +1,8 @@
-import { Navigate, RouteProps, redirect } from 'react-router-dom';
-import { AppRoutes } from 'shared/const/router';
-import { routerMap } from 'shared/const/router';
+import { ListenPage } from 'pages/ListenPage';
 import { MasterPage } from 'pages/MasterPage';
 import { SlavePage } from 'pages/SlavePage';
-import { ListenPage } from 'pages/ListenPage';
+import { Navigate, RouteProps } from 'react-router-dom';
+import { AppRoutes, routerMap } from 'shared/const/router';
 
 export type AppRouteProps = RouteProps;
 
