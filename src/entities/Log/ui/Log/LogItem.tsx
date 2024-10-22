@@ -28,6 +28,7 @@ export const LogItem = memo((props: LogItemProps) => {
         <TextSpan text={'+' + item.diffTime} className={cls.diffTime} />
       )}
       <TextSpan text={item.msg} theme={theme} />
+      {item.comment !== undefined && <TextSpan text={item.comment} italic />}
     </HStack>
   );
 });

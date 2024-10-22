@@ -4,6 +4,7 @@ export interface LogItemType {
   msg: string;
   diffTime?: number;
   priority?: number;
+  comment?: string;
 }
 
 export interface LogState {

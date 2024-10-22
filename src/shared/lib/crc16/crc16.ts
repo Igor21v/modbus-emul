@@ -14,5 +14,8 @@ export function crc16(buffer: number[]) {
     }
   }
 
-  return crc;
+  const hi = crc >>> 8;
+  const low = crc & 255;
+
+  return { hi, low };
 }
