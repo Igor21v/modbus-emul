@@ -3,6 +3,7 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { addLog } from 'entities/Log/model/services/addLog';
 import { portActions } from 'features/PortSettings';
 import { crc16 } from 'shared/lib/crc16';
+import { ModbusErrorFC, ModbusFC } from 'shared/lib/modbusCodes';
 
 export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
   'listen/start',
@@ -18,7 +19,14 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
         // Проверяем контрольную сумму
         let comment = '';
         if (crc.hi == msg.at(-1) && crc.low == msg.at(-2)) {
-          comment = `Сообщение SlaveID ${msg.at(0)}, код функции ${msg.at(1)}`;
+          const FC = msg.at(1);
+          let FCMapped = '';
+          if (FC > 100) {
+            FCMapped = ModbusErrorFC(FC, msg.at(2));
+          } else {
+            FCMapped = ModbusFC(FC);
+          }
+          comment = `Адрес ${msg.at(0)}, код функции ${FC} ${FCMapped}`;
         } else {
           comment = `Ошибка контрольной суммы, в пакете: CRC Low=${msg.at(
             -2,

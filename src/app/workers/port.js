@@ -24,31 +24,31 @@ async function listen() {
         if (done) {
           break;
         }
-        console.log('Получен чанк ' + `${value}`);
+        /* console.log('Получен чанк ' + `${value}`); */
         if (frame === '') {
-          console.log('Начало нового фрейма из пустого');
+          /* console.log('Начало нового фрейма из пустого'); */
           frame = `${value}`;
           prevChankTime = performance.now();
         } else {
           const currTime = performance.now();
           const chankTime = currTime - prevChankTime;
           const maxFrameDelay = getMaxFrameDeley(`${value}`);
-          console.log('maxFrameDelay ' + maxFrameDelay);
-          console.log('chankTime ' + chankTime);
+          /* console.log('maxFrameDelay ' + maxFrameDelay);
+          console.log('chankTime ' + chankTime); */
           if (chankTime > maxFrameDelay) {
             const diffTime = Math.round((currTime - prevFrameTime) * 100) / 100;
-            console.log('Отправка фрейма ' + frame);
+            /* console.log('Отправка фрейма ' + frame); */
             postMessage({
               type: 'listen',
               state: 'MSG',
               payload: { msg: frame, diffTime },
             });
             frame = `${value}`;
-            console.log('Начало нового фрейма ' + frame);
+            /*  console.log('Начало нового фрейма ' + frame); */
             prevFrameTime = performance.now();
           } else {
             frame += `,${value}`;
-            console.log('Дополнил фрейм ' + frame);
+            /* console.log('Дополнил фрейм ' + frame); */
           }
           prevChankTime = performance.now();
         }
