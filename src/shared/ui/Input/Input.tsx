@@ -35,6 +35,7 @@ export const Input = <T extends number | string | undefined>(
     validateError,
     focusIsSet,
     focusHandler,
+    title,
     ...otherProps
   } = props;
   const ref = useRef<HTMLInputElement>(null);
@@ -73,6 +74,7 @@ export const Input = <T extends number | string | undefined>(
         { [cls.canEdit]: canEdit, [cls.focus]: focus },
         [classNameWrapper],
       )}
+      title={title}
     >
       <label htmlFor={placeholder} className={cls.lable}>
         {value === '' ? '\u00A0' : placeholder}

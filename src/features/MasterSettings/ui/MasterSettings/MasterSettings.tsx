@@ -27,9 +27,17 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
       />
       <HStack gap="16" wrap justify="center">
         <Input
-          placeholder="Таймаут ответа"
+          placeholder="Таймаут ответа, мс"
           value={timeout}
           onChange={setTimeout}
+          type="number"
+        />
+        <Input
+          title="Задержка после получения ответа от слейва и следующим запросом"
+          placeholder="Время между фреймами, мс"
+          value={timeout}
+          onChange={setTimeout}
+          type="number"
         />
       </HStack>
     </Card>

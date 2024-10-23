@@ -20,12 +20,11 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const requests = useAppSelector((state) => state.requests);
   const addRequestHandler = () => {
     dispatch(addRequest(adress));
-    console.log(requests);
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])}>
       <HStack gap="32">
-        <Text text={`Устройство ${adress}`} />
+        <Text text={`Устройство с адресом ${adress}`} />
         <Button
           theme="outlineGreen"
           onClick={addRequestHandler}
@@ -33,6 +32,14 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
           size="size_s"
         >
           Добавить запрос для этого устройства
+        </Button>
+        <Button
+          theme="outlineRed"
+          onClick={addRequestHandler}
+          className={cls.addReq}
+          size="size_s"
+        >
+          Удалить устройство
         </Button>
       </HStack>
 
