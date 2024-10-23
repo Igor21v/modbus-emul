@@ -8,6 +8,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { addRequest } from 'features/MasterRequests/model/services/masterReq';
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
 import { RequestItem } from '../RequestItem/RequestItem';
+import { Input } from 'shared/ui/Input';
 
 interface SlaveItemProps {
   className?: string;
@@ -24,7 +25,13 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])}>
       <HStack gap="32">
-        <Text text={`Устройство с адресом ${adress}`} />
+        <Input
+          value={adress}
+          placeholder="Адрес устройства"
+          type="number"
+          id={`${adress}`}
+        />
+        {/* <Text text={`Устройство с адресом `} /> */}
         <Button
           theme="outlineGreen"
           onClick={addRequestHandler}

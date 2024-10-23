@@ -36,6 +36,7 @@ export const Input = <T extends number | string | undefined>(
     focusIsSet,
     focusHandler,
     title,
+    id,
     ...otherProps
   } = props;
   const ref = useRef<HTMLInputElement>(null);
@@ -76,7 +77,7 @@ export const Input = <T extends number | string | undefined>(
       )}
       title={title}
     >
-      <label htmlFor={placeholder} className={cls.lable}>
+      <label htmlFor={id} className={cls.lable}>
         {value === '' ? '\u00A0' : placeholder}
       </label>
       <input
@@ -88,7 +89,7 @@ export const Input = <T extends number | string | undefined>(
         {...otherProps}
         className={classNames(cls.input, mods, [className])}
         autoFocus={autoFocus}
-        id={placeholder}
+        id={id}
         onFocus={onFocus}
         onBlur={onBlur}
         placeholder={placeholder}
