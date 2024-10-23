@@ -26,7 +26,7 @@ export const listenStart = createAsyncThunk<any, void, ThunkConfig>(
           } else {
             FCMapped = ModbusFC(FC);
           }
-          comment = `Адрес ${msg.at(0)}, код функции ${FC} ${FCMapped}`;
+          comment = `Адрес ${msg.at(0)}, код функции ${FC} - ${FCMapped}`;
         } else {
           comment = `Ошибка контрольной суммы, в пакете: CRC Low=${msg.at(
             -2,
