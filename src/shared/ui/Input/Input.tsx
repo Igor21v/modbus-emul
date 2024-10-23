@@ -75,7 +75,7 @@ export const Input = <T extends number | string | undefined>(
       )}
     >
       <label htmlFor={placeholder} className={cls.lable}>
-        {placeholder}
+        {value === '' ? '\u00A0' : placeholder}
       </label>
       <input
         ref={ref}

@@ -1,8 +1,8 @@
-import { memo } from 'react';
-import cls from './MasterPage.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { crc16 } from 'shared/lib/crc16';
 import { MasterRequests } from 'features/MasterRequests';
+import { MasterSettings } from 'features/MasterSettings';
+import { memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './MasterPage.module.css';
 /* const Buffer = require('buffer'); */
 
 interface MasterPageProps {
@@ -13,8 +13,9 @@ export const MasterPage = memo((props: MasterPageProps) => {
   const { className } = props;
 
   return (
-    <div className={classNames(cls.MasterPage, {}, [className])}>
+    <>
+      <MasterSettings />
       <MasterRequests />
-    </div>
+    </>
   );
 });

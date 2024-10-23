@@ -25,13 +25,16 @@ export const MasterRequests = memo((props: MasterRequestsProps) => {
     }
   };
   return (
-    <VStack className={classNames(cls.MasterRequests, {}, [className])}>
-      {Object.keys(requests).map((adress) => (
-        <SlaveItem adress={+adress} key={adress} />
-      ))}
+    <VStack
+      className={classNames(cls.MasterRequests, {}, [className])}
+      gap="32"
+    >
       <Button theme="outlineGreen" onClick={addSlaveHandler}>
         Добавить устройство
       </Button>
+      {Object.keys(requests).map((adress) => (
+        <SlaveItem adress={+adress} key={adress} />
+      ))}
     </VStack>
   );
 });
