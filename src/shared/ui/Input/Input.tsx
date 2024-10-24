@@ -41,6 +41,8 @@ export const Input = <T extends number | string | undefined>(
   } = props;
   const ref = useRef<HTMLInputElement>(null);
   const canEdit = !readOnly;
+  let idInput = placeholder;
+  if (id) idInput = id;
   useInitialEffect(() => {
     if (focusIsSet) {
       ref.current?.focus();
@@ -77,7 +79,7 @@ export const Input = <T extends number | string | undefined>(
       )}
       title={title}
     >
-      <label htmlFor={id} className={cls.lable}>
+      <label htmlFor={idInput} className={cls.lable}>
         {value === '' ? '\u00A0' : placeholder}
       </label>
       <input
@@ -89,7 +91,7 @@ export const Input = <T extends number | string | undefined>(
         {...otherProps}
         className={classNames(cls.input, mods, [className])}
         autoFocus={autoFocus}
-        id={id}
+        id={idInput}
         onFocus={onFocus}
         onBlur={onBlur}
         placeholder={placeholder}
