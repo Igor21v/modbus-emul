@@ -2,11 +2,11 @@ import { memo } from 'react';
 import cls from './MasterRequests.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { VStack } from 'shared/ui/Stack';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { SlaveItem } from '../SlaveItem/SlaveItem';
 import { Button } from 'shared/ui/Button';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { addSlave } from 'features/MasterRequests/model/services/masterReq';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { requestsActions } from '../../model/slice/masterReqSlice';
 
 interface MasterRequestsProps {
   className?: string;
@@ -19,16 +19,13 @@ export const MasterRequests = memo((props: MasterRequestsProps) => {
   const addSlaveHandler = () => {
     for (let i = 1; i < 255; i++) {
       if (!requests[i]) {
-        dispatch(addSlave(i));
+        dispatch(requestsActions.addSlave(i));
         break;
       }
     }
   };
   return (
-    <VStack
-      className={classNames(cls.MasterRequests, {}, [className])}
-      gap="32"
-    >
+    <VStack className={classNames(cls.MasterRequests, {}, [className])} gap="32">
       <Button theme="outlineGreen" onClick={addSlaveHandler}>
         Добавить устройство
       </Button>

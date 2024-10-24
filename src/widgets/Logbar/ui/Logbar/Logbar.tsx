@@ -4,7 +4,7 @@ import { LogbarExpandIcon } from './LogbarExpandIcon';
 import Clear from 'shared/icons/Clear';
 import { Icon } from 'shared/ui/Icon';
 import cls from './Logbar.module.css';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { logActions } from 'entities/Log';
 import { LogNavigation } from 'features/LogNavigation';
 

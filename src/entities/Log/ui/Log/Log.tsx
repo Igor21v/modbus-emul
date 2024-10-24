@@ -5,7 +5,7 @@ import {
 } from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { VStack } from 'shared/ui/Stack';
 import cls from './Log.module.css';
 import { LogItem } from './LogItem';

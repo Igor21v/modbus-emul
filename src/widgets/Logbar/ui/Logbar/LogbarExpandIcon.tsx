@@ -2,8 +2,8 @@ import { appStateActions } from 'entities/AppState';
 import { memo } from 'react';
 import Expand from 'shared/icons/Expand';
 import Minimize from 'shared/icons/Minimize';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { Icon } from 'shared/ui/Icon';
 
 interface LogbarProps {

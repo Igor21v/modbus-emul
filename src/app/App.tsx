@@ -5,7 +5,7 @@ import { Logbar } from 'widgets/Logbar';
 import { AppRouter } from './providers/router';
 import { AppState } from 'entities/AppState';
 import { Log } from 'entities/Log';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 function App() {
   const expandedLog = useAppSelector((state) => state.appState.expandedLog);

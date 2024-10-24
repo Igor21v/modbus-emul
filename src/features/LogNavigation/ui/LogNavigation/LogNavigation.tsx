@@ -1,12 +1,12 @@
 import { logOnPage, logActions, limitPages } from 'entities/Log/';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { Button } from 'shared/ui/Button';
 import { HStack } from 'shared/ui/Stack';
 import { TextSpan } from 'shared/ui/TextSpan';
 import cls from './LogNavigation.module.css';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { logCounter } from 'entities/Log/model/slice/logSlice';
 
 interface LogNavigationProps {

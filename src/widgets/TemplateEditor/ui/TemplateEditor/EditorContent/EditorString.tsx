@@ -7,7 +7,7 @@ import { Button } from 'shared/ui/Button';
 import { getPropertyFromPath } from 'shared/lib/getPropertyFromPath';
 import { FocusType } from '../TemplateEditor';
 import { TemplateType } from 'widgets/TemplateEditor/model/types/TemplateType';
-import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
+import { useDebounce } from 'shared/hooks/useDebounce';
 
 interface EditorStringProps {
   nesting: number;

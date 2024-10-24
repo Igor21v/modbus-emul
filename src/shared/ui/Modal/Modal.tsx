@@ -1,9 +1,9 @@
-import { ReactNode, useEffect } from "react";
-import { classNames, Mods } from "shared/lib/classNames/classNames";
-import { useModal } from "shared/lib/hooks/useModal/useModal";
-import { Overlay } from "../Overlay/Overlay";
-import { Portal } from "../Portal/Portal";
-import cls from "./Modal.module.css";
+import { ReactNode, useEffect } from 'react';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { useModal } from 'shared/hooks/useModal/useModal';
+import { Overlay } from '../Overlay/Overlay';
+import { Portal } from '../Portal/Portal';
+import cls from './Modal.module.css';
 
 interface ModalProps {
   className?: string;
@@ -54,11 +54,11 @@ export const Modal = (props: ModalProps) => {
   }
 
   return (
-    <Portal element={document.getElementById("app") ?? document.body}>
-      <div className={classNames(cls.Modal, mods, [className, "app_modal"])}>
+    <Portal element={document.getElementById('app') ?? document.body}>
+      <div className={classNames(cls.Modal, mods, [className, 'app_modal'])}>
         <Overlay
           onClick={close}
-          className={isClosing || !isRendered ? cls.overlayTransp : ""}
+          className={isClosing || !isRendered ? cls.overlayTransp : ''}
         />
         <div className={cls.content}>{children}</div>
       </div>

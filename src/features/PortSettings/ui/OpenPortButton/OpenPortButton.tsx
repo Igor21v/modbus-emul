@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { Button } from 'shared/ui/Button';
 import { openPort } from '../../model/services/openPort';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { closePort } from 'features/PortSettings/model/services/closePort';
 
 interface OpenPortButtonProps {

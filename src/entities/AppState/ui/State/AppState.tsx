@@ -2,7 +2,7 @@ import { memo } from 'react';
 import cls from './AppState.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextTheme } from 'shared/ui/Text';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 export const AppState = memo(() => {
   const { content, error } = useAppSelector((state) => state.appState);

@@ -5,7 +5,7 @@ import { ParitySelector } from '../ParitySelector/ParitySelector';
 import { RateSelector } from '../RateSelector/RateSelector';
 import { StopBitSelector } from '../StopBitSelector/StopBitSelector';
 import { OpenPortButton } from '../OpenPortButton/OpenPortButton';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { logActions } from 'entities/Log';
 import { addLog } from 'entities/Log/model/services/addLog';
 

@@ -1,14 +1,13 @@
 import { memo } from 'react';
-import cls from './SlaveItem.module.css';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Text } from 'shared/ui/Text';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { addRequest } from 'features/MasterRequests/model/services/masterReq';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
-import { RequestItem } from '../RequestItem/RequestItem';
 import { Input } from 'shared/ui/Input';
+import { HStack, VStack } from 'shared/ui/Stack';
+import { requestsActions } from '../../model/slice/masterReqSlice';
+import { RequestItem } from '../RequestItem/RequestItem';
+import cls from './SlaveItem.module.css';
 
 interface SlaveItemProps {
   className?: string;
@@ -20,38 +19,23 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const dispatch = useAppDispatch();
   const requests = useAppSelector((state) => state.requests);
   const addRequestHandler = () => {
-    dispatch(addRequest(adress));
+    dispatch(requestsActions.addRequest(adress));
   };
   return (
-    <VStack className={classNames(cls.SlaveItem, {}, [className])}>
+    <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
       <HStack gap="32">
-        <Input
-          value={adress}
-          placeholder="Адрес устройства"
-          type="number"
-          id={`${adress}`}
-        />
+        <Input value={adress} placeholder="Адрес устройства" type="number" id={`${adress}`} />
         {/* <Text text={`Устройство с адресом `} /> */}
-        <Button
-          theme="outlineGreen"
-          onClick={addRequestHandler}
-          className={cls.addReq}
-          size="size_s"
-        >
-          Добавить запрос для этого устройства
+        <Button theme="outlineGreen" onClick={addRequestHandler} className={cls.addReq}>
+          Добавить запрос
         </Button>
-        <Button
-          theme="outlineRed"
-          onClick={addRequestHandler}
-          className={cls.addReq}
-          size="size_s"
-        >
+        <Button theme="outlineRed" onClick={addRequestHandler} className={cls.addReq}>
           Удалить устройство
         </Button>
       </HStack>
 
       {Object.entries(requests[adress]).map(([id, request]) => (
-        <RequestItem id={+id} request={request} key={id} />
+        <RequestItem slaveAdress={adress} id={+id} request={request} key={id} />
       ))}
     </VStack>
   );

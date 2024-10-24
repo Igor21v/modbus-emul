@@ -1,8 +1,8 @@
 import { listenStart } from 'features/PortListen/model/services/listen';
 import { memo, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { VStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text';
 import cls from './PortListen.module.css';

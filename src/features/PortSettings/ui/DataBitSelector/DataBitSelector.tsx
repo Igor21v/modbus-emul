@@ -1,8 +1,8 @@
 import { portActions } from 'features/PortSettings/model/slice/portSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { Select, SelectOption } from 'shared/ui/Select';
 import cls from './DataBitSelector.module.css';
 
