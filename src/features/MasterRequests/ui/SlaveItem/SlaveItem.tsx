@@ -5,9 +5,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
 import { HStack, VStack } from 'shared/ui/Stack';
-import { requestsActions } from '../../model/slice/masterReqSlice';
 import { RequestItem } from '../RequestItem/RequestItem';
 import cls from './SlaveItem.module.css';
+import { requestsActions } from '../../model/slice/requests';
 
 interface SlaveItemProps {
   className?: string;
@@ -21,6 +21,9 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const addRequestHandler = () => {
     dispatch(requestsActions.addRequest(adress));
   };
+  const delRequestHandler = () => {
+    dispatch(requestsActions.delSlave(adress));
+  };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
       <HStack gap="32">
@@ -29,7 +32,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
         <Button theme="outlineGreen" onClick={addRequestHandler} className={cls.addReq}>
           Добавить запрос
         </Button>
-        <Button theme="outlineRed" onClick={addRequestHandler} className={cls.addReq}>
+        <Button theme="outlineRed" onClick={delRequestHandler} className={cls.addReq}>
           Удалить устройство
         </Button>
       </HStack>

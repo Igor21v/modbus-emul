@@ -6,7 +6,7 @@ import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { SlaveItem } from '../SlaveItem/SlaveItem';
 import { Button } from 'shared/ui/Button';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
-import { requestsActions } from '../../model/slice/masterReqSlice';
+import { requestsActions } from '../../model/slice/requests';
 
 interface MasterRequestsProps {
   className?: string;

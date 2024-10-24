@@ -33,6 +33,10 @@ const requestsSlice = createSlice({
       delete state[action.payload.adress][action.payload.reqID];
       saveData('44');
     },
+    delSlave: (state, action: PayloadAction<number>) => {
+      delete state[action.payload];
+      saveData('44');
+    },
   },
 });
 

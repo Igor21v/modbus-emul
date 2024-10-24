@@ -16,22 +16,10 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
   const [timeout, setTimeout] = useState(0);
 
   return (
-    <Card
-      className={classNames(cls.MasterSettings, {}, [className])}
-      theme="outlined"
-    >
-      <Text
-        title="Настройки режима мастер"
-        align="center"
-        className={cls.title}
-      />
+    <Card className={classNames(cls.MasterSettings, {}, [className])} theme="outlined">
+      <Text title="Настройки режима мастер" align="center" className={cls.title} />
       <HStack gap="16" wrap justify="center">
-        <Input
-          placeholder="Таймаут ответа, мс"
-          value={timeout}
-          onChange={setTimeout}
-          type="number"
-        />
+        <Input placeholder="Таймаут ответа, мс" value={timeout} onChange={setTimeout} type="number" />
         <Input
           title="Задержка после получения ответа от слейва и следующим запросом"
           placeholder="Время между фреймами, мс"
