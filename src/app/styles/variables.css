@@ -34,18 +34,16 @@
 
   /* Цвета*/
   --overlay-color: rgba(0 0 0 / 60%);
-  --red-light-color: #f00;
-  --red-dark-color: #ce0505;
-  --green-light-color: rgb(60 255 0);
-  --green-dark-color: rgb(39 167 0);
+  --red-color: #d10000;
+  --green-color: rgb(39 167 0);
 
   --bg-color: #090f11;
   --second-bg-color: #2b2f31;
-  --primary-color: #dbdbdb;
-  --secondary-color: #dbdbdb;
+  --primary-color: #dbdbdbe8;
+  --second-color: #74a2b2;
   --hover-color: #74a2b2;
   --inverted-primary-color: #dbdbdb;
-  --inverted-secondary-color: #dbdbdb;
+  --inverted-second-color: #dbdbdb;
 
   /*skeleton*/
   --skeleton-color: #555;

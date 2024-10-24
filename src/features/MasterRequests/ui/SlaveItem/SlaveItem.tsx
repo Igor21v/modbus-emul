@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -17,6 +17,14 @@ interface SlaveItemProps {
 export const SlaveItem = memo((props: SlaveItemProps) => {
   const { className, adress } = props;
   const dispatch = useAppDispatch();
+  const [currAdr, setCurrAdr] = useState(adress);
+  const adressHandler = (val: number) => {
+    if (val < 1) {
+      setCurrAdr(1);
+    } else if (val < 256) {
+      setCurrAdr(val);
+    }
+  };
   const requests = useAppSelector((state) => state.requests);
   const addRequestHandler = () => {
     dispatch(requestsActions.addRequest(adress));
@@ -27,7 +35,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
       <HStack gap="32">
-        <Input value={adress} placeholder="Адрес устройства" type="number" id={`${adress}`} />
+        <Input value={currAdr} placeholder="Адрес устройства" type="number" id={`${adress}`} onChange={adressHandler} />
         {/* <Text text={`Устройство с адресом `} /> */}
         <Button theme="outlineGreen" onClick={addRequestHandler} className={cls.addReq}>
           Добавить запрос

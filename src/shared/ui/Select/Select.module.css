@@ -25,7 +25,7 @@
 }
 
 .validateError {
-  border: 1px solid var(--red-dark-color);
+  border: 1px solid var(--red-color);
 }
 
 .column {

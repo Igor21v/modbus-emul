@@ -2,7 +2,7 @@
 }
 
 .active {
-  color: var(--green-dark-color);
+  color: var(--green-color);
   /* text-decoration: underline;
   font-weight: bold; */
 }

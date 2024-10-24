@@ -1,55 +1,55 @@
 .primary {
-    color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .error {
-    color: var(--red-dark-color);
+  color: var(--red-color);
 }
 
 .success {
-    color: var(--green-dark-color);
+  color: var(--green-color);
 }
 
 .inverted {
-    color: var(--inverted-secondary-color);
+  color: var(--inverted-primary-color);
 }
 
 .inverted_bright {
-    color: var(--inverted-primary-color);
+  color: var(--inverted-primary-color);
 }
 
 .bright {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .left {
-    text-align: left;
+  text-align: left;
 }
 
 .right {
-    text-align: right;
+  text-align: right;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .size_s {
-    font: var(--font-s);
+  font: var(--font-s);
 }
 
 .size_m {
-    font: var(--font-m);
+  font: var(--font-m);
 }
 
 .size_l {
-    font: var(--font-l);
+  font: var(--font-l);
 }
 
 .italic {
-    font-style: italic;
+  font-style: italic;
 }
 
 .underline {
-    text-decoration: underline var(--secondary-color);
+  text-decoration: underline var(--primary-color);
 }
