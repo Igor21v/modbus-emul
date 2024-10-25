@@ -1,12 +1,12 @@
 import { memo, useState } from 'react';
-import cls from './RequestItem.module.css';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Request, requestsActions } from '../../model/slice/requests';
+import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
 import { HStack } from 'shared/ui/Stack';
-import { Button } from 'shared/ui/Button';
-import { useAppDispatch } from 'shared/hooks/useAppDispatch';
-import { Select, SelectOption } from 'shared/ui/Select';
+import { Request, requestsActions } from '../../model/slice/requests';
+import { FCSelect } from './FCSelect/FCSelect';
+import cls from './RequestItem.module.css';
 
 interface RequestItemProps {
   className?: string;
@@ -34,30 +34,14 @@ export const RequestItem = memo((props: RequestItemProps) => {
   const delReqHandler = () => {
     dispatch(requestsActions.delRequest({ adress: slaveAdress, reqID: id }));
   };
-
-  const options: SelectOption<string>[] = [
-    {
-      value: '1',
-      content: '1: Чтение DO',
-    },
-    {
-      value: '2',
-      content: '2: Чтение DI',
-    },
-    {
-      value: '3',
-      content: '3: Чтение AO',
-    },
-    {
-      value: '4',
-      content: '4: Чтение AI',
-    },
-  ];
   const [fCode, setFCode] = useState('1');
+  const fCodeHandler = (val: string) => {
+    setFCode(val);
+  };
 
   return (
     <HStack className={classNames(cls.RequestItem, {}, [className])} gap="4">
-      <Select className={cls.RateSelector} options={options} value={fCode} onChange={(value) => setFCode(value)} column />
+      <FCSelect fCode={fCode} onChange={fCodeHandler} />
       <Input
         placeholder="Начальный регистр/бит"
         value={reg}
