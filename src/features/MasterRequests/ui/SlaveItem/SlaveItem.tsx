@@ -33,17 +33,18 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
     dispatch(requestsActions.delSlave(adress));
   };
   return (
-    <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
-      <HStack gap="32">
+    <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
+      <HStack gap="32" max justify="start">
         <Input value={currAdr} placeholder="Адрес устройства" type="number" id={`${adress}`} onChange={adressHandler} />
         {/* <Text text={`Устройство с адресом `} /> */}
-        <Button theme="outlineGreen" onClick={addRequestHandler} className={cls.addReq}>
+        <Button theme="outlineGreen" onClick={addRequestHandler}>
           Добавить запрос
         </Button>
-        <Button theme="outlineRed" onClick={delRequestHandler} className={cls.addReq}>
+        <Button theme="outlineRed" onClick={delRequestHandler} className={cls.delSlave}>
           Удалить устройство
         </Button>
       </HStack>
+      <hr className={cls.line} />
 
       {Object.entries(requests[adress]).map(([id, request]) => (
         <RequestItem slaveAdress={adress} id={+id} request={request} key={id} />
