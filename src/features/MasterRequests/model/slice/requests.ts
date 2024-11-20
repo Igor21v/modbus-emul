@@ -7,13 +7,13 @@ export interface Request {
 }
 
 export interface Slave {
-  adr: number;
+  adr: string;
   requests: Record<number, Request>;
 }
 
 interface ChangeAdr {
   id: number;
-  adr: number;
+  adr: string;
 }
 
 export type RequestState = Record<number, Slave>;
@@ -24,7 +24,7 @@ const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
-    addSlave: (state, action: PayloadAction<number>) => {
+    addSlave: (state, action: PayloadAction<string>) => {
       const id = Date.now();
       state[id] = { requests: { [id]: { register: 1, quantity: 1 } }, adr: action.payload };
     },

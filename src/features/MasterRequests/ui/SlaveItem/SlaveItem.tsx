@@ -19,7 +19,6 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const { className, slaveID } = props;
   const dispatch = useAppDispatch();
   const requests = useAppSelector((state) => state.requests);
-  const [currAdr, setCurrAdr] = useState(`${requests[slaveID].adr}`);
   const adressHandler = (val: string) => {
     const valNum = Number(val);
     let recVal = `${val}`;
@@ -28,7 +27,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
     } else if (valNum > 255) {
       recVal = '255';
     }
-    setCurrAdr(recVal);
+    dispatch(setMasterProp({ type: 'changeAdr', props: { id: slaveID, adr: recVal } }));
   };
   const addRequestHandler = () => {
     dispatch(setMasterProp({ type: 'addRequest', props: slaveID }));
@@ -39,7 +38,13 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
       <HStack gap="32" max justify="start">
-        <Input value={currAdr} placeholder="Адрес устройства" type="number" id={`${slaveID}`} onChange={adressHandler} />
+        <Input
+          value={requests[slaveID].adr}
+          placeholder="Адрес устройства"
+          type="number"
+          id={`${slaveID}`}
+          onChange={adressHandler}
+        />
         {/* <Text text={`Устройство с адресом `} /> */}
         <Button theme="outlineGreen" onClick={addRequestHandler}>
           Добавить запрос

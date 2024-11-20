@@ -20,7 +20,7 @@ export const MasterRequests = memo((props: MasterRequestsProps) => {
   const addSlaveHandler = () => {
     for (let i = 1; i < 255; i++) {
       if (!requests[i]) {
-        dispatch(setMasterProp({ type: 'addSlave', props: i }));
+        dispatch(setMasterProp({ type: 'addSlave', props: `${i}` }));
         break;
       }
     }

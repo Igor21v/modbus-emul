@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { requestsActions } from '../slice/requests';
 
-type PropNames = 'addSlave' | 'addRequest' | 'delRequest' | 'delSlave';
+type PropNames = 'addSlave' | 'addRequest' | 'delRequest' | 'delSlave' | 'changeAdr';
 /* interface Props {
   addSlave: number;
   addRequest: number;
@@ -33,6 +33,10 @@ export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('request
     case 'delSlave':
       dispatch(requestsActions.delSlave(props));
       sendToWorke('66');
+      break;
+    case 'changeAdr':
+      dispatch(requestsActions.changeAdr(props));
+      sendToWorke('99');
       break;
   }
 });
