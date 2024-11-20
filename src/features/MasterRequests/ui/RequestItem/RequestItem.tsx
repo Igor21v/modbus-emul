@@ -7,6 +7,7 @@ import { HStack } from 'shared/ui/Stack';
 import { Request, requestsActions } from '../../model/slice/requests';
 import { FCSelect } from './FCSelect/FCSelect';
 import cls from './RequestItem.module.css';
+import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 
 interface RequestItemProps {
   className?: string;
@@ -32,7 +33,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
   };
 
   const delReqHandler = () => {
-    dispatch(requestsActions.delRequest({ adress: slaveAdress, reqID: id }));
+    dispatch(setMasterProp({ type: 'delRequest', props: { adress: slaveAdress, reqID: id } }));
   };
   const [fCode, setFCode] = useState('1');
   const fCodeHandler = (val: string) => {

@@ -8,6 +8,7 @@ import { HStack, VStack } from 'shared/ui/Stack';
 import { RequestItem } from '../RequestItem/RequestItem';
 import cls from './SlaveItem.module.css';
 import { requestsActions } from '../../model/slice/requests';
+import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 
 interface SlaveItemProps {
   className?: string;
@@ -27,10 +28,10 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   };
   const requests = useAppSelector((state) => state.requests);
   const addRequestHandler = () => {
-    dispatch(requestsActions.addRequest(adress));
+    dispatch(setMasterProp({ type: 'addRequest', props: adress }));
   };
-  const delRequestHandler = () => {
-    dispatch(requestsActions.delSlave(adress));
+  const delSlaveHandler = () => {
+    dispatch(setMasterProp({ type: 'delSlave', props: adress }));
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
@@ -40,7 +41,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
         <Button theme="outlineGreen" onClick={addRequestHandler}>
           Добавить запрос
         </Button>
-        <Button theme="outlineRed" onClick={delRequestHandler} className={cls.delSlave}>
+        <Button theme="outlineRed" onClick={delSlaveHandler} className={cls.delSlave}>
           Удалить устройство
         </Button>
       </HStack>

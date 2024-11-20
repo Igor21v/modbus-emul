@@ -7,6 +7,7 @@ import { SlaveItem } from '../SlaveItem/SlaveItem';
 import { Button } from 'shared/ui/Button';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { requestsActions } from '../../model/slice/requests';
+import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 
 interface MasterRequestsProps {
   className?: string;
@@ -19,7 +20,7 @@ export const MasterRequests = memo((props: MasterRequestsProps) => {
   const addSlaveHandler = () => {
     for (let i = 1; i < 255; i++) {
       if (!requests[i]) {
-        dispatch(requestsActions.addSlave(i));
+        dispatch(setMasterProp({ type: 'addSlave', props: i }));
         break;
       }
     }
