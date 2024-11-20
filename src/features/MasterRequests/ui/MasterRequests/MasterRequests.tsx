@@ -30,8 +30,8 @@ export const MasterRequests = memo((props: MasterRequestsProps) => {
       <Button theme="outlineGreen" onClick={addSlaveHandler}>
         Добавить устройство
       </Button>
-      {Object.keys(requests).map((adress) => (
-        <SlaveItem adress={+adress} key={adress} />
+      {Object.keys(requests).map((id) => (
+        <SlaveItem slaveID={+id} key={id} />
       ))}
     </VStack>
   );

@@ -12,31 +12,34 @@ import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 
 interface SlaveItemProps {
   className?: string;
-  adress: number;
+  slaveID: number;
 }
 
 export const SlaveItem = memo((props: SlaveItemProps) => {
-  const { className, adress } = props;
+  const { className, slaveID } = props;
   const dispatch = useAppDispatch();
-  const [currAdr, setCurrAdr] = useState(adress);
-  const adressHandler = (val: number) => {
-    if (val < 1) {
-      setCurrAdr(1);
-    } else if (val < 256) {
-      setCurrAdr(val);
-    }
-  };
   const requests = useAppSelector((state) => state.requests);
+  const [currAdr, setCurrAdr] = useState(`${requests[slaveID].adr}`);
+  const adressHandler = (val: string) => {
+    const valNum = Number(val);
+    let recVal = `${val}`;
+    if (valNum < 0) {
+      recVal = '0';
+    } else if (valNum > 255) {
+      recVal = '255';
+    }
+    setCurrAdr(recVal);
+  };
   const addRequestHandler = () => {
-    dispatch(setMasterProp({ type: 'addRequest', props: adress }));
+    dispatch(setMasterProp({ type: 'addRequest', props: slaveID }));
   };
   const delSlaveHandler = () => {
-    dispatch(setMasterProp({ type: 'delSlave', props: adress }));
+    dispatch(setMasterProp({ type: 'delSlave', props: slaveID }));
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
       <HStack gap="32" max justify="start">
-        <Input value={currAdr} placeholder="Адрес устройства" type="number" id={`${adress}`} onChange={adressHandler} />
+        <Input value={currAdr} placeholder="Адрес устройства" type="number" id={`${slaveID}`} onChange={adressHandler} />
         {/* <Text text={`Устройство с адресом `} /> */}
         <Button theme="outlineGreen" onClick={addRequestHandler}>
           Добавить запрос
@@ -47,8 +50,8 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       </HStack>
       <hr className={cls.line} />
 
-      {Object.entries(requests[adress]).map(([id, request]) => (
-        <RequestItem slaveAdress={adress} id={+id} request={request} key={id} />
+      {Object.entries(requests[slaveID].requests).map(([id, request]) => (
+        <RequestItem slaveAdress={slaveID} id={+id} request={request} key={id} />
       ))}
     </VStack>
   );

@@ -19,17 +19,27 @@ interface RequestItemProps {
 export const RequestItem = memo((props: RequestItemProps) => {
   const { className, request, id, slaveAdress } = props;
   const dispatch = useAppDispatch();
-  const [reg, setReg] = useState(request.register);
-  const [quantity, setQuantity] = useState(request.quantity);
-  const regHandler = (val: number) => {
-    if (val > 0) {
-      setReg(val);
+  const [reg, setReg] = useState(`${request.register}`);
+  const [quantity, setQuantity] = useState(`${request.quantity}`);
+  const regHandler = (val: string) => {
+    const valNum = Number(val);
+    let recVal = `${val}`;
+    if (valNum < 0) {
+      recVal = '0';
+    } else if (valNum > 65535) {
+      recVal = '65535';
     }
+    setReg(recVal);
   };
-  const quantityHandler = (val: number) => {
-    if (val > 0) {
-      setQuantity(val);
+  const quantityHandler = (val: string) => {
+    const valNum = Number(val);
+    let recVal = `${val}`;
+    if (valNum < 0) {
+      recVal = '0';
+    } else if (valNum > 126) {
+      recVal = '126';
     }
+    setQuantity(recVal);
   };
 
   const delReqHandler = () => {
@@ -47,7 +57,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
         placeholder="Начальный регистр/бит"
         value={reg}
         id={`r${id}`}
-        title="Регистры начинаются с 1"
+        title="Регистры начинаются с 0"
         type="number"
         onChange={regHandler}
       />

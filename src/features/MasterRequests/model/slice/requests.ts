@@ -6,12 +6,17 @@ export interface Request {
   quantity: number;
 }
 
-export interface OneRequest {
-  adress: number;
-  request: Request;
+export interface Slave {
+  adr: number;
+  requests: Record<number, Request>;
 }
 
-export type RequestState = Record<number, Record<number, Request>>;
+interface ChangeAdr {
+  id: number;
+  adr: number;
+}
+
+export type RequestState = Record<number, Slave>;
 
 const initialState: RequestState = {};
 
@@ -21,17 +26,20 @@ const requestsSlice = createSlice({
   reducers: {
     addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
-      state[action.payload] = { [id]: { register: 1, quantity: 1 } };
+      state[id] = { requests: { [id]: { register: 1, quantity: 1 } }, adr: action.payload };
     },
     addRequest: (state, action: PayloadAction<number>) => {
       const id = Date.now();
-      state[action.payload][id] = { register: 1, quantity: 1 };
+      state[action.payload].requests[id] = { register: 1, quantity: 1 };
     },
     delRequest: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
-      delete state[action.payload.adress][action.payload.reqID];
+      delete state[action.payload.adress].requests[action.payload.reqID];
     },
     delSlave: (state, action: PayloadAction<number>) => {
       delete state[action.payload];
+    },
+    changeAdr: (state, action: PayloadAction<ChangeAdr>) => {
+      state[action.payload.id].adr = action.payload.adr;
     },
   },
 });
