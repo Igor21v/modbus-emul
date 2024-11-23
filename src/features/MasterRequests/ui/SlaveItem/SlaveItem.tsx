@@ -27,13 +27,13 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
     } else if (valNum > 255) {
       recVal = '255';
     }
-    dispatch(setMasterProp({ type: 'changeAdr', props: { id: slaveID, adr: recVal } }));
+    dispatch(setMasterProp({ changeAdr: { id: slaveID, adr: recVal } }));
   };
   const addRequestHandler = () => {
-    dispatch(setMasterProp({ type: 'addRequest', props: slaveID }));
+    dispatch(setMasterProp({ addRequest: slaveID }));
   };
   const delSlaveHandler = () => {
-    dispatch(setMasterProp({ type: 'delSlave', props: slaveID }));
+    dispatch(setMasterProp({ delSlave: slaveID }));
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>

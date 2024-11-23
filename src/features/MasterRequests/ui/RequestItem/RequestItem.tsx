@@ -43,7 +43,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
   };
 
   const delReqHandler = () => {
-    dispatch(setMasterProp({ type: 'delRequest', props: { adress: slaveAdress, reqID: id } }));
+    dispatch(setMasterProp({ delRequest: { adress: slaveAdress, reqID: id } }));
   };
   const [fCode, setFCode] = useState('1');
   const fCodeHandler = (val: string) => {

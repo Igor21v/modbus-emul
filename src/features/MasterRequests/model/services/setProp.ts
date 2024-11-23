@@ -2,21 +2,23 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { requestsActions } from '../slice/requests';
 
-type PropNames = 'addSlave' | 'addRequest' | 'delRequest' | 'delSlave' | 'changeAdr';
-/* interface Props {
-  addSlave: number;
-  addRequest: number;
-  delRequest: { adress: number; reqID: number };
-  delSlave: number;
-} */
 interface Props {
+  addSlave?: string;
+  addRequest?: number;
+  delRequest?: { adress: number; reqID: number };
+  delSlave?: number;
+  changeAdr?: { id: number; adr: string };
+}
+/* interface Props {
   type: PropNames;
   props: any;
-}
+} */
 
 export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
   const { dispatch } = thunkApi;
-  const { props, type } = payload;
+  /* const { props, type } = payload; */
+  const type = Object.keys(payload)[0] as keyof Props;
+  const props = Object.values(payload)[0];
   switch (type) {
     case 'addSlave':
       dispatch(requestsActions.addSlave(props));

@@ -38,7 +38,7 @@ const requestsSlice = createSlice({
     delSlave: (state, action: PayloadAction<number>) => {
       delete state[action.payload];
     },
-    changeAdr: (state, action: PayloadAction<ChangeAdr>) => {
+    changeAdr: (state, action: PayloadAction<{ id: number; adr: string }>) => {
       state[action.payload.id].adr = action.payload.adr;
     },
   },
