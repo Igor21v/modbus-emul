@@ -1,9 +1,9 @@
-import { memo } from 'react';
-import { Card } from 'shared/ui/Card';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Text } from 'shared/ui/Text';
-import cls from './Rightbar.module.css';
+import { MasterSettings } from 'features/MasterSettings';
 import { PortSettings } from 'features/PortSettings';
+import { memo } from 'react';
+import { VStack } from 'shared/ui/Stack';
+import cls from './Rightbar.module.css';
+import { useLocation } from 'react-router-dom';
 
 interface RightbarProps {
   className?: string;
@@ -11,15 +11,11 @@ interface RightbarProps {
 
 export const Rightbar = memo((props: RightbarProps) => {
   const { className } = props;
-
+  const { pathname } = useLocation();
   return (
     <VStack align="center" justify="center" className={cls.Rightbar}>
-      <Card theme="outlined">
-        <VStack align="center" justify="center" gap="20">
-          <Text text="Настройки подключения" size="size_l" />
-          <PortSettings />
-        </VStack>
-      </Card>
+      {pathname === '/' && <MasterSettings />}
+      <PortSettings />
     </VStack>
   );
 });

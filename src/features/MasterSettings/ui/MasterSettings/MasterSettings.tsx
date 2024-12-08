@@ -18,7 +18,7 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
   return (
     <Card className={classNames(cls.MasterSettings, {}, [className])} theme="outlined">
       <Text title="Настройки режима мастер" align="center" className={cls.title} />
-      <HStack gap="16" wrap justify="center">
+      <VStack gap="16" wrap justify="center">
         <Input placeholder="Таймаут ответа, мс" value={timeout} onChange={setTimeout} type="number" />
         <Input
           title="Задержка после получения ответа от слейва и следующим запросом"
@@ -27,7 +27,7 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
           onChange={setTimeout}
           type="number"
         />
-      </HStack>
+      </VStack>
     </Card>
   );
 });

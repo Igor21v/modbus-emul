@@ -14,7 +14,6 @@ export const MasterPage = memo((props: MasterPageProps) => {
 
   return (
     <>
-      <MasterSettings />
       <MasterRequests />
     </>
   );
