@@ -1,4 +1,5 @@
-import { memo, useState } from 'react';
+import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
+import { memo } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -7,8 +8,6 @@ import { Input } from 'shared/ui/Input';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { RequestItem } from '../RequestItem/RequestItem';
 import cls from './SlaveItem.module.css';
-import { requestsActions } from '../../model/slice/requests';
-import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 
 interface SlaveItemProps {
   className?: string;

@@ -1,13 +1,13 @@
+import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 import { memo, useState } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
 import { HStack } from 'shared/ui/Stack';
-import { Request, requestsActions } from '../../model/slice/requests';
+import { Request } from '../../../model/slice/requests';
 import { FCSelect } from './FCSelect/FCSelect';
 import cls from './RequestItem.module.css';
-import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 
 interface RequestItemProps {
   className?: string;
