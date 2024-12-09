@@ -4,6 +4,7 @@ import cls from './Icon.module.css';
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
+  classNameWrap?: string;
   inverted?: boolean;
   Svg: (props: SVGProps<SVGSVGElement>) => JSX.Element;
   onClick?: () => void;
@@ -11,22 +12,11 @@ export interface IconProps extends React.SVGProps<SVGSVGElement> {
 }
 
 export const Icon = memo((props: IconProps) => {
-  const {
-    className,
-    inverted,
-    Svg,
-    height = 24,
-    width = 24,
-    onClick,
-    hint,
-    ...otherProps
-  } = props;
+  const { className, classNameWrap, inverted, Svg, height = 24, width = 24, onClick, hint, ...otherProps } = props;
   return (
-    <button className={cls.button} onClick={onClick} title={hint}>
+    <button className={classNames(cls.button, {}, [classNameWrap])} onClick={onClick} title={hint}>
       <Svg
-        className={classNames(inverted ? cls.inverted : cls.Icon, {}, [
-          className,
-        ])}
+        className={classNames(inverted ? cls.inverted : cls.Icon, {}, [className])}
         {...otherProps}
         height={height}
         width={width}

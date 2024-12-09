@@ -6,6 +6,7 @@ import { VStack } from 'shared/ui/Stack';
 import { Results } from '../Results/Results';
 import { Settings } from '../Settings/Settings';
 import cls from './MasterRequests.module.css';
+import { classNames } from 'shared/lib/classNames/classNames';
 
 interface MasterRequestsProps {
   className?: string;
@@ -13,14 +14,17 @@ interface MasterRequestsProps {
 
 export const MasterRequests = memo((props: MasterRequestsProps) => {
   const { className } = props;
-  const [showConfig, setShowConfig] = useState(true);
+  const [wrapConfig, setWrapConfig] = useState(true);
+  const [wrapResult, setWrapResult] = useState(true);
 
   return (
-    <VStack className={cls.MasterRequests} gap="16" align="stretch">
-      <Icon Svg={Unwrap} hint="Развернуть конфигурацию запросов" onClick={() => setShowConfig(true)} height={50} width={50} />
-      <Icon Svg={Wrap} hint="Свернуть конфигурацию запросов" onClick={() => setShowConfig(false)} height={50} width={50} />
-      <Settings />
-      <Results />
+    <VStack className={cls.MasterRequests} align="stretch">
+      {wrapConfig && <Icon Svg={Unwrap} hint="Развернуть конфигурацию запросов" onClick={() => setWrapConfig(false)} />}
+      {!wrapConfig && <Icon Svg={Wrap} hint="Свернуть конфигурацию запросов" onClick={() => setWrapConfig(true)} />}
+      <Settings className={classNames(cls.animated, { [cls.wrap]: wrapConfig })} />
+      {wrapResult && <Icon Svg={Unwrap} hint="Развернуть результаты запросов" onClick={() => setWrapResult(false)} />}
+      {!wrapResult && <Icon Svg={Wrap} hint="Свернуть результаты запросов" onClick={() => setWrapResult(true)} />}
+      <Results className={classNames(cls.animated, { [cls.wrap]: wrapResult })} />
     </VStack>
   );
 });
