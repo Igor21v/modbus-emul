@@ -41,6 +41,7 @@
   text-align: right;
 }
 .center {
+  width: 100%;
   text-align: center;
 }
 .size_s .title {

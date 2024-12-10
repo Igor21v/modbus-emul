@@ -2,13 +2,7 @@ import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Text.module.css';
 
-export type TextTheme =
-  | 'primary'
-  | 'inverted'
-  | 'error'
-  | 'success'
-  | 'bright'
-  | 'inverted_bright';
+export type TextTheme = 'primary' | 'inverted' | 'error' | 'success' | 'bright' | 'inverted_bright';
 
 type TextAlign = 'right' | 'left' | 'center';
 
@@ -29,6 +23,7 @@ export interface TextProps {
   italic?: boolean;
   minLineHeight?: boolean;
   badge?: boolean;
+  hint?: string;
 }
 
 /**
@@ -58,6 +53,7 @@ export const Text = memo((props: TextProps) => {
     classNameText,
     minLineHeight,
     badge,
+    hint,
   } = props;
 
   const additional = [className, cls[theme], cls[align], cls[size]];
@@ -66,21 +62,9 @@ export const Text = memo((props: TextProps) => {
     [cls.minLineHeight]: minLineHeight,
   };
   return (
-    <div className={classNames('', mods, additional)}>
-      {title && (
-        <HeaderTag className={classNames(cls.title, {}, [classNameTitle])}>
-          {title}
-        </HeaderTag>
-      )}
-      {text && (
-        <p
-          className={classNames(cls.text, { [cls.badge]: badge }, [
-            classNameText,
-          ])}
-        >
-          {text}
-        </p>
-      )}
+    <div className={classNames('', mods, additional)} title={hint}>
+      {title && <HeaderTag className={classNames(cls.title, {}, [classNameTitle])}>{title}</HeaderTag>}
+      {text && <p className={classNames(cls.text, { [cls.badge]: badge }, [classNameText])}>{text}</p>}
     </div>
   );
 });

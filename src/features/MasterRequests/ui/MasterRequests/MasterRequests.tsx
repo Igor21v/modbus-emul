@@ -14,16 +14,21 @@ interface MasterRequestsProps {
 
 export const MasterRequests = memo((props: MasterRequestsProps) => {
   const { className } = props;
-  const [wrapConfig, setWrapConfig] = useState(true);
-  const [wrapResult, setWrapResult] = useState(true);
+  const [wrapConfig, setWrapConfig] = useState(false);
+  const [wrapResult, setWrapResult] = useState(false);
 
   return (
     <VStack className={cls.MasterRequests} align="stretch">
       {wrapConfig && <Icon Svg={Unwrap} hint="Развернуть конфигурацию запросов" onClick={() => setWrapConfig(false)} />}
       {!wrapConfig && <Icon Svg={Wrap} hint="Свернуть конфигурацию запросов" onClick={() => setWrapConfig(true)} />}
       <Config className={classNames(cls.animated, { [cls.wrap]: wrapConfig })} />
-      {wrapResult && <Icon Svg={Unwrap} hint="Развернуть результаты запросов" onClick={() => setWrapResult(false)} />}
-      {!wrapResult && <Icon Svg={Wrap} hint="Свернуть результаты запросов" onClick={() => setWrapResult(true)} />}
+
+      {wrapResult && (
+        <Icon Svg={Unwrap} hint="Развернуть результаты запросов" onClick={() => setWrapResult(false)} className={cls.results} />
+      )}
+      {!wrapResult && (
+        <Icon Svg={Wrap} hint="Свернуть результаты запросов" onClick={() => setWrapResult(true)} className={cls.results} />
+      )}
       <Results className={classNames(cls.animated, { [cls.wrap]: wrapResult })} />
     </VStack>
   );
