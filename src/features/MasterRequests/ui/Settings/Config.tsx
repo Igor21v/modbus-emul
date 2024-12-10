@@ -5,14 +5,14 @@ import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { VStack } from 'shared/ui/Stack';
-import cls from './Settings.module.css';
+import cls from './Config.module.css';
 import { SlaveItem } from './SlaveItem/SlaveItem';
 
 interface SettingsProps {
   className?: string;
 }
 
-export const Settings = memo((props: SettingsProps) => {
+export const Config = memo((props: SettingsProps) => {
   const { className } = props;
   const requests = useAppSelector((state) => state.requests);
   const dispatch = useAppDispatch();
