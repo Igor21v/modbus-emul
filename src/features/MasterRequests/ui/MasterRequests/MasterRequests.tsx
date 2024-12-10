@@ -4,7 +4,7 @@ import Wrap from 'shared/icons/Wrap';
 import { Icon } from 'shared/ui/Icon';
 import { VStack } from 'shared/ui/Stack';
 import { Results } from '../Results/Results';
-import { Config } from '../Settings/Config';
+import { Config } from '../Config/Config';
 import cls from './MasterRequests.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 
