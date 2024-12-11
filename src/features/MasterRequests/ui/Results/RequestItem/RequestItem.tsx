@@ -14,9 +14,9 @@ export const RequestItem = memo((props: RequestItemProps) => {
   const { className, request } = props;
 
   return (
-    <HStack className={classNames(cls.RequestItem, {}, [className])}>
+    <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8">
       {request.content.map((item, index) => (
-        <HStack key={index} gap="4" wrap>
+        <HStack key={index} gap="4">
           <TextSpan text={`${request.register + index}:`} italic />
           <TextSpan text={item} />
         </HStack>
