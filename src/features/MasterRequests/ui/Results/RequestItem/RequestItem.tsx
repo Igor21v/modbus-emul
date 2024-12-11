@@ -3,6 +3,7 @@ import cls from './RequestItem.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Request } from '../../../model/slice/requests';
 import { HStack } from 'shared/ui/Stack';
+import { TextSpan } from 'shared/ui/TextSpan';
 
 interface RequestItemProps {
   className?: string;
@@ -14,7 +15,12 @@ export const RequestItem = memo((props: RequestItemProps) => {
 
   return (
     <HStack className={classNames(cls.RequestItem, {}, [className])}>
-      {'С регистра' + request.register + ' количество ' + request.quantity}
+      {request.content.map((item, index) => (
+        <HStack key={index} gap="4" wrap>
+          <TextSpan text={`${request.register + index}:`} italic />
+          <TextSpan text={item} />
+        </HStack>
+      ))}
     </HStack>
   );
 });

@@ -4,6 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export interface Request {
   register: number;
   quantity: number;
+  content: string[];
+  link: boolean;
 }
 
 export interface Slave {
@@ -26,11 +28,11 @@ const requestsSlice = createSlice({
   reducers: {
     addSlave: (state, action: PayloadAction<string>) => {
       const id = Date.now();
-      state[id] = { requests: { [id]: { register: 1, quantity: 1 } }, adr: action.payload };
+      state[id] = { requests: { [id]: { register: 1, quantity: 1, content: ['-----'], link: false } }, adr: action.payload };
     },
     addRequest: (state, action: PayloadAction<number>) => {
       const id = Date.now();
-      state[action.payload].requests[id] = { register: 1, quantity: 1 };
+      state[action.payload].requests[id] = { register: 1, quantity: 1, content: ['-----'], link: false };
     },
     delRequest: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
       delete state[action.payload.adress].requests[action.payload.reqID];
