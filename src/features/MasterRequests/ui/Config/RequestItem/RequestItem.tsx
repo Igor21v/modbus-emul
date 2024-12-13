@@ -14,32 +14,25 @@ interface RequestItemProps {
   request: Request;
   id: number;
   slaveAdress: number;
+  slaveId: number;
 }
 
 export const RequestItem = memo((props: RequestItemProps) => {
-  const { className, request, id, slaveAdress } = props;
+  const { className, request, id, slaveAdress, slaveId } = props;
   const dispatch = useAppDispatch();
   const [reg, setReg] = useState(`${request.register}`);
-  const [quantity, setQuantity] = useState(`${request.quantity}`);
   const regHandler = (val: string) => {
     const valNum = Number(val);
     let recVal = `${val}`;
-    if (valNum < 0) {
-      recVal = '0';
+    if (valNum < -1) {
+      recVal = '-1';
     } else if (valNum > 65535) {
       recVal = '65535';
     }
     setReg(recVal);
   };
-  const quantityHandler = (val: string) => {
-    const valNum = Number(val);
-    let recVal = `${val}`;
-    if (valNum < 0) {
-      recVal = '0';
-    } else if (valNum > 126) {
-      recVal = '126';
-    }
-    setQuantity(recVal);
+  const quantityHandler = (val: number) => {
+    dispatch(setMasterProp({ changeQuantity: { quantity: val, requestId: id, slaveId: slaveId } }));
   };
 
   const delReqHandler = () => {
@@ -61,7 +54,15 @@ export const RequestItem = memo((props: RequestItemProps) => {
         type="number"
         onChange={regHandler}
       />
-      <Input placeholder="Количество" value={quantity} onChange={quantityHandler} id={`q${id}`} type="number" />
+      <Input
+        placeholder="Количество"
+        value={request.quantity}
+        onChange={quantityHandler}
+        id={`q${id}`}
+        type="number"
+        max={126}
+        min={0}
+      />
       <Button theme="outlineRed" onClick={delReqHandler} className={cls.addReq} size="size_s">
         Удалить запрос
       </Button>

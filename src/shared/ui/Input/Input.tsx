@@ -3,13 +3,9 @@ import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import cls from './Input.module.css';
 import { useInitialEffect } from 'shared/hooks/useInitialEffect/useInitialEffect';
 
-type HTMLInputProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'onChange' | 'readOnly'
->;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>;
 
-interface InputProps<T extends string | number | undefined>
-  extends HTMLInputProps {
+interface InputProps<T extends string | number | undefined> extends HTMLInputProps {
   className?: string;
   classNameWrapper?: string;
   value?: T;
@@ -19,10 +15,10 @@ interface InputProps<T extends string | number | undefined>
   validateError?: boolean;
   focusIsSet?: boolean;
   focusHandler?: (value: boolean) => void;
+  min?: number;
+  max?: number;
 }
-export const Input = <T extends number | string | undefined>(
-  props: InputProps<T>,
-) => {
+export const Input = <T extends number | string | undefined>(props: InputProps<T>) => {
   const {
     className,
     classNameWrapper,
@@ -37,6 +33,8 @@ export const Input = <T extends number | string | undefined>(
     focusHandler,
     title,
     id,
+    max,
+    min,
     ...otherProps
   } = props;
   const ref = useRef<HTMLInputElement>(null);
@@ -62,23 +60,21 @@ export const Input = <T extends number | string | undefined>(
     if (type === 'text' || type === 'password') {
       onChange?.(e.target.value as T);
     } else if (type === 'number') {
-      onChange?.(Number(e.target.value) as T);
+      let valNum = Number(e.target.value);
+      if (min !== undefined && valNum < min) {
+        valNum = min;
+      } else if (max !== undefined && valNum > max) {
+        valNum = max;
+      }
+      onChange?.(valNum as T);
     }
   };
-
   const mods: Mods = {
     [cls.readOnly]: readOnly,
     [cls.validateError]: validateError,
   };
   return (
-    <div
-      className={classNames(
-        cls.wrapper,
-        { [cls.canEdit]: canEdit, [cls.focus]: focus },
-        [classNameWrapper],
-      )}
-      title={title}
-    >
+    <div className={classNames(cls.wrapper, { [cls.canEdit]: canEdit, [cls.focus]: focus }, [classNameWrapper])} title={title}>
       <label htmlFor={idInput} className={cls.lable}>
         {value === '' ? '\u00A0' : placeholder}
       </label>
@@ -87,7 +83,7 @@ export const Input = <T extends number | string | undefined>(
         type={type}
         onChange={onChangeHandler}
         disabled={readOnly}
-        value={value}
+        value={`${value}`}
         {...otherProps}
         className={classNames(cls.input, mods, [className])}
         autoFocus={autoFocus}

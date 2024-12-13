@@ -13,11 +13,6 @@ export interface Slave {
   requests: Record<number, Request>;
 }
 
-interface ChangeAdr {
-  id: number;
-  adr: string;
-}
-
 export type RequestState = Record<number, Slave>;
 
 const initialState: RequestState = {};
@@ -42,6 +37,12 @@ const requestsSlice = createSlice({
     },
     changeAdr: (state, action: PayloadAction<{ id: number; adr: string }>) => {
       state[action.payload.id].adr = action.payload.adr;
+    },
+    changeRegister: (state, action: PayloadAction<{ slaveId: number; requestId: number; register: number }>) => {
+      state[action.payload.slaveId].requests[action.payload.requestId].register = action.payload.register;
+    },
+    changeQuantity: (state, action: PayloadAction<{ slaveId: number; requestId: number; quantity: number }>) => {
+      state[action.payload.slaveId].requests[action.payload.requestId].quantity = action.payload.quantity;
     },
   },
 });

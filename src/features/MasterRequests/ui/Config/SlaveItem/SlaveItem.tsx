@@ -55,7 +55,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       <hr className={cls.line} />
 
       {Object.entries(requests[slaveID].requests).map(([id, request]) => (
-        <RequestItem slaveAdress={slaveID} id={+id} request={request} key={id} />
+        <RequestItem slaveAdress={slaveID} id={+id} request={request} key={id} slaveId={slaveID} />
       ))}
     </VStack>
   );

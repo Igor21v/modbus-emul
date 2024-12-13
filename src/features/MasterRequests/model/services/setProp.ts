@@ -8,15 +8,12 @@ interface Props {
   delRequest?: { adress: number; reqID: number };
   delSlave?: number;
   changeAdr?: { id: number; adr: string };
+  changeRegister?: { slaveId: number; requestId: number; register: number };
+  changeQuantity?: { slaveId: number; requestId: number; quantity: number };
 }
-/* interface Props {
-  type: PropNames;
-  props: any;
-} */
 
 export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
   const { dispatch } = thunkApi;
-  /* const { props, type } = payload; */
   const type = Object.keys(payload)[0] as keyof Props;
   const props = Object.values(payload)[0];
   switch (type) {
@@ -39,6 +36,14 @@ export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('request
     case 'changeAdr':
       dispatch(requestsActions.changeAdr(props));
       sendToWorker('99');
+      break;
+    case 'changeRegister':
+      dispatch(requestsActions.changeRegister(props));
+      sendToWorker('1');
+      break;
+    case 'changeQuantity':
+      dispatch(requestsActions.changeQuantity(props));
+      sendToWorker('2');
       break;
   }
 });
