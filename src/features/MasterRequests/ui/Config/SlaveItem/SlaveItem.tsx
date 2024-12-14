@@ -8,6 +8,7 @@ import { Input } from 'shared/ui/Input';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { RequestItem } from '../RequestItem/RequestItem';
 import cls from './SlaveItem.module.css';
+import { InputNum } from 'shared/ui/InputNum';
 
 interface SlaveItemProps {
   className?: string;
@@ -18,15 +19,8 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const { className, slaveID } = props;
   const dispatch = useAppDispatch();
   const requests = useAppSelector((state) => state.requests);
-  const adressHandler = (val: string) => {
-    const valNum = Number(val);
-    let recVal = `${val}`;
-    if (valNum < 0) {
-      recVal = '0';
-    } else if (valNum > 255) {
-      recVal = '255';
-    }
-    dispatch(setMasterProp({ changeAdr: { id: slaveID, adr: recVal } }));
+  const adressHandler = (adr: number) => {
+    dispatch(setMasterProp({ changeAdr: { id: slaveID, adr } }));
   };
   const addRequestHandler = () => {
     dispatch(setMasterProp({ addRequest: slaveID }));
@@ -37,14 +31,14 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
       <HStack gap="32" max justify="start">
-        <Input
-          value={requests[slaveID].adr}
+        <InputNum
+          initVal={requests[slaveID].adr}
           placeholder="Адрес устройства"
-          type="number"
           id={`${slaveID}`}
           onChange={adressHandler}
+          min={1}
+          max={255}
         />
-        {/* <Text text={`Устройство с адресом `} /> */}
         <Button theme="outlineGreen" onClick={addRequestHandler}>
           Добавить запрос
         </Button>

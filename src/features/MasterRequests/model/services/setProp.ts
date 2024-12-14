@@ -3,11 +3,11 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { requestsActions } from '../slice/requests';
 
 interface Props {
-  addSlave?: string;
+  addSlave?: number;
   addRequest?: number;
   delRequest?: { adress: number; reqID: number };
   delSlave?: number;
-  changeAdr?: { id: number; adr: string };
+  changeAdr?: { id: number; adr: number };
   changeRegister?: { slaveId: number; requestId: number; register: number };
   changeQuantity?: { slaveId: number; requestId: number; quantity: number };
 }

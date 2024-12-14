@@ -5,7 +5,7 @@ import { useInitialEffect } from 'shared/hooks/useInitialEffect/useInitialEffect
 
 // Компонент для ввода числового занчения, имеет собственное состояние для корректной обработки пустой строки
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>;
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly' | 'type'>;
 
 interface InputNumProps extends HTMLInputProps {
   className?: string;

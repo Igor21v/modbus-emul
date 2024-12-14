@@ -17,9 +17,13 @@ export const Config = memo((props: SettingsProps) => {
   const requests = useAppSelector((state) => state.requests);
   const dispatch = useAppDispatch();
   const addSlaveHandler = () => {
+    const adrs = new Set();
+    Object.values(requests).forEach((request) => {
+      adrs.add(request.adr);
+    });
     for (let i = 1; i < 255; i++) {
-      if (!requests[i]) {
-        dispatch(setMasterProp({ addSlave: `${i}` }));
+      if (!adrs.has(i)) {
+        dispatch(setMasterProp({ addSlave: i }));
         break;
       }
     }

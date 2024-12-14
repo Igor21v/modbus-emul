@@ -9,7 +9,7 @@ export interface Request {
 }
 
 export interface Slave {
-  adr: string;
+  adr: number;
   requests: Record<number, Request>;
 }
 
@@ -21,7 +21,7 @@ const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
-    addSlave: (state, action: PayloadAction<string>) => {
+    addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[id] = { requests: { [id]: { register: 1, quantity: 1, content: ['-----'], link: false } }, adr: action.payload };
     },
@@ -35,7 +35,7 @@ const requestsSlice = createSlice({
     delSlave: (state, action: PayloadAction<number>) => {
       delete state[action.payload];
     },
-    changeAdr: (state, action: PayloadAction<{ id: number; adr: string }>) => {
+    changeAdr: (state, action: PayloadAction<{ id: number; adr: number }>) => {
       state[action.payload.id].adr = action.payload.adr;
     },
     changeRegister: (state, action: PayloadAction<{ slaveId: number; requestId: number; register: number }>) => {

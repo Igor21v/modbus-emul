@@ -21,16 +21,8 @@ interface RequestItemProps {
 export const RequestItem = memo((props: RequestItemProps) => {
   const { className, request, id, slaveAdress, slaveId } = props;
   const dispatch = useAppDispatch();
-  const [reg, setReg] = useState(`${request.register}`);
-  const regHandler = (val: string) => {
-    const valNum = Number(val);
-    let recVal = `${val}`;
-    if (valNum < -1) {
-      recVal = '-1';
-    } else if (valNum > 65535) {
-      recVal = '65535';
-    }
-    setReg(recVal);
+  const regHandler = (val: number) => {
+    dispatch(setMasterProp({ changeRegister: { register: val, requestId: id, slaveId: slaveId } }));
   };
   const quantityHandler = (val: number) => {
     dispatch(setMasterProp({ changeQuantity: { quantity: val, requestId: id, slaveId: slaveId } }));
@@ -47,23 +39,16 @@ export const RequestItem = memo((props: RequestItemProps) => {
   return (
     <HStack className={classNames(cls.RequestItem, {}, [className])} gap="4">
       <FCSelect fCode={fCode} onChange={fCodeHandler} />
-      <Input
+      <InputNum
         placeholder="Начальный регистр/бит"
-        value={reg}
+        initVal={request.register}
         id={`r${id}`}
         title="Регистры начинаются с 0"
-        type="number"
         onChange={regHandler}
+        max={65535}
+        min={0}
       />
-      <InputNum
-        placeholder="Количество"
-        initVal={request.quantity}
-        onChange={quantityHandler}
-        id={`q${id}`}
-        type="number"
-        max={126}
-        min={1}
-      />
+      <InputNum placeholder="Количество" initVal={request.quantity} onChange={quantityHandler} id={`q${id}`} min={1} max={126} />
       <Button theme="outlineRed" onClick={delReqHandler} className={cls.addReq} size="size_s">
         Удалить запрос
       </Button>
