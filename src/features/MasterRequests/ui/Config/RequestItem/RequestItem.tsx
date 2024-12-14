@@ -8,6 +8,7 @@ import { HStack } from 'shared/ui/Stack';
 import { Request } from '../../../model/slice/requests';
 import { FCSelect } from './FCSelect/FCSelect';
 import cls from './RequestItem.module.css';
+import { InputNum } from 'shared/ui/InputNum';
 
 interface RequestItemProps {
   className?: string;
@@ -54,9 +55,9 @@ export const RequestItem = memo((props: RequestItemProps) => {
         type="number"
         onChange={regHandler}
       />
-      <Input
+      <InputNum
         placeholder="Количество"
-        value={request.quantity}
+        initVal={request.quantity}
         onChange={quantityHandler}
         id={`q${id}`}
         type="number"
