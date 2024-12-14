@@ -49,9 +49,8 @@ export const InputNum = (props: InputNumProps) => {
     }
   });
   const onBlur = () => {
-    if (val === '') {
-      setVal(`${min}`);
-    }
+    setVal(`${initVal}`);
+
     focusHandler?.(false);
     setFocus(false);
   };
@@ -62,13 +61,15 @@ export const InputNum = (props: InputNumProps) => {
   const [focus, setFocus] = useState(focusIsSet);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVal(e.target.value);
     let valNum = Number(e.target.value);
     if (min !== undefined && valNum < min) {
       valNum = min;
     } else if (max !== undefined && valNum > max) {
       valNum = max;
     }
+    if (e.target.value === '') setVal(e.target.value);
+    else setVal(`${valNum}`);
+
     onChange?.(valNum);
   };
   const mods: Mods = {

@@ -62,7 +62,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
         id={`q${id}`}
         type="number"
         max={126}
-        min={0}
+        min={1}
       />
       <Button theme="outlineRed" onClick={delReqHandler} className={cls.addReq} size="size_s">
         Удалить запрос

@@ -43,7 +43,7 @@ export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('request
       break;
     case 'changeQuantity':
       dispatch(requestsActions.changeQuantity(props));
-      sendToWorker('2');
+      sendToWorker(props);
       break;
   }
 });
