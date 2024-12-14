@@ -43,6 +43,7 @@ const requestsSlice = createSlice({
     },
     changeQuantity: (state, action: PayloadAction<{ slaveId: number; requestId: number; quantity: number }>) => {
       state[action.payload.slaveId].requests[action.payload.requestId].quantity = action.payload.quantity;
+      state[action.payload.slaveId].requests[action.payload.requestId].content = Array(action.payload.quantity).fill('-----');
     },
   },
 });
