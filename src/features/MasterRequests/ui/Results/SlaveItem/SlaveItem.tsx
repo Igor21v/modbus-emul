@@ -5,6 +5,7 @@ import { Slave } from '../../../model/slice/requests';
 import { VStack } from 'shared/ui/Stack';
 import { RequestItem } from '../RequestItem/RequestItem';
 import { Text } from 'shared/ui/Text';
+import { Badge } from 'shared/ui/Badge';
 
 interface SlaveItemProps {
   className?: string;
@@ -16,7 +17,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
 
   return (
     <>
-      <Text text={`${slave.adr}`} badge size="size_l" className={cls.adress} hint="Адрес Slave устройства" />
+      <Badge text={`${slave.adr}`} size="size_l" className={cls.adress} hint="Адрес Slave устройства" />
       <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
         {Object.entries(slave.requests).map(([id, request]) => (
           <RequestItem request={request} key={id} />

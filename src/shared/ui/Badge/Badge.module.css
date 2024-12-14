@@ -1,0 +1,45 @@
+.text {
+  border-radius: 12px;
+  padding: 1px 8px;
+  text-align: center;
+  display: inline;
+  border: 1px solid var(--primary-color);
+}
+.error .text {
+  background: var(--red-color);
+}
+.success .text {
+  background: var(--green-color);
+}
+.inverted .text {
+  color: var(--inverted-primary-color);
+}
+.inverted_bright .text {
+  color: var(--inverted-primary-color);
+}
+.bright .text {
+  color: var(--primary-color);
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  width: 100%;
+  text-align: center;
+}
+.size_s .text {
+  font: var(--font-s);
+}
+
+.size_m .text {
+  font: var(--font-m);
+}
+.size_l .text {
+  font: var(--font-l);
+}
+.italic .text {
+  font-style: italic;
+}

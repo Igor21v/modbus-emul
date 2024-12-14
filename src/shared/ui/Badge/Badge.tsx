@@ -1,53 +1,44 @@
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Text.module.css';
+import cls from './Badge.module.css';
 
-export type TextTheme = 'primary' | 'inverted' | 'error' | 'success' | 'bright' | 'inverted_bright';
+export type BadgeTheme = 'primary' | 'inverted' | 'error' | 'success' | 'bright' | 'inverted_bright';
 
 type TextAlign = 'right' | 'left' | 'center';
 
 type TextSize = 'size_s' | 'size_m' | 'size_l';
 
-type HeaderTagType = 'h1' | 'h2' | 'h3' | 'p';
-
-export interface TextProps {
+export interface BadgeProps {
   className?: string;
-  classNameTitle?: string;
   classNameText?: string;
-  title?: string;
   text?: string;
-  theme?: TextTheme;
+  theme?: BadgeTheme;
   align?: TextAlign;
   size?: TextSize;
-  HeaderTag?: HeaderTagType;
   italic?: boolean;
   minLineHeight?: boolean;
   hint?: string;
 }
 
 /**
- * Компонент текста
- * title - заголовок
+ * Компонент значка
  * text - текст
  * theme - тема TextTheme
  * align - выравнивание
  * size - размер TextSize
- * HeaderTag - тег для title
  * italic - добавляет курсив
  * minLineHeight - уменьшает междустрочный интервал
+ * badge - превращает текст в значек
  */
 
-export const Text = memo((props: TextProps) => {
+export const Badge = memo((props: BadgeProps) => {
   const {
     className,
-    title,
     text,
     theme = 'primary',
     align = 'left',
     size = 'size_m',
-    HeaderTag = 'p',
     italic,
-    classNameTitle,
     classNameText,
     minLineHeight,
     hint,
@@ -60,8 +51,7 @@ export const Text = memo((props: TextProps) => {
   };
   return (
     <div className={classNames('', mods, additional)} title={hint}>
-      {title && <HeaderTag className={classNames(cls.title, {}, [classNameTitle])}>{title}</HeaderTag>}
-      {text && <p className={classNames(cls.text, {}, [classNameText])}>{text}</p>}
+      <p className={classNames(cls.text, {}, [classNameText])}>{text}</p>
     </div>
   );
 });
