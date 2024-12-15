@@ -4,6 +4,7 @@
   text-align: center;
   display: inline;
   border: 1px solid var(--primary-color);
+  box-shadow: 0px 0px 5px 0 var(--primary-color);
 }
 .error .text {
   background: var(--red-color);
