@@ -16,7 +16,7 @@ export const Results = memo((props: ResultsProps) => {
   return (
     <VStack className={classNames(cls.Results, {}, [className])}>
       {Object.entries(requests).map(([id, slave]) => (
-        <SlaveItem key={id} slave={slave} />
+        <SlaveItem key={id} slave={slave} slaveId={+id} />
       ))}
     </VStack>
   );

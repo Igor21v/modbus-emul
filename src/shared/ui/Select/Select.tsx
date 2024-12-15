@@ -3,12 +3,12 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Select.module.css';
 import { genericMemo } from 'shared/lib/components/GenericMemo/GenericMemo';
 
-export interface SelectOption<T extends string> {
+export interface SelectOption<T extends string | number> {
   value: T;
   content: string;
 }
 
-interface SelectProps<T extends string> {
+interface SelectProps<T extends string | number> {
   className?: string;
   label?: string;
   options?: SelectOption<T>[];
@@ -20,19 +20,8 @@ interface SelectProps<T extends string> {
   column?: boolean;
 }
 
-const Select = <T extends string>(props: SelectProps<T>) => {
-  const {
-    className,
-    label,
-    options,
-    value,
-    onChange,
-    readonly,
-    validateError,
-    notSelectedEnable,
-    column,
-    ...rest
-  } = props;
+const Select = <T extends string | number>(props: SelectProps<T>) => {
+  const { className, label, options, value, onChange, readonly, validateError, notSelectedEnable, column, ...rest } = props;
   const optionsList = options?.map((opt) => (
     <option className={cls.option} value={opt.value} key={opt.value}>
       {opt.content}
@@ -44,19 +33,13 @@ const Select = <T extends string>(props: SelectProps<T>) => {
   };
 
   return (
-    <p
-      className={classNames(cls.Wrapper, { [cls.column]: column }, [className])}
-    >
+    <p className={classNames(cls.Wrapper, { [cls.column]: column }, [className])}>
       <label htmlFor={label} className={cls.labelWrap}>
         {label && <span className={cls.label}>{`${label}`}</span>}
       </label>
       <select
         disabled={readonly}
-        className={classNames(
-          cls.select,
-          { [cls.validateError]: validateError },
-          [],
-        )}
+        className={classNames(cls.select, { [cls.validateError]: validateError }, [])}
         value={value}
         onChange={onChangeHandler}
         id={label}

@@ -10,17 +10,18 @@ import { Badge } from 'shared/ui/Badge';
 interface SlaveItemProps {
   className?: string;
   slave: Slave;
+  slaveId: number;
 }
 
 export const SlaveItem = memo((props: SlaveItemProps) => {
-  const { className, slave } = props;
+  const { className, slave, slaveId } = props;
 
   return (
     <>
       <Badge text={`${slave.adr}`} size="size_l" className={cls.adress} hint="Адрес Slave устройства" />
       <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
         {Object.entries(slave.requests).map(([id, request]) => (
-          <RequestItem request={request} key={id} />
+          <RequestItem request={request} key={id} requestId={+id} slaveId={slaveId} />
         ))}
       </VStack>
     </>

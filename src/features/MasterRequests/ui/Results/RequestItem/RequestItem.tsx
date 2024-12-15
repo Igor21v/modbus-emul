@@ -1,30 +1,36 @@
 import { memo } from 'react';
-import cls from './RequestItem.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Request } from '../../../model/slice/requests';
-import { HStack } from 'shared/ui/Stack';
-import { TextSpan } from 'shared/ui/TextSpan';
-import { Icon, IconTheme } from 'shared/ui/Icon';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import Arrows from 'shared/icons/Arrows';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Icon, IconTheme } from 'shared/ui/Icon';
+import { HStack } from 'shared/ui/Stack';
+import { Request, ViewType, requestsActions } from '../../../model/slice/requests';
+import { Register } from './Register/Register';
+import cls from './RequestItem.module.css';
+import { ViewSelect } from './ViewSelect/ViewSelect';
 
 interface RequestItemProps {
   className?: string;
   request: Request;
+  slaveId: number;
+  requestId: number;
 }
 
 export const RequestItem = memo((props: RequestItemProps) => {
-  const { className, request } = props;
+  const { className, request, requestId, slaveId } = props;
+  const dispatch = useAppDispatch();
+  const viewHandler = (view: ViewType) => {
+    dispatch(requestsActions.setView({ slaveId, requestId, view }));
+  };
   let iconTheme: IconTheme = 'error';
   if (request.link) iconTheme = 'success';
 
   return (
     <HStack className={classNames(cls.RequestItem, {}, [className])} gap="4" wrap max>
-      <Icon Svg={Arrows} hint="Зеленый - есть связь, красный - нет связи" theme={iconTheme} />
-      {request.content.map((item, index) => (
-        <HStack key={index} gap="4">
-          <TextSpan text={`${request.register + index}:`} italic />
-          <TextSpan text={item} />
-        </HStack>
+      <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={iconTheme} />
+      <ViewSelect view={request.view} onChange={viewHandler} />
+      {request.content.map((value, index) => (
+        <Register register={request.register + index} value={value} view={request.view} key={index} />
       ))}
     </HStack>
   );
