@@ -45,6 +45,9 @@ const requestsSlice = createSlice({
       state[action.payload.slaveId].requests[action.payload.requestId].quantity = action.payload.quantity;
       state[action.payload.slaveId].requests[action.payload.requestId].content = Array(action.payload.quantity).fill('-----');
     },
+    setLink: (state, action: PayloadAction<{ slaveId: number; requestId: number; link: boolean }>) => {
+      state[action.payload.slaveId].requests[action.payload.requestId].link = action.payload.link;
+    },
   },
 });
 

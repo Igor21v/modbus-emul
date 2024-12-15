@@ -1,7 +1,22 @@
 .Icon {
+}
+
+.primary {
   fill: var(--primary-color);
   color: var(--primary-color);
   stroke: var(--primary-color);
+}
+
+.error {
+  fill: var(--red-color);
+  color: var(--red-color);
+  stroke: var(--red-color);
+}
+
+.success {
+  fill: var(--green-color);
+  color: var(--green-color);
+  stroke: var(--green-color);
 }
 
 .button {
