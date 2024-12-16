@@ -13,15 +13,15 @@ export const ViewSelect = memo((props: FCSelectProps) => {
 
   const options: SelectOption<ViewType>[] = [
     {
-      value: 10,
+      value: '10',
       content: 'dec',
     },
     {
-      value: 16,
+      value: '16',
       content: 'hex',
     },
     {
-      value: 2,
+      value: '2',
       content: 'bin',
     },
   ];

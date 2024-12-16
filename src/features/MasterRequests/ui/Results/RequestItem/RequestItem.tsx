@@ -26,7 +26,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
   if (request.link) iconTheme = 'success';
 
   return (
-    <HStack className={classNames(cls.RequestItem, {}, [className])} gap="4" wrap max>
+    <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
       <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={iconTheme} />
       <ViewSelect view={request.view} onChange={viewHandler} />
       {request.content.map((value, index) => (

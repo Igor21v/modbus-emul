@@ -12,12 +12,17 @@ interface RegisterProps {
 
 export const Register = memo((props: RegisterProps) => {
   const { value, view, register } = props;
-  let renderVal = value.toString(view);
+  let renderVal = '';
   if (isNaN(value)) renderVal = '****';
+  if (view === '2') {
+    let str = '0'.repeat(15) + value.toString(2);
+    renderVal = str.slice(-16, -12) + ' ' + str.slice(-12, -8) + ' ' + str.slice(-8, -4) + ' ' + str.slice(-4);
+  } else renderVal = value.toString(+view);
+
   return (
-    <HStack gap="4" className={cls['view' + view]}>
+    <HStack gap="4">
       <TextSpan text={`${register}:`} italic />
-      <TextSpan text={renderVal} />
+      <TextSpan text={renderVal} className={cls['view' + view]} />
     </HStack>
   );
 });

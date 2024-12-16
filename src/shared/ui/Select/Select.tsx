@@ -3,12 +3,12 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Select.module.css';
 import { genericMemo } from 'shared/lib/components/GenericMemo/GenericMemo';
 
-export interface SelectOption<T extends string | number> {
+export interface SelectOption<T extends string> {
   value: T;
   content: string;
 }
 
-interface SelectProps<T extends string | number> {
+interface SelectProps<T extends string> {
   className?: string;
   label?: string;
   options?: SelectOption<T>[];
@@ -20,7 +20,7 @@ interface SelectProps<T extends string | number> {
   column?: boolean;
 }
 
-const Select = <T extends string | number>(props: SelectProps<T>) => {
+const Select = <T extends string>(props: SelectProps<T>) => {
   const { className, label, options, value, onChange, readonly, validateError, notSelectedEnable, column, ...rest } = props;
   const optionsList = options?.map((opt) => (
     <option className={cls.option} value={opt.value} key={opt.value}>
