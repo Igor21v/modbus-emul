@@ -3,8 +3,8 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { masterSettingsActions } from '../slice/masterSettings';
 
 interface Props {
-  changeRegister?: { slaveId: number; requestId: number; register: number };
-  changeQuantity?: { slaveId: number; requestId: number; quantity: number };
+  timeout?: number;
+  delay?: number;
 }
 
 export const setSettings = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
@@ -12,11 +12,11 @@ export const setSettings = createAsyncThunk<void, Props, ThunkConfig>('requests/
   const type = Object.keys(payload)[0] as keyof Props;
   const props = Object.values(payload)[0];
   switch (type) {
-    case 'changeRegister':
+    case 'timeout':
       dispatch(masterSettingsActions.setTimeout(props));
       sendToWorker('333');
       break;
-    case 'changeQuantity':
+    case 'delay':
       dispatch(masterSettingsActions.setFrameDelay(props));
       sendToWorker('444');
       break;

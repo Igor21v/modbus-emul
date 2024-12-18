@@ -2,8 +2,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface MasetSettingsState {
-  timeout: number;
-  frameDelay: number;
+  timeout?: number;
+  frameDelay?: number;
 }
 
 const initialState: MasetSettingsState = { frameDelay: 4, timeout: 500 };
