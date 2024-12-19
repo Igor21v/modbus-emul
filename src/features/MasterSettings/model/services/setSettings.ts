@@ -25,9 +25,6 @@ export const setSettings = createAsyncThunk<void, Props, ThunkConfig>('requests/
 
 function sendToWorker(data: string) {
   console.log(data);
-  // сделать дебаунс или тротлинг
-  /* window.portWorker.postMessage({
-        type: 'setRequests',
-        requests: data,
-      }); */
+  /* postToWorker({type: 'setRequests',
+        requests: data,})*/
 }

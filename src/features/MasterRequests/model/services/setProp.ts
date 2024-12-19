@@ -19,40 +19,38 @@ export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('request
   switch (type) {
     case 'addSlave':
       dispatch(requestsActions.addSlave(props));
-      sendToWorker('33');
+      sendRequest('33');
       break;
     case 'addRequest':
       dispatch(requestsActions.addRequest(props));
-      sendToWorker('44');
+      sendRequest('44');
       break;
     case 'delRequest':
       dispatch(requestsActions.delRequest(props));
-      sendToWorker('55');
+      sendRequest('55');
       break;
     case 'delSlave':
       dispatch(requestsActions.delSlave(props));
-      sendToWorker('66');
+      sendRequest('66');
       break;
     case 'changeAdr':
       dispatch(requestsActions.changeAdr(props));
-      sendToWorker('99');
+      sendRequest('99');
       break;
     case 'changeRegister':
       dispatch(requestsActions.changeRegister(props));
-      sendToWorker('1');
+      sendRequest('1');
       break;
     case 'changeQuantity':
       dispatch(requestsActions.changeQuantity(props));
-      sendToWorker('3');
+      sendRequest('3');
       break;
   }
 });
 
-function sendToWorker(data: string) {
+function sendRequest(data: string) {
   console.log(data);
-  // сделать дебаунс или тротлинг
-  /* window.portWorker.postMessage({
-        type: 'setRequests',
-        requests: data,
-      }); */
+  /*     postToWorker({type: 'setRequests',
+        requests: data,})
+      */
 }
