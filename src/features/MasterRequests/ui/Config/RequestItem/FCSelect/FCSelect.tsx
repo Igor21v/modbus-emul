@@ -13,19 +13,35 @@ export const FCSelect = memo((props: FCSelectProps) => {
   const options: SelectOption<string>[] = [
     {
       value: '1',
-      content: '1: Чтение DO',
+      content: '1: Чтение D(Coil)',
     },
     {
       value: '2',
-      content: '2: Чтение DI',
+      content: '2: Чтение D(Input)',
     },
     {
       value: '3',
-      content: '3: Чтение AO',
+      content: '3: Чтение A(Holding)',
     },
     {
       value: '4',
-      content: '4: Чтение AI',
+      content: '4: Чтение A(Input)',
+    },
+    {
+      value: '5',
+      content: '5: Запись одного D',
+    },
+    {
+      value: '6',
+      content: '6: Запсь одного A',
+    },
+    {
+      value: '15',
+      content: '15: Запись неск. D',
+    },
+    {
+      value: '16',
+      content: '16: Запись неск. A',
     },
   ];
 
