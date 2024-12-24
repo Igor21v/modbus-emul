@@ -57,6 +57,10 @@ const requestsSlice = createSlice({
     setView: (state, action: PayloadAction<{ slaveId: number; requestId: number; view: ViewType }>) => {
       state[action.payload.slaveId].requests[action.payload.requestId].view = action.payload.view;
     },
+    setContent: (state, action: PayloadAction<{ slaveId: number; requestId: number; register: number; content: number }>) => {
+      const { payload } = action;
+      state[payload.slaveId].requests[payload.requestId].content[payload.register] = payload.content;
+    },
   },
 });
 

@@ -10,6 +10,7 @@ interface Props {
   changeAdr?: { id: number; adr: number };
   changeRegister?: { slaveId: number; requestId: number; register: number };
   changeQuantity?: { slaveId: number; requestId: number; quantity: number };
+  setContent?: { slaveId: number; requestId: number; register: number; content: number };
 }
 
 export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
@@ -44,6 +45,10 @@ export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('request
     case 'changeQuantity':
       dispatch(requestsActions.changeQuantity(props));
       sendRequest('3');
+      break;
+    case 'setContent':
+      dispatch(requestsActions.setContent(props));
+      sendRequest('88');
       break;
   }
 });
