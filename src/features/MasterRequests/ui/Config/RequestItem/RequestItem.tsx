@@ -9,17 +9,19 @@ import { Request } from '../../../model/slice/requests';
 import { FCSelect } from './FCSelect/FCSelect';
 import cls from './RequestItem.module.css';
 import { InputNum } from 'shared/ui/InputNum';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 interface RequestItemProps {
   className?: string;
   request: Request;
   id: number;
+  requestId: number;
   slaveAdress: number;
   slaveId: number;
 }
 
 export const RequestItem = memo((props: RequestItemProps) => {
-  const { className, request, id, slaveAdress, slaveId } = props;
+  const { className, request, id, slaveAdress, slaveId, requestId } = props;
   const dispatch = useAppDispatch();
   const regHandler = (val: number) => {
     dispatch(setMasterProp({ changeRegister: { register: val, requestId: id, slaveId: slaveId } }));
@@ -31,14 +33,13 @@ export const RequestItem = memo((props: RequestItemProps) => {
   const delReqHandler = () => {
     dispatch(setMasterProp({ delRequest: { adress: slaveAdress, reqID: id } }));
   };
-  const [fCode, setFCode] = useState('1');
   const fCodeHandler = (val: string) => {
-    setFCode(val);
+    dispatch(setMasterProp({ setFunc: { slaveId, requestId, func: +val } }));
   };
 
   return (
     <HStack className={classNames(cls.RequestItem, {}, [className])} gap="4">
-      <FCSelect fCode={fCode} onChange={fCodeHandler} />
+      <FCSelect fCode={`${request.func}`} onChange={fCodeHandler} />
       <InputNum
         placeholder="Начальный регистр/бит"
         initVal={request.register}

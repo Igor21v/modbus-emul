@@ -9,6 +9,7 @@ export interface Request {
   content: number[];
   link: boolean;
   view: ViewType;
+  func: number;
 }
 
 export interface Slave {
@@ -27,13 +28,13 @@ const requestsSlice = createSlice({
     addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[id] = {
-        requests: { [id]: { register: 1, quantity: 1, content: [NaN], link: false, view: '10' } },
+        requests: { [id]: { register: 1, quantity: 1, content: [NaN], link: false, view: '10', func: 3 } },
         adr: action.payload,
       };
     },
     addRequest: (state, action: PayloadAction<number>) => {
       const id = Date.now();
-      state[action.payload].requests[id] = { register: 1, quantity: 1, content: [100], link: false, view: '10' };
+      state[action.payload].requests[id] = { register: 1, quantity: 1, content: [100], link: false, view: '10', func: 3 };
     },
     delRequest: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
       delete state[action.payload.adress].requests[action.payload.reqID];
@@ -60,6 +61,10 @@ const requestsSlice = createSlice({
     setContent: (state, action: PayloadAction<{ slaveId: number; requestId: number; register: number; content: number }>) => {
       const { payload } = action;
       state[payload.slaveId].requests[payload.requestId].content[payload.register] = payload.content;
+    },
+    setFunc: (state, action: PayloadAction<{ slaveId: number; requestId: number; func: number }>) => {
+      const { payload } = action;
+      state[payload.slaveId].requests[payload.requestId].func = payload.func;
     },
   },
 });

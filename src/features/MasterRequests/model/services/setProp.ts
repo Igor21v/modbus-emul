@@ -11,6 +11,7 @@ interface Props {
   changeRegister?: { slaveId: number; requestId: number; register: number };
   changeQuantity?: { slaveId: number; requestId: number; quantity: number };
   setContent?: { slaveId: number; requestId: number; register: number; content: number };
+  setFunc?: { slaveId: number; requestId: number; func: number };
 }
 
 export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
@@ -49,6 +50,10 @@ export const setMasterProp = createAsyncThunk<void, Props, ThunkConfig>('request
     case 'setContent':
       dispatch(requestsActions.setContent(props));
       sendRequest('88');
+      break;
+    case 'setFunc':
+      dispatch(requestsActions.setFunc(props));
+      sendRequest('34');
       break;
   }
 });
