@@ -3,6 +3,9 @@ import { memo } from 'react';
 import { HStack } from 'shared/ui/Stack';
 import { TextSpan } from 'shared/ui/TextSpan';
 import cls from './Register.module.css';
+import { Bin } from '../Bin/Bin';
+import { Hex } from '../Hex/Hex';
+import { Dec } from '../Dec/Dec';
 
 interface RegisterProps {
   value: number;
@@ -12,17 +15,17 @@ interface RegisterProps {
 
 export const Register = memo((props: RegisterProps) => {
   const { value, view, register } = props;
-  let renderVal = '';
-  if (isNaN(value)) renderVal = '****';
-  else if (view === '2') {
-    let str = '0'.repeat(15) + value.toString(2);
-    renderVal = str.slice(-16, -12) + ' ' + str.slice(-12, -8) + ' ' + str.slice(-8, -4) + ' ' + str.slice(-4);
-  } else renderVal = value.toString(+view);
+
+  let RenderVal = null;
+  if (isNaN(value)) RenderVal = <TextSpan text={'****'} className={cls['view' + view]} />;
+  else if (view === '2') RenderVal = <Bin value={value} />;
+  else if (view === '10') RenderVal = <Hex value={value} />;
+  else RenderVal = <Dec value={value} />;
 
   return (
     <HStack gap="4">
       <TextSpan text={`${register}:`} italic />
-      <TextSpan text={renderVal} className={cls['view' + view]} />
+      {RenderVal}
     </HStack>
   );
 });
