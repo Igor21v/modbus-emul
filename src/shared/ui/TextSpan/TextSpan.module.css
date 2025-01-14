@@ -10,6 +10,10 @@
   color: var(--green-color);
 }
 
+.second {
+  color: var(--second-color);
+}
+
 .inverted {
   color: var(--inverted-primary-color);
 }
@@ -48,6 +52,10 @@
 
 .italic {
   font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .underline {
