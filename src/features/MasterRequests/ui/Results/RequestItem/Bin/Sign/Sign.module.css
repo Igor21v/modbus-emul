@@ -1,0 +1,8 @@
+.Sign {
+  display: inline-block;
+}
+
+.significant:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
