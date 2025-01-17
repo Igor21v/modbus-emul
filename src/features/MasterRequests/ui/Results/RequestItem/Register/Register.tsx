@@ -1,5 +1,5 @@
 import { ViewType } from 'features/MasterRequests/model/slice/requests';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { HStack } from 'shared/ui/Stack';
 import { TextSpan } from 'shared/ui/TextSpan';
 import cls from './Register.module.css';
@@ -11,14 +11,19 @@ interface RegisterProps {
   value: number;
   view: ViewType;
   register: number;
+  index: number;
+  setContent: (index: number, content: number) => void;
 }
 
 export const Register = memo((props: RegisterProps) => {
-  const { value, view, register } = props;
+  const { value, view, register, setContent, index } = props;
+  const setContentReg = useCallback((content: number) => {
+    setContent(index, content);
+  }, []);
 
   let RenderVal = null;
   if (isNaN(value)) RenderVal = <TextSpan text={'****'} className={cls['view' + view]} />;
-  else if (view === '2') RenderVal = <Bin value={value} />;
+  else if (view === '2') RenderVal = <Bin value={value} setContentReg={setContentReg} />;
   else if (view === '10') RenderVal = <Hex value={value} />;
   else RenderVal = <Dec value={value} />;
 
