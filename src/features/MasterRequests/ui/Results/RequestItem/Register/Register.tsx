@@ -25,8 +25,8 @@ export const Register = memo((props: RegisterProps) => {
   let RenderVal = null;
   if (isNaN(value)) RenderVal = <TextSpan text={'****'} className={cls['view' + view]} />;
   else if (view === '2') RenderVal = <Bin value={value} setContentReg={setContentReg} editable={editable} />;
-  else if (view === '10') RenderVal = <Hex value={value} editable={editable} />;
-  else RenderVal = <Dec value={value} editable={editable} />;
+  else if (view === '10') RenderVal = <Dec value={value} editable={editable} setContentReg={setContentReg} />;
+  else RenderVal = <Hex value={value} editable={editable} />;
 
   return (
     <HStack gap="4">

@@ -9,7 +9,7 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 
 interface InputNumProps extends HTMLInputProps {
   className?: string;
-  classNameWrapper?: string;
+  classNameInput?: string;
   initVal?: number;
   onChange?: (value: number) => void;
   autoFocus?: boolean;
@@ -23,7 +23,7 @@ interface InputNumProps extends HTMLInputProps {
 export const InputNum = (props: InputNumProps) => {
   const {
     className,
-    classNameWrapper,
+    classNameInput,
     initVal = 0,
     placeholder,
     onChange,
@@ -77,7 +77,7 @@ export const InputNum = (props: InputNumProps) => {
     [cls.validateError]: validateError,
   };
   return (
-    <div className={classNames(cls.wrapper, { [cls.canEdit]: canEdit, [cls.focus]: focus }, [classNameWrapper])} title={title}>
+    <div className={classNames(cls.wrapper, { [cls.canEdit]: canEdit, [cls.focus]: focus }, [className])} title={title}>
       <label htmlFor={idInput} className={cls.lable}>
         {placeholder}
       </label>
@@ -88,7 +88,7 @@ export const InputNum = (props: InputNumProps) => {
         disabled={readOnly}
         value={`${val}`}
         {...otherProps}
-        className={classNames(cls.input, mods, [className])}
+        className={classNames(cls.input, mods, [classNameInput])}
         autoFocus={autoFocus}
         id={idInput}
         onFocus={onFocus}

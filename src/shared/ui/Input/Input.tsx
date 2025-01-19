@@ -7,7 +7,7 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 
 interface InputProps<T extends string | number | undefined> extends HTMLInputProps {
   className?: string;
-  classNameWrapper?: string;
+  classNameInput?: string;
   value?: T;
   onChange?: (value: T) => void;
   autoFocus?: boolean;
@@ -21,7 +21,7 @@ interface InputProps<T extends string | number | undefined> extends HTMLInputPro
 export const Input = <T extends number | string | undefined>(props: InputProps<T>) => {
   const {
     className,
-    classNameWrapper,
+    classNameInput,
     value,
     type = 'text',
     placeholder,
@@ -74,7 +74,7 @@ export const Input = <T extends number | string | undefined>(props: InputProps<T
     [cls.validateError]: validateError,
   };
   return (
-    <div className={classNames(cls.wrapper, { [cls.canEdit]: canEdit, [cls.focus]: focus }, [classNameWrapper])} title={title}>
+    <div className={classNames(cls.wrapper, { [cls.canEdit]: canEdit, [cls.focus]: focus }, [className])} title={title}>
       <label htmlFor={idInput} className={cls.lable}>
         {value === '' ? '\u00A0' : placeholder}
       </label>
@@ -85,7 +85,7 @@ export const Input = <T extends number | string | undefined>(props: InputProps<T
         disabled={readOnly}
         value={`${value}`}
         {...otherProps}
-        className={classNames(cls.input, mods, [className])}
+        className={classNames(cls.input, mods, [classNameInput])}
         autoFocus={autoFocus}
         id={idInput}
         onFocus={onFocus}
