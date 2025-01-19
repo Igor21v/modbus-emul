@@ -6,10 +6,11 @@ import { TextSpan } from 'shared/ui/TextSpan';
 interface HexProps {
   className?: string;
   value: number;
+  editable: boolean;
 }
 
 export const Hex = memo((props: HexProps) => {
-  const { className, value } = props;
+  const { className, value, editable } = props;
   const renderVal = value.toString(16);
 
   return <TextSpan text={renderVal} className={classNames(cls.Bin, {}, [className])} />;

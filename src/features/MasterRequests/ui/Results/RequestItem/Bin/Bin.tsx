@@ -6,10 +6,11 @@ interface BinProps {
   className?: string;
   value: number;
   setContentReg: (content: number) => void;
+  editable: boolean;
 }
 
 export const Bin = memo((props: BinProps) => {
-  const { className, value, setContentReg } = props;
+  const { className, value, setContentReg, editable } = props;
   let str = '0'.repeat(15) + value.toString(2);
   const renderVal = str.slice(-16, -12) + '_' + str.slice(-12, -8) + '_' + str.slice(-8, -4) + '_' + str.slice(-4);
   const arrVal = renderVal.split('');
@@ -30,7 +31,7 @@ export const Bin = memo((props: BinProps) => {
   return (
     <div>
       {arrVal.map((char, index) => (
-        <Sign sign={char} key={index} position={index} setSymbol={setSymbol} />
+        <Sign sign={char} key={index} position={index} setSymbol={setSymbol} editable={editable} />
       ))}
     </div>
   );

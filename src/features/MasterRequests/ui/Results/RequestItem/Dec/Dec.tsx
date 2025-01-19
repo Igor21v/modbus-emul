@@ -6,6 +6,7 @@ import { TextSpan } from 'shared/ui/TextSpan';
 interface DecProps {
   className?: string;
   value: number;
+  editable: boolean;
 }
 
 export const Dec = memo((props: DecProps) => {

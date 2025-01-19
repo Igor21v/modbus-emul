@@ -8,6 +8,7 @@ interface BinProps {
   sign: string;
   setSymbol: (position: number, sign: string) => void;
   position: number;
+  editable: boolean;
 }
 
 export const Sign = memo((props: BinProps) => {

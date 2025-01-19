@@ -13,19 +13,20 @@ interface RegisterProps {
   register: number;
   index: number;
   setContent: (index: number, content: number) => void;
+  editable: boolean;
 }
 
 export const Register = memo((props: RegisterProps) => {
-  const { value, view, register, setContent, index } = props;
+  const { value, view, register, setContent, index, editable } = props;
   const setContentReg = useCallback((content: number) => {
     setContent(index, content);
   }, []);
 
   let RenderVal = null;
   if (isNaN(value)) RenderVal = <TextSpan text={'****'} className={cls['view' + view]} />;
-  else if (view === '2') RenderVal = <Bin value={value} setContentReg={setContentReg} />;
-  else if (view === '10') RenderVal = <Hex value={value} />;
-  else RenderVal = <Dec value={value} />;
+  else if (view === '2') RenderVal = <Bin value={value} setContentReg={setContentReg} editable={editable} />;
+  else if (view === '10') RenderVal = <Hex value={value} editable={editable} />;
+  else RenderVal = <Dec value={value} editable={editable} />;
 
   return (
     <HStack gap="4">

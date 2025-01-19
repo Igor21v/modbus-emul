@@ -29,6 +29,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
     },
     [slaveId, requestId],
   );
+  const editable = request.func > 4;
   let iconTheme: IconTheme = 'error';
   if (request.link) iconTheme = 'success';
 
@@ -44,6 +45,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
           key={index}
           setContent={setContent}
           index={index}
+          editable={editable}
         />
       ))}
     </HStack>
