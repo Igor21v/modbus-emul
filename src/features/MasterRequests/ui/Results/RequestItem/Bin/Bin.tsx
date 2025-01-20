@@ -18,11 +18,8 @@ export const Bin = memo((props: BinProps) => {
     (position: number, sign: string) => {
       const newSign = sign === '1' ? '0' : '1';
       let newVal = renderVal.slice(-19, position) + newSign + renderVal.slice(position + 1);
-      console.log(newVal);
       newVal = newVal.slice(-19, -15) + newVal.slice(-14, -10) + newVal.slice(-9, -5) + newVal.slice(-4);
-      console.log(newVal);
       const valNum = parseInt(newVal, 2);
-      console.log(valNum);
       setContentReg(valNum);
     },
     [renderVal],
