@@ -10,6 +10,7 @@ import { Request, ViewType, requestsActions } from '../../../model/slice/request
 import { Register } from './Register/Register';
 import cls from './RequestItem.module.css';
 import { ViewSelect } from './ViewSelect/ViewSelect';
+import Send from 'shared/icons/Send';
 
 interface RequestItemProps {
   className?: string;
@@ -39,6 +40,8 @@ export const RequestItem = memo((props: RequestItemProps) => {
       <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={linkTheme} />
       <ViewSelect view={request.view} onChange={viewHandler} />
       <Icon Svg={Cycle} hint="Запись каждый цикл обмена/Запись по требованию" onClick={() => {}} theme={cycleTheme} />
+      {true && <Icon Svg={Send} hint="Отпрвить запрос записи" onClick={() => {}} />}
+
       {request.content.map((value, index) => (
         <Register
           register={request.register + index}

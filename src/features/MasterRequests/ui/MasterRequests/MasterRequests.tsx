@@ -24,10 +24,15 @@ export const MasterRequests = memo((props: MasterRequestsProps) => {
       <Config className={classNames(cls.animated, { [cls.wrap]: wrapConfig })} />
 
       {wrapResult && (
-        <Icon Svg={Unwrap} hint="Развернуть результаты запросов" onClick={() => setWrapResult(false)} className={cls.results} />
+        <Icon
+          Svg={Unwrap}
+          hint="Развернуть результаты запросов"
+          onClick={() => setWrapResult(false)}
+          classNameWrap={cls.results}
+        />
       )}
       {!wrapResult && (
-        <Icon Svg={Wrap} hint="Свернуть результаты запросов" onClick={() => setWrapResult(true)} className={cls.results} />
+        <Icon Svg={Wrap} hint="Свернуть результаты запросов" onClick={() => setWrapResult(true)} classNameWrap={cls.results} />
       )}
       <Results className={classNames(cls.animated, { [cls.wrap]: wrapResult })} />
     </VStack>
