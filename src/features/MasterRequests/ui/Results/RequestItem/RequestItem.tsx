@@ -1,6 +1,8 @@
-import { memo, useCallback, useMemo } from 'react';
+import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
+import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import Arrows from 'shared/icons/Arrows';
+import Cycle from 'shared/icons/Cycle';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon, IconTheme } from 'shared/ui/Icon';
 import { HStack } from 'shared/ui/Stack';
@@ -8,7 +10,6 @@ import { Request, ViewType, requestsActions } from '../../../model/slice/request
 import { Register } from './Register/Register';
 import cls from './RequestItem.module.css';
 import { ViewSelect } from './ViewSelect/ViewSelect';
-import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
 
 interface RequestItemProps {
   className?: string;
@@ -30,13 +31,14 @@ export const RequestItem = memo((props: RequestItemProps) => {
     [slaveId, requestId],
   );
   const editable = request.func > 4;
-  let iconTheme: IconTheme = 'error';
-  if (request.link) iconTheme = 'success';
+  const linkTheme: IconTheme = request.link ? 'success' : 'error';
+  const cycleTheme: IconTheme = true ? 'success' : 'primary';
 
   return (
     <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
-      <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={iconTheme} />
+      <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={linkTheme} />
       <ViewSelect view={request.view} onChange={viewHandler} />
+      <Icon Svg={Cycle} hint="Запись каждый цикл обмена/Запись по требованию" onClick={() => {}} theme={cycleTheme} />
       {request.content.map((value, index) => (
         <Register
           register={request.register + index}

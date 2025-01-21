@@ -22,6 +22,7 @@
 .button {
   background-color: transparent;
   border: none;
+  height: 24px;
 }
 
 .button:hover {
