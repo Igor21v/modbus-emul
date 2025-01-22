@@ -1,4 +1,4 @@
-import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
+import { setRequest } from 'features/MasterRequests/model/services/setRequest';
 import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import Arrows from 'shared/icons/Arrows';
@@ -11,6 +11,7 @@ import { Register } from './Register/Register';
 import cls from './RequestItem.module.css';
 import { ViewSelect } from './ViewSelect/ViewSelect';
 import Send from 'shared/icons/Send';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 interface RequestItemProps {
   className?: string;
@@ -21,32 +22,40 @@ interface RequestItemProps {
 
 export const RequestItem = memo((props: RequestItemProps) => {
   const { className, request, requestId, slaveId } = props;
+  const { content, view, loopRec, func, link, register } = request;
   const dispatch = useAppDispatch();
   const viewHandler = (view: ViewType) => {
     dispatch(requestsActions.setView({ slaveId, requestId, view }));
   };
   const setContent = useCallback(
     (register: number, content: number) => {
-      dispatch(setMasterProp({ setContent: { content, register, requestId, slaveId } }));
+      dispatch(setRequest({ setContent: { content, register, requestId, slaveId } }));
     },
     [slaveId, requestId],
   );
-  const editable = request.func > 4;
-  const linkTheme: IconTheme = request.link ? 'success' : 'error';
-  const cycleTheme: IconTheme = true ? 'success' : 'primary';
+  const setLoopRec = useCallback(() => {
+    dispatch(setRequest({ setLoopRec: { requestId, slaveId, loopRec: !loopRec } }));
+  }, [loopRec]);
+  const sendCmdRec = useCallback(() => {
+    dispatch(setRequest({ sendCmdRec: { requestId, slaveId } }));
+  }, []);
+
+  const editable = func > 4;
+  const linkTheme: IconTheme = link ? 'success' : 'error';
+  const cycleTheme: IconTheme = loopRec ? 'success' : 'primary';
 
   return (
     <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
       <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={linkTheme} />
-      <ViewSelect view={request.view} onChange={viewHandler} />
-      <Icon Svg={Cycle} hint="Запись каждый цикл обмена/Запись по требованию" onClick={() => {}} theme={cycleTheme} />
-      {true && <Icon Svg={Send} hint="Отпрвить запрос записи" onClick={() => {}} />}
+      <ViewSelect view={view} onChange={viewHandler} />
+      <Icon Svg={Cycle} hint="Запись каждый цикл обмена/Запись по требованию" onClick={setLoopRec} theme={cycleTheme} />
+      {loopRec && <Icon Svg={Send} hint="Отпрвить запрос записи" onClick={sendCmdRec} />}
 
-      {request.content.map((value, index) => (
+      {content.map((value, index) => (
         <Register
-          register={request.register + index}
+          register={register + index}
           value={value}
-          view={request.view}
+          view={view}
           key={index}
           setContent={setContent}
           index={index}

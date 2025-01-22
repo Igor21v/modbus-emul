@@ -1,4 +1,4 @@
-import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
+import { setRequest } from 'features/MasterRequests/model/services/setRequest';
 import { memo } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
@@ -23,7 +23,7 @@ export const Config = memo((props: SettingsProps) => {
     });
     for (let i = 1; i < 255; i++) {
       if (!adrs.has(i)) {
-        dispatch(setMasterProp({ addSlave: i }));
+        dispatch(setRequest({ addSlave: i }));
         break;
       }
     }

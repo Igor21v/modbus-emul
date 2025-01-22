@@ -10,6 +10,7 @@ export interface Request {
   link: boolean;
   view: ViewType;
   func: number;
+  loopRec?: boolean;
 }
 
 export interface Slave {
@@ -65,6 +66,10 @@ const requestsSlice = createSlice({
     setFunc: (state, action: PayloadAction<{ slaveId: number; requestId: number; func: number }>) => {
       const { payload } = action;
       state[payload.slaveId].requests[payload.requestId].func = payload.func;
+    },
+    setLoopRec: (state, action: PayloadAction<{ slaveId: number; requestId: number; loopRec: boolean }>) => {
+      const { payload } = action;
+      state[payload.slaveId].requests[payload.requestId].loopRec = payload.loopRec;
     },
   },
 });

@@ -1,4 +1,4 @@
-import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
+import { setRequest } from 'features/MasterRequests/model/services/setRequest';
 import { memo } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
@@ -20,13 +20,13 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const dispatch = useAppDispatch();
   const requests = useAppSelector((state) => state.requests);
   const adressHandler = (adr: number) => {
-    dispatch(setMasterProp({ changeAdr: { id: slaveID, adr } }));
+    dispatch(setRequest({ changeAdr: { id: slaveID, adr } }));
   };
   const addRequestHandler = () => {
-    dispatch(setMasterProp({ addRequest: slaveID }));
+    dispatch(setRequest({ addRequest: slaveID }));
   };
   const delSlaveHandler = () => {
-    dispatch(setMasterProp({ delSlave: slaveID }));
+    dispatch(setRequest({ delSlave: slaveID }));
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>

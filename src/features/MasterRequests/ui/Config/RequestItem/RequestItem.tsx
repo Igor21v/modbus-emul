@@ -1,4 +1,4 @@
-import { setMasterProp } from 'features/MasterRequests/model/services/setProp';
+import { setRequest } from 'features/MasterRequests/model/services/setRequest';
 import { memo, useState } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -24,17 +24,17 @@ export const RequestItem = memo((props: RequestItemProps) => {
   const { className, request, id, slaveAdress, slaveId, requestId } = props;
   const dispatch = useAppDispatch();
   const regHandler = (val: number) => {
-    dispatch(setMasterProp({ changeRegister: { register: val, requestId: id, slaveId: slaveId } }));
+    dispatch(setRequest({ changeRegister: { register: val, requestId: id, slaveId: slaveId } }));
   };
   const quantityHandler = (val: number) => {
-    dispatch(setMasterProp({ changeQuantity: { quantity: val, requestId: id, slaveId: slaveId } }));
+    dispatch(setRequest({ changeQuantity: { quantity: val, requestId: id, slaveId: slaveId } }));
   };
 
   const delReqHandler = () => {
-    dispatch(setMasterProp({ delRequest: { adress: slaveAdress, reqID: id } }));
+    dispatch(setRequest({ delRequest: { adress: slaveAdress, reqID: id } }));
   };
   const fCodeHandler = (val: string) => {
-    dispatch(setMasterProp({ setFunc: { slaveId, requestId, func: +val } }));
+    dispatch(setRequest({ setFunc: { slaveId, requestId, func: +val } }));
   };
 
   return (
