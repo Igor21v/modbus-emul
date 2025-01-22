@@ -9,6 +9,7 @@ import { Input } from 'shared/ui/Input';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { setSettings } from '../../model/services/setSettings';
+import { InputNum } from 'shared/ui/InputNum';
 
 interface MasterSettingsProps {
   className?: string;
@@ -29,13 +30,14 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
     <Card className={classNames(cls.MasterSettings, {}, [className])} theme="outlined">
       <Text title="Настройки режима мастер" align="center" className={cls.title} />
       <VStack gap="16" wrap justify="center">
-        <Input placeholder="Таймаут ответа, мс" value={timeout} onChange={timeoutHandler} type="number" />
-        <Input
+        <InputNum placeholder="Таймаут ответа, мс" initVal={timeout} onChange={timeoutHandler} min={1} max={20000} />
+        <InputNum
           title="Задержка после получения ответа от слейва и следующим запросом"
           placeholder="Время между фреймами, мс"
-          value={frameDelay}
+          initVal={frameDelay}
           onChange={frameHandler}
-          type="number"
+          min={0}
+          max={2000}
         />
       </VStack>
     </Card>

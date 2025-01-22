@@ -69,8 +69,7 @@ export const InputNum = (props: InputNumProps) => {
     }
     if (e.target.value === '') setVal(e.target.value);
     else setVal(`${valNum}`);
-
-    onChange?.(valNum);
+    if (valNum !== initVal) onChange?.(valNum);
   };
   const mods: Mods = {
     [cls.readOnly]: readOnly,
