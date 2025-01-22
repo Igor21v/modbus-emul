@@ -30,18 +30,16 @@
 }
 
 .button:hover .Icon {
-  fill: var(--hover-color);
-  color: var(--hover-color);
-  stroke: var(--hover-color);
   scale: 1.2;
   cursor: pointer;
 }
 
-.Icon:active {
-  scale: 1;
+.button:active .Icon {
+  opacity: 0.8;
 }
 
 .inverted {
   fill: var(--inverted-primary-color);
   color: var(--inverted-primary-color);
+  stroke: var(--inverted-primary-color);
 }
