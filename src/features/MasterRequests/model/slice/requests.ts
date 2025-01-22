@@ -29,13 +29,13 @@ const requestsSlice = createSlice({
     addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[id] = {
-        requests: { [id]: { register: 1, quantity: 1, content: [NaN], link: false, view: '10', func: 3 } },
+        requests: { [id]: { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3 } },
         adr: action.payload,
       };
     },
     addRequest: (state, action: PayloadAction<number>) => {
       const id = Date.now();
-      state[action.payload].requests[id] = { register: 1, quantity: 1, content: [100], link: false, view: '10', func: 3 };
+      state[action.payload].requests[id] = { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3 };
     },
     delRequest: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
       delete state[action.payload.adress].requests[action.payload.reqID];
@@ -51,7 +51,7 @@ const requestsSlice = createSlice({
     },
     changeQuantity: (state, action: PayloadAction<{ slaveId: number; requestId: number; quantity: number }>) => {
       state[action.payload.slaveId].requests[action.payload.requestId].quantity = action.payload.quantity;
-      state[action.payload.slaveId].requests[action.payload.requestId].content = Array(action.payload.quantity).fill(1);
+      state[action.payload.slaveId].requests[action.payload.requestId].content = Array(action.payload.quantity).fill(0);
     },
     setLink: (state, action: PayloadAction<{ slaveId: number; requestId: number; link: boolean }>) => {
       state[action.payload.slaveId].requests[action.payload.requestId].link = action.payload.link;
