@@ -48,10 +48,8 @@ export const RequestItem = memo((props: RequestItemProps) => {
     <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
       <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={linkTheme} />
       <ViewSelect view={view} onChange={viewHandler} />
-      {editable && (
-        <Icon Svg={Cycle} hint="Запись каждый цикл обмена/Запись по требованию" onClick={setLoopRec} theme={cycleTheme} />
-      )}
-      {loopRec && editable && <Icon Svg={Send} hint="Отпрвить запрос записи" onClick={sendCmdRec} />}
+      {editable && <Icon Svg={Cycle} hint="Запись каждый цикл обмена" onClick={setLoopRec} theme={cycleTheme} />}
+      {!loopRec && editable && <Icon Svg={Send} hint="Отпрвить запрос записи" onClick={sendCmdRec} />}
 
       {content.map((value, index) => (
         <Register
