@@ -48,11 +48,20 @@ export const InputNum = (props: InputNumProps) => {
       ref.current?.focus();
     }
   });
+  let valNum = Number(val);
+  const isMin = min !== undefined && valNum < min;
+  const isMax = max !== undefined && valNum > max;
   const onBlur = () => {
-    setVal(`${initVal}`);
-
     focusHandler?.(false);
     setFocus(false);
+    if (isMin) {
+      valNum = min;
+    } else if (isMax) {
+      valNum = max;
+    }
+    onChange?.(valNum);
+    setVal(`${valNum}`);
+    console.log('Blur ' + valNum);
   };
   const onFocus = () => {
     focusHandler?.(true);
@@ -62,21 +71,21 @@ export const InputNum = (props: InputNumProps) => {
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     let valNum = Number(e.target.value);
-    if (min !== undefined && valNum < min) {
-      valNum = min;
-    } else if (max !== undefined && valNum > max) {
-      valNum = max;
+    if (min !== undefined && valNum >= min && max !== undefined && valNum <= max) {
+      onChange?.(valNum);
     }
-    if (e.target.value === '') setVal(e.target.value);
-    else setVal(`${valNum}`);
-    if (valNum !== initVal) onChange?.(valNum);
+    setVal(e.target.value);
   };
-  const mods: Mods = {
+  const modsWrapper: Mods = {
+    [cls.validateError]: isMin || isMax,
+    [cls.canEdit]: canEdit,
+    [cls.focus]: focus,
+  };
+  const modsInput: Mods = {
     [cls.readOnly]: readOnly,
-    [cls.validateError]: validateError,
   };
   return (
-    <div className={classNames(cls.wrapper, { [cls.canEdit]: canEdit, [cls.focus]: focus }, [className])} title={title}>
+    <div className={classNames(cls.wrapper, modsWrapper, [className])} title={title}>
       <label htmlFor={idInput} className={cls.lable}>
         {placeholder}
       </label>
@@ -87,7 +96,7 @@ export const InputNum = (props: InputNumProps) => {
         disabled={readOnly}
         value={`${val}`}
         {...otherProps}
-        className={classNames(cls.input, mods, [classNameInput])}
+        className={classNames(cls.input, modsInput, [classNameInput])}
         autoFocus={autoFocus}
         id={idInput}
         onFocus={onFocus}

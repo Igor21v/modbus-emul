@@ -37,9 +37,6 @@
 .wrapper.validateError {
   outline: 1px solid var(--red-color);
 }
-.wrapper.validateError:hover {
-  outline: 1px solid var(--red-color);
-}
 
 .readOnly {
   opacity: 0.7;

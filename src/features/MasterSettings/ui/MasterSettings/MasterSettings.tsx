@@ -32,7 +32,7 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
       <VStack gap="16" wrap justify="center">
         <InputNum placeholder="Таймаут ответа, мс" initVal={timeout} onChange={timeoutHandler} min={1} max={20000} />
         <InputNum
-          title="Задержка после получения ответа от слейва и следующим запросом"
+          title="Задержка после получения ответа от слейва и следующим запросом, 0-2000"
           placeholder="Время между фреймами, мс"
           initVal={frameDelay}
           onChange={frameHandler}
