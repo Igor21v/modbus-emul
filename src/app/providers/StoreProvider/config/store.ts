@@ -4,6 +4,7 @@ import { logReducer } from 'entities/Log/';
 import { requestsReducer } from 'features/MasterRequests';
 import { masterSettingsReducer } from 'features/MasterSettings';
 import { portReducer } from 'features/PortSettings';
+import { slaveSettingsReducer } from 'features/SlaveSettings';
 
 const extraArg = {};
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     appState: appStateReducer,
     requests: requestsReducer,
     masterSettings: masterSettingsReducer,
+    slaveSettings: slaveSettingsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

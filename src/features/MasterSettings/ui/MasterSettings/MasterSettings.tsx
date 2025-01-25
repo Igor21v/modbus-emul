@@ -1,15 +1,13 @@
-import { memo, useState } from 'react';
-import cls from './MasterSettings.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Text } from 'shared/ui/Text';
-import { Card } from 'shared/ui/Card';
-import { TextSpan } from 'shared/ui/TextSpan';
-import { Input } from 'shared/ui/Input';
+import { memo } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
-import { setSettings } from '../../model/services/setSettings';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Card } from 'shared/ui/Card';
 import { InputNum } from 'shared/ui/InputNum';
+import { VStack } from 'shared/ui/Stack';
+import { Text } from 'shared/ui/Text';
+import { setSettings } from '../../model/services/setSettings';
+import cls from './MasterSettings.module.css';
 
 interface MasterSettingsProps {
   className?: string;
