@@ -30,13 +30,15 @@ export const SlaveSettings = memo((props: SlaveSettingsProps) => {
     <Card className={classNames(cls.SlaveSettings, {}, [className])} theme="outlined" max>
       <Text title="Настройки режима слейв" align="center" className={cls.title} />
       <VStack gap="16" wrap justify="center">
-        <HStack gap="16" title="Отправлять ответ с кодом ошибки если запрошены не сконфигурированные адреса">
-          <TextSpan text="Отвечать ошибкой " />
-          <Toggle onChange={toggleHandler} checked={sendError} />
-        </HStack>
+        <Toggle
+          onChange={toggleHandler}
+          checked={sendError}
+          title="Отправлять ответ с кодом ошибки если запрошены не сконфигурированные адреса"
+          text="Ответ с ошибкой"
+        />
         <InputNum
           title="Задержка после получения запроса от от мастера и отправкой ответа, 0-2000"
-          placeholder="Время между фреймами, мс"
+          placeholder="Задержка перед ответом, мс"
           initVal={frameDelay}
           onChange={frameHandler}
           min={0}

@@ -1,3 +1,7 @@
+.wrap {
+  display: flex;
+  gap: 8px;
+}
 .Toggle {
   border: 0;
   box-sizing: border-box;
