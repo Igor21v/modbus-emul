@@ -10,7 +10,7 @@ export interface Request {
   link: boolean;
   view: ViewType;
   func: number;
-  loopRec?: boolean;
+  loopRec: boolean;
 }
 
 export interface Slave {
@@ -29,13 +29,21 @@ const requestsSlice = createSlice({
     addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[id] = {
-        requests: { [id]: { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3 } },
+        requests: { [id]: { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3, loopRec: true } },
         adr: action.payload,
       };
     },
     addRequest: (state, action: PayloadAction<number>) => {
       const id = Date.now();
-      state[action.payload].requests[id] = { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3 };
+      state[action.payload].requests[id] = {
+        register: 1,
+        quantity: 1,
+        content: [0],
+        link: false,
+        view: '10',
+        func: 3,
+        loopRec: true,
+      };
     },
     delRequest: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
       delete state[action.payload.adress].requests[action.payload.reqID];
