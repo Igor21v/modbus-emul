@@ -6,7 +6,7 @@ import Cycle from 'shared/icons/Cycle';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon, IconTheme } from 'shared/ui/Icon';
 import { HStack } from 'shared/ui/Stack';
-import { Request, ViewType, responsesActions } from '../../../model/slice/responses';
+import { Response, ViewType, responsesActions } from '../../../model/slice/responses';
 import { Register } from './Register/Register';
 import cls from './ResponseItem.module.css';
 import { ViewSelect } from './ViewSelect/ViewSelect';
@@ -15,7 +15,7 @@ import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 interface ResponseItemProps {
   className?: string;
-  request: Request;
+  request: Response;
   slaveId: number;
   requestId: number;
 }

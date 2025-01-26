@@ -12,7 +12,6 @@ interface Props {
   changeQuantity?: { slaveId: number; requestId: number; quantity: number };
   setContent?: { slaveId: number; requestId: number; register: number; content: number };
   setFunc?: { slaveId: number; requestId: number; func: number };
-  setLoopRec?: { slaveId: number; requestId: number; loopRec: boolean };
   sendCmdRec?: { slaveId: number; requestId: number };
 }
 
@@ -56,10 +55,6 @@ export const setRequest = createAsyncThunk<void, Props, ThunkConfig>('requests/s
     case 'setFunc':
       dispatch(responsesActions.setFunc(props));
       sendRequest('34');
-      break;
-    case 'setLoopRec':
-      dispatch(responsesActions.setLoopRec(props));
-      sendRequest('343');
       break;
     case 'sendCmdRec':
       sendRequest('33332');

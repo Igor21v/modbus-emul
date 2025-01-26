@@ -5,13 +5,13 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { InputNum } from 'shared/ui/InputNum';
 import { HStack } from 'shared/ui/Stack';
-import { Request } from '../../../model/slice/responses';
+import { Response } from '../../../model/slice/responses';
 import { FCSelect } from './FCSelect/FCSelect';
 import cls from './ResponseItem.module.css';
 
 interface ResponseItemProps {
   className?: string;
-  request: Request;
+  request: Response;
   id: number;
   requestId: number;
   slaveAdress: number;

@@ -3,33 +3,33 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export type ViewType = '10' | '2' | '16';
 
-export interface Request {
+export interface Response {
   register: number;
   quantity: number;
   content: number[];
   link: boolean;
   view: ViewType;
   func: number;
-  loopRec: boolean;
+  loopRec?: boolean;
 }
 
 export interface Slave {
   adr: number;
-  requests: Record<number, Request>;
+  requests: Record<number, Response>;
 }
 
-export type RequestState = Record<number, Slave>;
+export type ResponseState = Record<number, Slave>;
 
-const initialState: RequestState = {};
+const initialState: ResponseState = {};
 
 const responsesSlice = createSlice({
-  name: 'requests',
+  name: 'responses',
   initialState,
   reducers: {
     addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[id] = {
-        requests: { [id]: { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3, loopRec: true } },
+        requests: { [id]: { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3 } },
         adr: action.payload,
       };
     },
@@ -42,7 +42,6 @@ const responsesSlice = createSlice({
         link: false,
         view: '10',
         func: 3,
-        loopRec: true,
       };
     },
     delRequest: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
@@ -74,10 +73,6 @@ const responsesSlice = createSlice({
     setFunc: (state, action: PayloadAction<{ slaveId: number; requestId: number; func: number }>) => {
       const { payload } = action;
       state[payload.slaveId].requests[payload.requestId].func = payload.func;
-    },
-    setLoopRec: (state, action: PayloadAction<{ slaveId: number; requestId: number; loopRec: boolean }>) => {
-      const { payload } = action;
-      state[payload.slaveId].requests[payload.requestId].loopRec = payload.loopRec;
     },
   },
 });
