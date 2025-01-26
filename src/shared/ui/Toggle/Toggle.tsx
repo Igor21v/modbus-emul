@@ -12,10 +12,15 @@ interface ToggleProps {
 
 export const Toggle = memo((props: ToggleProps) => {
   const { className, onChange, checked, title, text } = props;
+  const pristine = useRef(cls.pristine);
+  useEffect(() => {
+    pristine.current = '';
+  }, []);
+
   return (
     <div className={cls.wrap} title={title}>
       {text}
-      <label className={classNames(cls.Toggle, {}, [className, cls.toss_toggle__pristine])}>
+      <label className={classNames(cls.Toggle, {}, [className, pristine.current])}>
         <input className={cls.toss_toggle__input} type="checkbox" onChange={onChange} checked={checked} />
         <span className={cls.toss_toggle__ball}></span>
       </label>

@@ -80,6 +80,11 @@
 .toss_toggle__input:checked ~ .toss_toggle__ball:before {
   animation-name: flyRightY;
 }
+.pristine .toss_toggle__input,
+.pristine .toss_toggle__ball,
+.pristine .toss_toggle__ball:before {
+  animation: none;
+}
 
 /* Animations */
 @keyframes launchRight {
