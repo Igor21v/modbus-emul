@@ -3,7 +3,7 @@ import cls from './SlaveItem.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Slave } from '../../../model/slice/responses';
 import { VStack } from 'shared/ui/Stack';
-import { RequestItem } from '../RequestItem/RequestItem';
+import { ResponseItem } from '../ResponseItem/ResponseItem';
 import { Text } from 'shared/ui/Text';
 import { Badge } from 'shared/ui/Badge';
 
@@ -21,7 +21,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       <Badge text={`${slave.adr}`} size="size_l" className={cls.adress} hint="Адрес Slave устройства" />
       <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
         {Object.entries(slave.requests).map(([id, request]) => (
-          <RequestItem request={request} key={id} requestId={+id} slaveId={slaveId} />
+          <ResponseItem request={request} key={id} requestId={+id} slaveId={slaveId} />
         ))}
       </VStack>
     </>

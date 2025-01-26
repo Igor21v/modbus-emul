@@ -12,9 +12,5 @@ interface MasterPageProps {
 export const MasterPage = memo((props: MasterPageProps) => {
   const { className } = props;
 
-  return (
-    <>
-      <MasterRequests />
-    </>
-  );
+  return <MasterRequests />;
 });

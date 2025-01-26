@@ -1,17 +1,15 @@
 import { setRequest } from 'features/MasterRequests/model/services/setRequest';
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
-import { Input } from 'shared/ui/Input';
+import { InputNum } from 'shared/ui/InputNum';
 import { HStack } from 'shared/ui/Stack';
 import { Request } from '../../../model/slice/responses';
 import { FCSelect } from './FCSelect/FCSelect';
-import cls from './RequestItem.module.css';
-import { InputNum } from 'shared/ui/InputNum';
-import { useAppSelector } from 'shared/hooks/useAppSelector';
+import cls from './ResponseItem.module.css';
 
-interface RequestItemProps {
+interface ResponseItemProps {
   className?: string;
   request: Request;
   id: number;
@@ -20,7 +18,7 @@ interface RequestItemProps {
   slaveId: number;
 }
 
-export const RequestItem = memo((props: RequestItemProps) => {
+export const ResponseItem = memo((props: ResponseItemProps) => {
   const { className, request, id, slaveAdress, slaveId, requestId } = props;
   const dispatch = useAppDispatch();
   const regHandler = (val: number) => {
@@ -38,7 +36,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
   };
 
   return (
-    <HStack className={classNames(cls.RequestItem, {}, [className])} gap="4">
+    <HStack className={classNames(cls.ResponseItem, {}, [className])} gap="4">
       <FCSelect fCode={`${request.func}`} onChange={fCodeHandler} />
       <InputNum
         placeholder="Начальный регистр/бит"

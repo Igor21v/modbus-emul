@@ -6,26 +6,26 @@ import Cycle from 'shared/icons/Cycle';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon, IconTheme } from 'shared/ui/Icon';
 import { HStack } from 'shared/ui/Stack';
-import { Request, ViewType, requestsActions } from '../../../model/slice/responses';
+import { Request, ViewType, responsesActions } from '../../../model/slice/responses';
 import { Register } from './Register/Register';
-import cls from './RequestItem.module.css';
+import cls from './ResponseItem.module.css';
 import { ViewSelect } from './ViewSelect/ViewSelect';
 import Send from 'shared/icons/Send';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 
-interface RequestItemProps {
+interface ResponseItemProps {
   className?: string;
   request: Request;
   slaveId: number;
   requestId: number;
 }
 
-export const RequestItem = memo((props: RequestItemProps) => {
+export const ResponseItem = memo((props: ResponseItemProps) => {
   const { className, request, requestId, slaveId } = props;
   const { content, view, loopRec, func, link, register } = request;
   const dispatch = useAppDispatch();
   const viewHandler = (view: ViewType) => {
-    dispatch(requestsActions.setView({ slaveId, requestId, view }));
+    dispatch(responsesActions.setView({ slaveId, requestId, view }));
   };
   const setContent = useCallback(
     (register: number, content: number) => {

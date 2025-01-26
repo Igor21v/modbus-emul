@@ -6,7 +6,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
 import { HStack, VStack } from 'shared/ui/Stack';
-import { RequestItem } from '../RequestItem/RequestItem';
+import { ResponseItem } from '../ResponseItem/ResponseItem';
 import cls from './SlaveItem.module.css';
 import { InputNum } from 'shared/ui/InputNum';
 
@@ -49,7 +49,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       <hr className={cls.line} />
 
       {Object.entries(requests[slaveID].requests).map(([id, request]) => (
-        <RequestItem slaveAdress={slaveID} id={+id} request={request} key={id} slaveId={slaveID} requestId={+id} />
+        <ResponseItem slaveAdress={slaveID} id={+id} request={request} key={id} slaveId={slaveID} requestId={+id} />
       ))}
     </VStack>
   );

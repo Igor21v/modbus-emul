@@ -1,6 +1,5 @@
+import { SlaveResponses } from 'features/SlaveResponses';
 import { memo } from 'react';
-import cls from './SlavePage.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
 
 interface SlavePageProps {
   className?: string;
@@ -9,9 +8,5 @@ interface SlavePageProps {
 export const SlavePage = memo((props: SlavePageProps) => {
   const { className } = props;
 
-  return (
-    <div className={classNames(cls.SlavePage, {}, [className])}>
-      Страница слейв
-    </div>
-  );
+  return <SlaveResponses />;
 });

@@ -5,7 +5,7 @@ import { Icon } from 'shared/ui/Icon';
 import { VStack } from 'shared/ui/Stack';
 import { Results } from '../Results/Results';
 import { Config } from '../Config/Config';
-import cls from './MasterRequests.module.css';
+import cls from './SlaveResponses.module.css';
 import { classNames } from 'shared/lib/classNames/classNames';
 
 interface SlaveResponsesProps {
