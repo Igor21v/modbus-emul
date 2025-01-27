@@ -7,10 +7,8 @@ export interface Response {
   register: number;
   quantity: number;
   content: number[];
-  link: boolean;
   view: ViewType;
-  func: number;
-  loopRec?: boolean;
+  aria: number;
 }
 
 export interface Slave {
@@ -29,22 +27,21 @@ const responsesSlice = createSlice({
     addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[id] = {
-        requests: { [id]: { register: 1, quantity: 1, content: [0], link: false, view: '10', func: 3 } },
+        requests: { [id]: { register: 1, quantity: 1, content: [0], view: '10', aria: 3 } },
         adr: action.payload,
       };
     },
-    addRequest: (state, action: PayloadAction<number>) => {
+    addRegister: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[action.payload].requests[id] = {
         register: 1,
         quantity: 1,
         content: [0],
-        link: false,
         view: '10',
-        func: 3,
+        aria: 3,
       };
     },
-    delRequest: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
+    delRegister: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
       delete state[action.payload.adress].requests[action.payload.reqID];
     },
     delSlave: (state, action: PayloadAction<number>) => {
@@ -53,26 +50,23 @@ const responsesSlice = createSlice({
     changeAdr: (state, action: PayloadAction<{ id: number; adr: number }>) => {
       state[action.payload.id].adr = action.payload.adr;
     },
-    changeRegister: (state, action: PayloadAction<{ slaveId: number; requestId: number; register: number }>) => {
-      state[action.payload.slaveId].requests[action.payload.requestId].register = action.payload.register;
+    changeRegister: (state, action: PayloadAction<{ slaveId: number; responseId: number; register: number }>) => {
+      state[action.payload.slaveId].requests[action.payload.responseId].register = action.payload.register;
     },
-    changeQuantity: (state, action: PayloadAction<{ slaveId: number; requestId: number; quantity: number }>) => {
-      state[action.payload.slaveId].requests[action.payload.requestId].quantity = action.payload.quantity;
-      state[action.payload.slaveId].requests[action.payload.requestId].content = Array(action.payload.quantity).fill(0);
+    changeQuantity: (state, action: PayloadAction<{ slaveId: number; responseId: number; quantity: number }>) => {
+      state[action.payload.slaveId].requests[action.payload.responseId].quantity = action.payload.quantity;
+      state[action.payload.slaveId].requests[action.payload.responseId].content = Array(action.payload.quantity).fill(0);
     },
-    setLink: (state, action: PayloadAction<{ slaveId: number; requestId: number; link: boolean }>) => {
-      state[action.payload.slaveId].requests[action.payload.requestId].link = action.payload.link;
+    setView: (state, action: PayloadAction<{ slaveId: number; responseId: number; view: ViewType }>) => {
+      state[action.payload.slaveId].requests[action.payload.responseId].view = action.payload.view;
     },
-    setView: (state, action: PayloadAction<{ slaveId: number; requestId: number; view: ViewType }>) => {
-      state[action.payload.slaveId].requests[action.payload.requestId].view = action.payload.view;
-    },
-    setContent: (state, action: PayloadAction<{ slaveId: number; requestId: number; register: number; content: number }>) => {
+    setContent: (state, action: PayloadAction<{ slaveId: number; responseId: number; register: number; content: number }>) => {
       const { payload } = action;
-      state[payload.slaveId].requests[payload.requestId].content[payload.register] = payload.content;
+      state[payload.slaveId].requests[payload.responseId].content[payload.register] = payload.content;
     },
-    setFunc: (state, action: PayloadAction<{ slaveId: number; requestId: number; func: number }>) => {
+    setArea: (state, action: PayloadAction<{ slaveId: number; responseId: number; area: number }>) => {
       const { payload } = action;
-      state[payload.slaveId].requests[payload.requestId].func = payload.func;
+      state[payload.slaveId].requests[payload.responseId].aria = payload.area;
     },
   },
 });

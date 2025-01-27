@@ -1,14 +1,13 @@
-import { setRequest } from 'features/MasterRequests/model/services/setRequest';
 import { memo } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
-import { Input } from 'shared/ui/Input';
+import { InputNum } from 'shared/ui/InputNum';
 import { HStack, VStack } from 'shared/ui/Stack';
+import { setResponse } from '../../../model/services/setResponse';
 import { ResponseItem } from '../ResponseItem/ResponseItem';
 import cls from './SlaveItem.module.css';
-import { InputNum } from 'shared/ui/InputNum';
 
 interface SlaveItemProps {
   className?: string;
@@ -18,15 +17,15 @@ interface SlaveItemProps {
 export const SlaveItem = memo((props: SlaveItemProps) => {
   const { className, slaveID } = props;
   const dispatch = useAppDispatch();
-  const requests = useAppSelector((state) => state.requests);
+  const requests = useAppSelector((state) => state.responses);
   const adressHandler = (adr: number) => {
-    dispatch(setRequest({ changeAdr: { id: slaveID, adr } }));
+    dispatch(setResponse({ changeAdr: { id: slaveID, adr } }));
   };
   const addRequestHandler = () => {
-    dispatch(setRequest({ addRequest: slaveID }));
+    dispatch(setResponse({ addRegister: slaveID }));
   };
   const delSlaveHandler = () => {
-    dispatch(setRequest({ delSlave: slaveID }));
+    dispatch(setResponse({ delSlave: slaveID }));
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
@@ -40,7 +39,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
           max={255}
         />
         <Button theme="outlineGreen" onClick={addRequestHandler}>
-          Добавить запрос
+          Добавить регистры
         </Button>
         <Button theme="outlineRed" onClick={delSlaveHandler} className={cls.delSlave}>
           Удалить устройство
@@ -49,7 +48,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       <hr className={cls.line} />
 
       {Object.entries(requests[slaveID].requests).map(([id, request]) => (
-        <ResponseItem slaveAdress={slaveID} id={+id} request={request} key={id} slaveId={slaveID} requestId={+id} />
+        <ResponseItem slaveAdress={slaveID} id={+id} response={request} key={id} slaveId={slaveID} responseId={+id} />
       ))}
     </VStack>
   );

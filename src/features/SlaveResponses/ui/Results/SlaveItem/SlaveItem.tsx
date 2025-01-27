@@ -21,7 +21,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       <Badge text={`${slave.adr}`} size="size_l" className={cls.adress} hint="Адрес Slave устройства" />
       <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4">
         {Object.entries(slave.requests).map(([id, request]) => (
-          <ResponseItem request={request} key={id} requestId={+id} slaveId={slaveId} />
+          <ResponseItem request={request} key={id} responseId={+id} slaveId={slaveId} />
         ))}
       </VStack>
     </>

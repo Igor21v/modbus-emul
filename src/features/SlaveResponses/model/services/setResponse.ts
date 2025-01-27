@@ -4,18 +4,17 @@ import { responsesActions } from '../slice/responses';
 
 interface Props {
   addSlave?: number;
-  addRequest?: number;
-  delRequest?: { adress: number; reqID: number };
+  addRegister?: number;
+  delRegister?: { adress: number; reqID: number };
   delSlave?: number;
   changeAdr?: { id: number; adr: number };
-  changeRegister?: { slaveId: number; requestId: number; register: number };
-  changeQuantity?: { slaveId: number; requestId: number; quantity: number };
-  setContent?: { slaveId: number; requestId: number; register: number; content: number };
-  setFunc?: { slaveId: number; requestId: number; func: number };
-  sendCmdRec?: { slaveId: number; requestId: number };
+  changeRegister?: { slaveId: number; responseId: number; register: number };
+  changeQuantity?: { slaveId: number; responseId: number; quantity: number };
+  setContent?: { slaveId: number; responseId: number; register: number; content: number };
+  setArea?: { slaveId: number; responseId: number; area: number };
 }
 
-export const setRequest = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
+export const setResponse = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
   const { dispatch } = thunkApi;
   const type = Object.keys(payload)[0] as keyof Props;
   const props = Object.values(payload)[0];
@@ -24,12 +23,12 @@ export const setRequest = createAsyncThunk<void, Props, ThunkConfig>('requests/s
       dispatch(responsesActions.addSlave(props));
       sendRequest('33');
       break;
-    case 'addRequest':
-      dispatch(responsesActions.addRequest(props));
+    case 'addRegister':
+      dispatch(responsesActions.addRegister(props));
       sendRequest('44');
       break;
-    case 'delRequest':
-      dispatch(responsesActions.delRequest(props));
+    case 'delRegister':
+      dispatch(responsesActions.delRegister(props));
       sendRequest('55');
       break;
     case 'delSlave':
@@ -52,12 +51,9 @@ export const setRequest = createAsyncThunk<void, Props, ThunkConfig>('requests/s
       dispatch(responsesActions.setContent(props));
       sendRequest('88');
       break;
-    case 'setFunc':
-      dispatch(responsesActions.setFunc(props));
+    case 'setArea':
+      dispatch(responsesActions.setArea(props));
       sendRequest('34');
-      break;
-    case 'sendCmdRec':
-      sendRequest('33332');
       break;
   }
 });

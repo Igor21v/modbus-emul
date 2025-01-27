@@ -11,11 +11,11 @@ interface ResultsProps {
 
 export const Results = memo((props: ResultsProps) => {
   const { className } = props;
-  const requests = useAppSelector((state) => state.requests);
+  const responses = useAppSelector((state) => state.responses);
 
   return (
     <VStack className={classNames(cls.Results, {}, [className])}>
-      {Object.entries(requests).map(([id, slave]) => (
+      {Object.entries(responses).map(([id, slave]) => (
         <SlaveItem key={id} slave={slave} slaveId={+id} />
       ))}
     </VStack>

@@ -7,6 +7,7 @@ import { Button } from 'shared/ui/Button';
 import { VStack } from 'shared/ui/Stack';
 import cls from './Config.module.css';
 import { SlaveItem } from './SlaveItem/SlaveItem';
+import { setResponse } from 'features/SlaveResponses/model/services/setResponse';
 
 interface SettingsProps {
   className?: string;
@@ -14,26 +15,26 @@ interface SettingsProps {
 
 export const Config = memo((props: SettingsProps) => {
   const { className } = props;
-  const requests = useAppSelector((state) => state.requests);
+  const responses = useAppSelector((state) => state.responses);
   const dispatch = useAppDispatch();
   const addSlaveHandler = () => {
     const adrs = new Set();
-    Object.values(requests).forEach((request) => {
+    Object.values(responses).forEach((request) => {
       adrs.add(request.adr);
     });
     for (let i = 1; i < 255; i++) {
       if (!adrs.has(i)) {
-        dispatch(setRequest({ addSlave: i }));
+        dispatch(setResponse({ addSlave: i }));
         break;
       }
     }
   };
   return (
-    <VStack className={classNames(cls.MasterRequests, {}, [className])} gap="32">
+    <VStack className={classNames(cls.Config, {}, [className])} gap="32">
       <Button theme="outlineGreen" onClick={addSlaveHandler}>
         Добавить устройство
       </Button>
-      {Object.keys(requests).map((id) => (
+      {Object.keys(responses).map((id) => (
         <SlaveItem slaveID={+id} key={id} />
       ))}
     </VStack>

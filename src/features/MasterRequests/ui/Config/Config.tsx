@@ -29,7 +29,7 @@ export const Config = memo((props: SettingsProps) => {
     }
   };
   return (
-    <VStack className={classNames(cls.MasterRequests, {}, [className])} gap="32">
+    <VStack className={classNames(cls.Config, {}, [className])} gap="32">
       <Button theme="outlineGreen" onClick={addSlaveHandler}>
         Добавить устройство
       </Button>
