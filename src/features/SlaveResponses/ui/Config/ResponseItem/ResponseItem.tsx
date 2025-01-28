@@ -6,7 +6,7 @@ import { InputNum } from 'shared/ui/InputNum';
 import { HStack } from 'shared/ui/Stack';
 import { setResponse } from '../../../model/services/setResponse';
 import { Response } from '../../../model/slice/responses';
-import { FCSelect } from './FCSelect/FCSelect';
+import { AreaSelect } from './AreaSelect/AreaSelect';
 import cls from './ResponseItem.module.css';
 
 interface ResponseItemProps {
@@ -19,7 +19,7 @@ interface ResponseItemProps {
 }
 
 export const ResponseItem = memo((props: ResponseItemProps) => {
-  const { className, response: request, id, slaveAdress, slaveId, responseId } = props;
+  const { className, response, id, slaveAdress, slaveId, responseId } = props;
   const dispatch = useAppDispatch();
   const regHandler = (val: number) => {
     dispatch(setResponse({ changeRegister: { register: val, responseId: id, slaveId: slaveId } }));
@@ -37,17 +37,17 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
 
   return (
     <HStack className={classNames(cls.ResponseItem, {}, [className])} gap="4">
-      <FCSelect fCode={`${request.aria}`} onChange={areaHandler} />
+      <AreaSelect area={`${response.aria}`} onChange={areaHandler} />
       <InputNum
         placeholder="Начальный регистр/бит"
-        initVal={request.register}
+        initVal={response.register}
         id={`r${id}`}
         title="Регистры начинаются с 0"
         onChange={regHandler}
         max={65535}
         min={0}
       />
-      <InputNum placeholder="Количество" initVal={request.quantity} onChange={quantityHandler} id={`q${id}`} min={1} max={126} />
+      <InputNum placeholder="Количество" initVal={response.quantity} onChange={quantityHandler} id={`q${id}`} min={1} max={126} />
       <Button theme="outlineRed" onClick={delReqHandler} className={cls.addReq} size="size_s">
         Удалить запрос
       </Button>

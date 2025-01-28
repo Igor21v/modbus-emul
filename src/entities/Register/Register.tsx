@@ -2,10 +2,9 @@ import { ViewType } from 'features/MasterRequests/model/slice/requests';
 import { memo, useCallback } from 'react';
 import { HStack } from 'shared/ui/Stack';
 import { TextSpan } from 'shared/ui/TextSpan';
-import cls from './Register.module.css';
-import { Bin } from '../Bin/Bin';
-import { Hex } from '../Hex/Hex';
-import { Dec } from '../Dec/Dec';
+import { Bin } from './Bin/Bin';
+import { Dec } from './Dec/Dec';
+import { Hex } from './Hex/Hex';
 
 interface RegisterProps {
   value: number;
