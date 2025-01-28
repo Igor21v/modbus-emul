@@ -1,1 +1,1 @@
-export { <FTName> } from './ui/<FTName>/<FTName>';
+export { <FTName> } from './ui/<FTName>';
