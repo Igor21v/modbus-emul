@@ -7,11 +7,11 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon, IconTheme } from 'shared/ui/Icon';
 import { HStack } from 'shared/ui/Stack';
 import { Request, ViewType, requestsActions } from '../../../model/slice/requests';
-import { Register } from './Register/Register';
+
+import { Register } from 'entities/Register';
+import Send from 'shared/icons/Send';
 import cls from './RequestItem.module.css';
 import { ViewSelect } from './ViewSelect/ViewSelect';
-import Send from 'shared/icons/Send';
-import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 interface RequestItemProps {
   className?: string;

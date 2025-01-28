@@ -1,8 +1,0 @@
-.Sign {
-  display: inline-block;
-}
-
-.significant.editable:hover {
-  cursor: pointer;
-  transform: scale(1.3);
-}
