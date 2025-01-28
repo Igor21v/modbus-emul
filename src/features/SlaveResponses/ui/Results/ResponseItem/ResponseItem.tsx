@@ -6,7 +6,7 @@ import { setResponse } from '../../../model/services/setResponse';
 import { Response, ViewType, responsesActions } from '../../../model/slice/responses';
 import { Register } from 'entities/Register';
 import cls from './ResponseItem.module.css';
-import { ViewSelect } from './ViewSelect/ViewSelect';
+import { ViewSelect } from 'entities/ViewSelect';
 
 interface ResponseItemProps {
   className?: string;

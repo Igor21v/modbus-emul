@@ -11,7 +11,7 @@ import { Request, ViewType, requestsActions } from '../../../model/slice/request
 import { Register } from 'entities/Register';
 import Send from 'shared/icons/Send';
 import cls from './RequestItem.module.css';
-import { ViewSelect } from './ViewSelect/ViewSelect';
+import { ViewSelect } from 'entities/ViewSelect';
 
 interface RequestItemProps {
   className?: string;
