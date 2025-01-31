@@ -21,15 +21,15 @@ export const Leftbar = memo((props: LeftbarProps) => {
   const tabs: TabItem<AppRoutePaths>[] = [
     {
       value: '/',
-      content: <Text text="Режим Мастер" />,
+      content: <Text text="Режим Мастер" align="center" />,
     },
     {
       value: '/slave',
-      content: <Text text="Режим Слейв" />,
+      content: <Text text="Режим Слейв" align="center" />,
     },
     {
       value: '/listen',
-      content: <Text text="Прослушка порта" />,
+      content: <Text text="Прослушка порта" align="center" />,
     },
   ];
   return (

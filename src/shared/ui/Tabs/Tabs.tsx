@@ -33,6 +33,7 @@ const Tabs = <T extends string>(props: TabsProps<T>) => {
           key={tab.value}
           onClick={clickHandle(tab)}
           shadow={tab.value !== value}
+          max
         >
           {tab.content}
         </Card>
