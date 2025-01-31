@@ -23,7 +23,7 @@ export const OpenPortButton = memo((props: OpenPortButtonProps) => {
     return <Button onClick={closeHandler}>Закрыть порт</Button>;
   }
   return (
-    <Button onClick={openHandler} theme="outlineRed">
+    <Button onClick={openHandler} theme="red">
       Выбрать порт
     </Button>
   );

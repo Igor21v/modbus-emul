@@ -33,8 +33,12 @@
 
 .outlineRed {
   border: 1px solid var(--red-color);
-  color: var(--red-light-color);
   background: none;
+}
+
+.red {
+  border: 1px solid var(--red-color);
+  background: var(--red-color);
 }
 
 .outlineGreen {
