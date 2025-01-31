@@ -18,15 +18,15 @@ export const ParitySelector = memo((props: ParitySelectorProps) => {
   const options: SelectOption<string>[] = [
     {
       value: `none`,
-      content: 'None (отключено)',
+      content: 'None',
     },
     {
       value: `even`,
-      content: 'Even (четность)',
+      content: 'Even',
     },
     {
       value: `odd`,
-      content: 'ODD (нечетность)',
+      content: 'Odd',
     },
   ];
 
