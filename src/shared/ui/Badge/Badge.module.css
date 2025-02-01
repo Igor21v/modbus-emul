@@ -44,3 +44,6 @@
 .italic .text {
   font-style: italic;
 }
+.max {
+  width: 100%;
+}

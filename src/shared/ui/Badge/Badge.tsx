@@ -18,6 +18,7 @@ export interface BadgeProps {
   italic?: boolean;
   minLineHeight?: boolean;
   hint?: string;
+  max?: boolean;
 }
 
 /**
@@ -42,12 +43,14 @@ export const Badge = memo((props: BadgeProps) => {
     classNameText,
     minLineHeight,
     hint,
+    max,
   } = props;
 
   const additional = [className, cls[theme], cls[align], cls[size]];
   const mods = {
     [cls.italic]: italic,
     [cls.minLineHeight]: minLineHeight,
+    [cls.max]: max,
   };
   return (
     <div className={classNames('', mods, additional)} title={hint}>

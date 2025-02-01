@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { HStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { setResponse } from '../../../model/services/setResponse';
 import { Response, ViewType, responsesActions } from '../../../model/slice/responses';
 import { Register } from 'entities/Register';
@@ -30,20 +30,21 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
   );
 
   return (
-    <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
-      <ViewSelect view={view} onChange={viewHandler} />
-
-      {content.map((value, index) => (
-        <Register
-          register={register + index}
-          value={value}
-          view={view}
-          key={index}
-          setContent={setContent}
-          index={index}
-          editable={true}
-        />
-      ))}
-    </HStack>
+    <VStack>
+      <ViewSelect view={view} onChange={viewHandler} className={cls.viewSelect} />
+      <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
+        {content.map((value, index) => (
+          <Register
+            register={register + index}
+            value={value}
+            view={view}
+            key={index}
+            setContent={setContent}
+            index={index}
+            editable={true}
+          />
+        ))}
+      </HStack>
+    </VStack>
   );
 });
