@@ -13,19 +13,19 @@ export const AreaSelect = memo((props: FCSelectProps) => {
   const options: SelectOption<string>[] = [
     {
       value: '1',
-      content: 'DO (coil)',
+      content: '1X (DO Coils)',
     },
     {
       value: '2',
-      content: 'DI (input)',
+      content: '2X (DI Contacts)',
     },
     {
       value: '3',
-      content: 'AI (input)',
+      content: '3X  (AI Registers)',
     },
     {
       value: '4',
-      content: 'AO (holding)',
+      content: '4X (AO Holding Registers)',
     },
   ];
 

@@ -27,7 +27,7 @@ const responsesSlice = createSlice({
     addSlave: (state, action: PayloadAction<number>) => {
       const id = Date.now();
       state[id] = {
-        requests: { [id]: { register: 1, quantity: 1, content: [0], view: '10', aria: 3 } },
+        requests: { [id]: { register: 1, quantity: 1, content: [0], view: '10', aria: 4 } },
         adr: action.payload,
       };
     },
@@ -38,7 +38,7 @@ const responsesSlice = createSlice({
         quantity: 1,
         content: [0],
         view: '10',
-        aria: 3,
+        aria: 4,
       };
     },
     delRegister: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
