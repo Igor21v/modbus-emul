@@ -18,16 +18,10 @@ export const Config = memo((props: SettingsProps) => {
   const responses = useAppSelector((state) => state.responses);
   const dispatch = useAppDispatch();
   const addSlaveHandler = () => {
-    const adrs = new Set();
-    Object.values(responses).forEach((request) => {
-      adrs.add(request.adr);
-    });
-    for (let i = 1; i < 255; i++) {
-      if (!adrs.has(i)) {
-        dispatch(setResponse({ addSlave: i }));
-        break;
-      }
-    }
+    let newAdr = Object.values(responses).at(-1)?.adr;
+    if (!newAdr || newAdr >= 255) newAdr = 1;
+    else newAdr++;
+    dispatch(setResponse({ addSlave: newAdr }));
   };
   return (
     <VStack className={classNames(cls.Config, {}, [className])} gap="32">
