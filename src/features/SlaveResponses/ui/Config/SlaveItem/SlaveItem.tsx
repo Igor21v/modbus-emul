@@ -8,16 +8,17 @@ import { HStack, VStack } from 'shared/ui/Stack';
 import { setResponse } from '../../../model/services/setResponse';
 import { ResponseItem } from '../ResponseItem/ResponseItem';
 import cls from './SlaveItem.module.css';
+import { Slave } from '../../../model/slice/responses';
 
 interface SlaveItemProps {
   className?: string;
   slaveID: number;
+  slave: Slave;
 }
 
 export const SlaveItem = memo((props: SlaveItemProps) => {
-  const { className, slaveID } = props;
+  const { className, slaveID, slave } = props;
   const dispatch = useAppDispatch();
-  const requests = useAppSelector((state) => state.responses);
   const adressHandler = (adr: number) => {
     dispatch(setResponse({ changeAdr: { id: slaveID, adr } }));
   };
@@ -31,7 +32,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
       <HStack gap="32" max justify="start">
         <InputNum
-          initVal={requests[slaveID].adr}
+          initVal={slave.adr}
           placeholder="Адрес устройства"
           id={`${slaveID}`}
           onChange={adressHandler}
@@ -47,7 +48,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       </HStack>
       <hr className={cls.line} />
 
-      {Object.entries(requests[slaveID].requests).map(([id, request]) => (
+      {Object.entries(slave.requests).map(([id, request]) => (
         <ResponseItem slaveAdress={slaveID} id={+id} response={request} key={id} slaveId={slaveID} responseId={+id} />
       ))}
     </VStack>

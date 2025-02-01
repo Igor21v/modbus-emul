@@ -28,8 +28,8 @@ export const Config = memo((props: SettingsProps) => {
       <Button theme="outlineGreen" onClick={addSlaveHandler}>
         Добавить устройство
       </Button>
-      {Object.keys(responses).map((id) => (
-        <SlaveItem slaveID={+id} key={id} />
+      {Object.entries(responses).map(([id, slave]) => (
+        <SlaveItem slaveID={+id} key={id} slave={slave} />
       ))}
     </VStack>
   );
