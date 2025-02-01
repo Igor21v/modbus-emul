@@ -7,8 +7,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  --hue: 223;
-  --primary: var(--second-color);
   --dur: 1s;
   --trans-dur: 0.3s;
   background-color: var(--bg-color);
@@ -45,7 +43,7 @@
 }
 .toss_toggle__input:checked {
   animation-name: launchRight;
-  background-color: var(--primary);
+  background-color: var(--second-color);
   right: 0;
   left: auto;
   transform-origin: calc(100% - 0.75em) 0.75em;
@@ -107,7 +105,7 @@
     transform: rotate(15deg);
   }
   to {
-    background-color: var(--primary);
+    background-color: var(--second-color);
     width: 3em;
     transform: rotate(0);
   }
@@ -144,20 +142,20 @@
 }
 @keyframes launchLeft {
   from {
-    background-color: var(--primary);
+    background-color: var(--second-color);
     width: 3em;
     transform: rotate(0);
   }
   25% {
     animation-timing-function: ease-in;
-    background-color: var(--primary);
+    background-color: var(--second-color);
     width: 4.5em;
     transform: rotate(15deg);
   }
   50%,
   75% {
     animation-timing-function: ease-in-out;
-    background-color: var(--primary);
+    background-color: var(--second-color);
     width: 4.5em;
     transform: rotate(-15deg);
   }

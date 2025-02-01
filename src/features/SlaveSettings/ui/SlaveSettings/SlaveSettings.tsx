@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -19,12 +19,12 @@ export const SlaveSettings = memo((props: SlaveSettingsProps) => {
   const { className } = props;
   const dispatch = useAppDispatch();
   const { frameDelay, sendError } = useAppSelector((state) => state.slaveSettings);
-  const toggleHandler = () => {
+  const toggleHandler = useCallback(() => {
     dispatch(setSettings({ sendError: !sendError }));
-  };
-  const frameHandler = (val: number) => {
+  }, [sendError]);
+  const frameHandler = useCallback((val: number) => {
     dispatch(setSettings({ delay: val }));
-  };
+  }, []);
 
   return (
     <Card className={classNames(cls.SlaveSettings, {}, [className])} theme="outlined" max>
