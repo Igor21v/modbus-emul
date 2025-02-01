@@ -46,7 +46,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
 
   return (
     <VStack>
-      <HStack className={classNames(cls.state, {}, [className])} gap="8" wrap max>
+      <HStack className={classNames(cls.state, {}, [className])} gap="8">
         <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={linkTheme} />
         <ViewSelect view={view} onChange={viewHandler} />
         {editable && <Icon Svg={Cycle} hint="Запись каждый цикл обмена" onClick={setLoopRec} theme={cycleTheme} />}
