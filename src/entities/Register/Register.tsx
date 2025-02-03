@@ -6,6 +6,7 @@ import { Bin } from './Bin/Bin';
 import { Dec } from './Dec/Dec';
 import { Hex } from './Hex/Hex';
 import cls from './Register.module.css';
+import { Discrete } from './Discrete/Discrete';
 
 interface RegisterProps {
   value: number;
@@ -14,16 +15,18 @@ interface RegisterProps {
   index: number;
   setContent: (index: number, content: number) => void;
   editable: boolean;
+  discrete: boolean;
 }
 
 export const Register = memo((props: RegisterProps) => {
-  const { value, view, register, setContent, index, editable } = props;
+  const { value, view, register, setContent, index, editable, discrete } = props;
   const setContentReg = useCallback((content: number) => {
     setContent(index, content);
   }, []);
 
   let RenderVal = null;
-  if (view === '2') RenderVal = <Bin value={value} setContentReg={setContentReg} editable={editable} />;
+  if (discrete) RenderVal = <Discrete value={value} setContentReg={setContentReg} editable={editable} />;
+  else if (view === '2') RenderVal = <Bin value={value} setContentReg={setContentReg} editable={editable} />;
   else if (view === '10') RenderVal = <Dec value={value} editable={editable} setContentReg={setContentReg} />;
   else RenderVal = <Hex value={value} editable={editable} setContentReg={setContentReg} />;
 

@@ -28,6 +28,7 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
     },
     [slaveId, responseId],
   );
+  const discrete = aria < 3;
 
   return (
     <VStack>
@@ -42,6 +43,7 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
             setContent={setContent}
             index={index}
             editable={true}
+            discrete={discrete}
           />
         ))}
       </HStack>

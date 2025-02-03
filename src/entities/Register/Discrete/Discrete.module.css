@@ -1,0 +1,7 @@
+.Discrete {
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}

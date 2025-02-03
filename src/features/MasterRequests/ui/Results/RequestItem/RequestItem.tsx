@@ -41,6 +41,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
   }, []);
 
   const editable = func > 4;
+  const discrete = func === 1 || func === 2 || func === 5 || func === 15;
   const linkTheme: IconTheme = link ? 'success' : 'error';
   const cycleTheme: IconTheme = loopRec ? 'success' : 'primary';
 
@@ -62,6 +63,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
             setContent={setContent}
             index={index}
             editable={editable}
+            discrete={discrete}
           />
         ))}
       </HStack>
