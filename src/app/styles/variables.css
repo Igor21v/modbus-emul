@@ -38,7 +38,7 @@
   --green-color: rgb(39 167 0);
 
   --bg-color: #090f11;
-  --second-bg-color: #2b2f31;
+  --second-bg-color: #212224;
   --primary-color: #dbdbdbe8;
   --second-color: #74a2b2;
   --hover-color: #74a2b2;
@@ -46,7 +46,7 @@
   --inverted-second-color: #dbdbdb;
 
   /*skeleton*/
-  --skeleton-color: #555;
+  --skeleton-color: var(--second-bg-color);
   --skeleton-shadow: #74a2b2;
 
   /*input*/
