@@ -18,10 +18,12 @@ interface SelectProps<T extends string> {
   validateError?: boolean;
   notSelectedEnable?: boolean;
   column?: boolean;
+  center?: boolean;
 }
 
 const Select = <T extends string>(props: SelectProps<T>) => {
-  const { className, label, options, value, onChange, readonly, validateError, notSelectedEnable, column, ...rest } = props;
+  const { className, label, options, value, onChange, readonly, validateError, notSelectedEnable, column, center, ...rest } =
+    props;
   const optionsList = options?.map((opt) => (
     <option className={cls.option} value={opt.value} key={opt.value}>
       {opt.content}
@@ -31,15 +33,26 @@ const Select = <T extends string>(props: SelectProps<T>) => {
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e.target.value as T);
   };
+  const mods = {
+    [cls.column]: column,
+    [cls.center]: center,
+  };
+  const selectMods = {
+    [cls.validateError]: validateError,
+    [cls.center]: center,
+  };
+  const labelMods = {
+    [cls.center]: center,
+  };
 
   return (
-    <p className={classNames(cls.Wrapper, { [cls.column]: column }, [className])}>
-      <label htmlFor={label} className={cls.labelWrap}>
+    <div className={classNames(cls.Wrapper, mods, [className])}>
+      <label htmlFor={label} className={classNames(cls.labelWrap, labelMods)}>
         {label && <span className={cls.label}>{`${label}`}</span>}
       </label>
       <select
         disabled={readonly}
-        className={classNames(cls.select, { [cls.validateError]: validateError }, [])}
+        className={classNames(cls.select, selectMods, [])}
         value={value}
         onChange={onChangeHandler}
         id={label}
@@ -52,7 +65,7 @@ const Select = <T extends string>(props: SelectProps<T>) => {
         )}
         {optionsList}
       </select>
-    </p>
+    </div>
   );
 };
 

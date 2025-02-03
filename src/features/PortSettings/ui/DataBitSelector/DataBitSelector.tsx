@@ -29,6 +29,7 @@ export const BitInByteSelector = memo((props: BitInByteSelectorProps) => {
       label="Бит данных"
       value={dataBits}
       onChange={(value) => dispatch(portActions.setDataBit(value))}
+      center
     />
   );
 });

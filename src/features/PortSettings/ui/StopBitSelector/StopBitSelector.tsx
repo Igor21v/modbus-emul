@@ -30,6 +30,7 @@ export const StopBitSelector = memo((props: StopBitSelectorProps) => {
       label="Стоп бит"
       value={stopBits}
       onChange={(value) => dispatch(portActions.setStopBit(value))}
+      center
     />
   );
 });

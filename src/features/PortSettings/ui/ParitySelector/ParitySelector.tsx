@@ -37,6 +37,7 @@ export const ParitySelector = memo((props: ParitySelectorProps) => {
       label="Чётность"
       value={parity}
       onChange={(value) => dispatch(portActions.setParity(value))}
+      center
     />
   );
 });

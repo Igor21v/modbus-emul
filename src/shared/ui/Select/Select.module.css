@@ -31,3 +31,19 @@
 .column {
   flex-direction: column;
 }
+
+.Wrapper.center {
+  width: 100%;
+  position: relative;
+  height: 25px;
+}
+
+.select.center {
+  position: absolute;
+  left: 50%;
+}
+
+.labelWrap.center {
+  position: absolute;
+  right: 50%;
+}

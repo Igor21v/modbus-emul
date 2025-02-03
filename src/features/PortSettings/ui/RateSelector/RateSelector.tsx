@@ -23,13 +23,12 @@ export const RateSelector = memo((props: RateSelectorProps) => {
   });
 
   return (
-    <div className={classNames(cls.RateSelector, {}, [className])}>
-      <Select
-        options={options}
-        label="Скорость"
-        value={baudRate}
-        onChange={(value) => dispatch(portActions.setRate(value))}
-      />
-    </div>
+    <Select
+      options={options}
+      label="Скорость"
+      value={baudRate}
+      onChange={(value) => dispatch(portActions.setRate(value))}
+      center
+    />
   );
 });
