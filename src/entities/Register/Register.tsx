@@ -5,6 +5,7 @@ import { TextSpan } from 'shared/ui/TextSpan';
 import { Bin } from './Bin/Bin';
 import { Dec } from './Dec/Dec';
 import { Hex } from './Hex/Hex';
+import cls from './Register.module.css';
 
 interface RegisterProps {
   value: number;
@@ -28,7 +29,7 @@ export const Register = memo((props: RegisterProps) => {
 
   return (
     <HStack gap="4">
-      <TextSpan text={`${register}:`} italic />
+      <TextSpan text={`${register}:`} italic className={cls.name} align="right" />
       {RenderVal}
     </HStack>
   );

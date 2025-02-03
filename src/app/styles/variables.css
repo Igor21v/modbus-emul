@@ -50,10 +50,10 @@
   --skeleton-shadow: #74a2b2;
 
   /*input*/
-  --input-bg: #0c1214;
+  --input-bg: var(--second-bg-color);
 
   /*card*/
-  --card-bg: #2b2f31;
+  --card-bg: var(--second-bg-color);
 
   /*listbox*/
   --listbox-bg: #151c1f;
