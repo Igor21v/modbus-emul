@@ -13,12 +13,15 @@ export const Discrete = memo((props: DiscreteProps) => {
   const { className, value, setContentReg, editable } = props;
 
   const switchDiscrete = () => {
-    if (value) setContentReg(0);
-    else setContentReg(1);
+    if (editable) {
+      if (value) setContentReg(0);
+      else setContentReg(1);
+    }
   };
 
   const mods = {
-    off: !value,
+    [cls.off]: !value,
+    [cls.editable]: editable,
   };
 
   return (

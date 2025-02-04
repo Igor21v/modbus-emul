@@ -46,10 +46,10 @@ export const RequestItem = memo((props: RequestItemProps) => {
   const cycleTheme: IconTheme = loopRec ? 'success' : 'primary';
 
   return (
-    <VStack>
+    <VStack gap="4">
       <HStack className={classNames(cls.state, {}, [className])} gap="8">
         <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={linkTheme} />
-        <ViewSelect view={view} onChange={viewHandler} />
+        {!discrete && <ViewSelect view={view} onChange={viewHandler} />}
         {editable && <Icon Svg={Cycle} hint="Запись каждый цикл обмена" onClick={setLoopRec} theme={cycleTheme} />}
         {!loopRec && editable && <Icon Svg={Send} hint="Отпрвить запрос записи" onClick={sendCmdRec} />}
       </HStack>

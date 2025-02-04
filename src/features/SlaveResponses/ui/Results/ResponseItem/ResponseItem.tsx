@@ -31,9 +31,9 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
   const discrete = aria < 3;
 
   return (
-    <VStack>
-      <ViewSelect view={view} onChange={viewHandler} className={cls.viewSelect} />
-      <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
+    <VStack gap="4">
+      {!discrete && <ViewSelect view={view} onChange={viewHandler} className={cls.viewSelect} />}
+      <HStack className={classNames(cls.RequestItem, {}, [className])} gap="16" wrap max>
         {content.map((value, index) => (
           <Register
             register={register + index}
