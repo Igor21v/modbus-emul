@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Select, SelectOption } from 'shared/ui/Select';
 import cls from './AreaSelect.module.css';
+import { areas } from 'features/SlaveResponses/model/const/areas';
 
 interface FCSelectProps {
   area: string;
@@ -13,19 +14,19 @@ export const AreaSelect = memo((props: FCSelectProps) => {
   const options: SelectOption<string>[] = [
     {
       value: '1',
-      content: '1X (DO Coils)',
+      content: areas[1],
     },
     {
       value: '2',
-      content: '2X (DI Contacts)',
+      content: areas[2],
     },
     {
       value: '3',
-      content: '3X  (AI Registers)',
+      content: areas[3],
     },
     {
       value: '4',
-      content: '4X (AO Holding Registers)',
+      content: areas[4],
     },
   ];
 

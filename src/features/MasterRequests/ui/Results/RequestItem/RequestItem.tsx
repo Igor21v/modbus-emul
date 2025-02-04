@@ -12,6 +12,8 @@ import { Register } from 'entities/Register';
 import Send from 'shared/icons/Send';
 import cls from './RequestItem.module.css';
 import { ViewSelect } from 'entities/ViewSelect';
+import { TextSpan } from 'shared/ui/TextSpan';
+import { functCodes } from '../../../model/const/functCodes';
 
 interface RequestItemProps {
   className?: string;
@@ -49,6 +51,7 @@ export const RequestItem = memo((props: RequestItemProps) => {
     <VStack gap="4">
       <HStack className={classNames(cls.state, {}, [className])} gap="8">
         <Icon Svg={Arrows} hint="Зеленый - связь есть, красный - нет связи или ответ с ошибкой" theme={linkTheme} />
+        <TextSpan text={'Код ' + functCodes[func]} />
         {!discrete && <ViewSelect view={view} onChange={viewHandler} />}
         {editable && <Icon Svg={Cycle} hint="Запись каждый цикл обмена" onClick={setLoopRec} theme={cycleTheme} />}
         {!loopRec && editable && <Icon Svg={Send} hint="Отпрвить запрос записи" onClick={sendCmdRec} />}

@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Select, SelectOption } from 'shared/ui/Select';
 import cls from './FCSelect.module.css';
+import { functCodes } from '../../../../model/const/functCodes';
 
 interface FCSelectProps {
   fCode: string;
@@ -13,35 +14,35 @@ export const FCSelect = memo((props: FCSelectProps) => {
   const options: SelectOption<string>[] = [
     {
       value: '1',
-      content: '1: Чтение D(Coil)',
+      content: functCodes[1],
     },
     {
       value: '2',
-      content: '2: Чтение D(Input)',
+      content: functCodes[2],
     },
     {
       value: '3',
-      content: '3: Чтение A(Holding)',
+      content: functCodes[3],
     },
     {
       value: '4',
-      content: '4: Чтение A(Input)',
+      content: functCodes[4],
     },
     {
       value: '5',
-      content: '5: Запись одного D',
+      content: functCodes[5],
     },
     {
       value: '6',
-      content: '6: Запсь одного A',
+      content: functCodes[6],
     },
     {
       value: '15',
-      content: '15: Запись неск. D',
+      content: functCodes[15],
     },
     {
       value: '16',
-      content: '16: Запись неск. A',
+      content: functCodes[16],
     },
   ];
 

@@ -7,6 +7,8 @@ import { Response, ViewType, responsesActions } from '../../../model/slice/respo
 import { Register } from 'entities/Register';
 import cls from './ResponseItem.module.css';
 import { ViewSelect } from 'entities/ViewSelect';
+import { TextSpan } from 'shared/ui/TextSpan';
+import { areas } from 'features/SlaveResponses/model/const/areas';
 
 interface ResponseItemProps {
   className?: string;
@@ -17,7 +19,7 @@ interface ResponseItemProps {
 
 export const ResponseItem = memo((props: ResponseItemProps) => {
   const { className, request, responseId, slaveId } = props;
-  const { content, view, aria, register } = request;
+  const { content, view, aria: area, register } = request;
   const dispatch = useAppDispatch();
   const viewHandler = (view: ViewType) => {
     dispatch(responsesActions.setView({ slaveId, responseId, view }));
@@ -28,12 +30,16 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
     },
     [slaveId, responseId],
   );
-  const discrete = aria < 3;
+  const discrete = area < 3;
 
   return (
     <VStack gap="4">
-      {!discrete && <ViewSelect view={view} onChange={viewHandler} className={cls.viewSelect} />}
-      <HStack className={classNames(cls.RequestItem, {}, [className])} gap="16" wrap max>
+      <HStack className={classNames(cls.state, {}, [className])} gap="8">
+        <TextSpan text={'Область ' + areas[area]} />
+        {!discrete && <ViewSelect view={view} onChange={viewHandler} />}
+      </HStack>
+
+      <HStack className={classNames(cls.RequestItem, {}, [className])} gap="8" wrap max>
         {content.map((value, index) => (
           <Register
             register={register + index}
