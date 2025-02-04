@@ -1,8 +1,4 @@
-import {
-  limitLogs,
-  logCounter,
-  logOnPage,
-} from 'entities/Log/model/slice/logSlice';
+import { limitLogs, logCounter, logOnPage } from 'entities/Log/model/slice/logSlice';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
@@ -54,9 +50,5 @@ export const Log = memo((props: LogProps) => {
     console.log('endIndex2  ' + endIndex2); */
   }
 
-  return (
-    <VStack className={classNames(cls.PortListen, {}, [className])}>
-      {LogRendered}
-    </VStack>
-  );
+  return <VStack className={classNames(cls.Log, {}, [className])}>{LogRendered}</VStack>;
 });
