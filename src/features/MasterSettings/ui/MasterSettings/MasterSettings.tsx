@@ -25,7 +25,7 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
   };
 
   return (
-    <Card className={classNames(cls.MasterSettings, {}, [className])} theme="outlined">
+    <Card className={classNames(cls.MasterSettings, {}, [className])}>
       <Text title="Настройки режима мастер" align="center" className={cls.title} />
       <VStack gap="16" wrap justify="center">
         <InputNum placeholder="Таймаут ответа, мс" initVal={timeout} onChange={timeoutHandler} min={1} max={20000} />

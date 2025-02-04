@@ -27,7 +27,7 @@ export const SlaveSettings = memo((props: SlaveSettingsProps) => {
   }, []);
 
   return (
-    <Card className={classNames(cls.SlaveSettings, {}, [className])} theme="outlined" max>
+    <Card className={classNames(cls.SlaveSettings, {}, [className])} max>
       <Text title="Настройки режима слейв" align="center" className={cls.title} />
       <VStack gap="16" wrap justify="center">
         <Toggle

@@ -19,7 +19,7 @@ export const PortSettings = memo((props: PortSettingsProps) => {
   const { className } = props;
   const dispatch = useAppDispatch();
   return (
-    <Card theme="outlined" max>
+    <Card max>
       <VStack align="center" justify="center" gap="20">
         <Text text="Настройки подключения" size="size_l" />
         <RateSelector />
