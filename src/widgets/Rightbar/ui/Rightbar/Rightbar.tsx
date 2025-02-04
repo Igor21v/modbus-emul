@@ -14,7 +14,7 @@ export const Rightbar = memo((props: RightbarProps) => {
   const { className } = props;
   const { pathname } = useLocation();
   return (
-    <VStack align="center" justify="center" className={cls.Rightbar}>
+    <VStack justify="center" className={cls.Rightbar}>
       {pathname === '/' && <MasterSettings />}
       {pathname === '/slave' && <SlaveSettings />}
       <PortSettings />

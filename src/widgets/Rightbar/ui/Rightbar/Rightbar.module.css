@@ -1,5 +1,6 @@
 .Rightbar {
   height: 100%;
-  margin: 8px;
   width: max-content;
+  margin: 8px;
+  margin-left: 16px;
 }
