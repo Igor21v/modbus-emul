@@ -36,13 +36,13 @@ export const Leftbar = memo((props: LeftbarProps) => {
   ];
   return (
     <VStack align="center" justify="center" className={cls.Leftbar}>
-      <Card>
+      <Card max>
         <VStack align="center" justify="center" gap="20">
           <Text text="Выбор режима" size="size_l" />
           <Tabs tabs={tabs} value={pathname} onTabClick={navFn} />
         </VStack>
       </Card>
-      <VStack align="center" justify="center" gap="20">
+      <VStack align="center" justify="center" gap="20" max>
         <FullScreen />
         <ThemeSelect />
       </VStack>

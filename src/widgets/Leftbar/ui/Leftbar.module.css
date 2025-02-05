@@ -1,5 +1,6 @@
 .Leftbar {
   height: 100%;
+  width: max-content;
   margin: 8px;
   margin-right: 16px;
 }
