@@ -9,7 +9,7 @@ import { useAppSelector } from 'shared/hooks/useAppSelector';
 
 function App() {
   const expandedLog = useAppSelector((state) => state.appState.expandedLog);
-  window.portWorker = new Worker(new URL('./workers/port.ts', import.meta.url));
+  window.portWorker = new Worker(new URL('../shared/worker/worker.ts', import.meta.url));
   return (
     <div className="app">
       <MainLayout
