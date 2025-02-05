@@ -7,8 +7,20 @@
 
 .number {
   width: 30px;
+  flex-shrink: 0;
+}
+
+.date {
+  width: 155px;
+  flex-shrink: 0;
+  /*   white-space: pre; */
 }
 
 .diffTime {
   width: 40px;
+  flex-shrink: 0;
+}
+
+.msg {
+  word-break: break-all;
 }

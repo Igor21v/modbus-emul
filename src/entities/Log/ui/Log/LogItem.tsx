@@ -23,11 +23,9 @@ export const LogItem = memo((props: LogItemProps) => {
   return (
     <HStack max gap="32" className={classNames('', mods)}>
       <TextSpan text={String(item.num)} className={cls.number} />
-      <TextSpan text={item.date} />
-      {item.diffTime !== undefined && (
-        <TextSpan text={'+' + item.diffTime} className={cls.diffTime} />
-      )}
-      <TextSpan text={item.msg} theme={theme} />
+      <TextSpan text={item.date} className={cls.date} />
+      {item.diffTime !== undefined && <TextSpan text={'+' + item.diffTime} className={cls.diffTime} />}
+      <TextSpan text={item.msg} theme={theme} className={cls.msg} />
       {item.comment !== undefined && <TextSpan text={item.comment} italic />}
     </HStack>
   );
