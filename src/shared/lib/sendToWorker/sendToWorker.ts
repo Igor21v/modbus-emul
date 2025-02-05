@@ -1,6 +1,6 @@
-export const postToWorker = (type: string, data: any) => {
+export const sendToWorker = (type: string, props?: any) => {
   window.portWorker.postMessage({
     type,
-    data,
+    props,
   });
 };

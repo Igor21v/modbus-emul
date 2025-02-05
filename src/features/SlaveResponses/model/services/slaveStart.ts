@@ -4,12 +4,11 @@ import { addLog } from 'entities/Log/model/services/addLog';
 import { portActions } from 'features/PortSettings';
 import { crc16 } from 'shared/lib/crc16';
 import { ModbusErrorFC, ModbusFC } from 'shared/lib/modbusCodes';
+import { sendToWorker } from 'shared/lib/sendToWorker';
 
 export const slaveStart = createAsyncThunk<any, void, ThunkConfig>('responses/slaveStart', async (_, thunkApi) => {
   const { dispatch } = thunkApi;
-  window.portWorker.postMessage({
-    type: 'slave',
-  });
+  sendToWorker('slave');
   window.portWorker.onmessage = ({ data }) => {
     if (data.type === 'slave' && data.state === 'MSG') {
       const msg = data.payload.msg.split(',');

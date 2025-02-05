@@ -15,7 +15,6 @@ interface PortListenProps {
 
 export const PortListen = memo((props: PortListenProps) => {
   const { className } = props;
-  const { portIsOpen } = useAppSelector((state) => state.port);
   const dispatch = useAppDispatch();
   useEffect(() => {
     return () => {
@@ -24,11 +23,7 @@ export const PortListen = memo((props: PortListenProps) => {
   }, []);
 
   return (
-    <VStack
-      align="center"
-      gap="8"
-      className={classNames(cls.PortListen, {}, [className])}
-    >
+    <VStack align="center" gap="8" className={classNames(cls.PortListen, {}, [className])}>
       <Text title="Схема подключения" />
       <ListenScheme />
     </VStack>
