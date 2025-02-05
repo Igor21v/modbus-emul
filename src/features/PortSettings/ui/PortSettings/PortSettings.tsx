@@ -28,6 +28,7 @@ export const PortSettings = memo((props: PortSettingsProps) => {
         <BitInByteSelector />
         <OpenPortButton />
         <Button onClick={() => dispatch(addLog({ msg: 'Тестовый лог', priority: 9 }))}>Add test log</Button>
+        <Button onClick={() => document.body.requestFullscreen()}>Full screen</Button>
       </VStack>
     </Card>
   );
