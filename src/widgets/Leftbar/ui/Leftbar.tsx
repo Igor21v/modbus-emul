@@ -5,7 +5,9 @@ import { Card } from 'shared/ui/Card';
 import { VStack } from 'shared/ui/Stack';
 import { TabItem, Tabs } from 'shared/ui/Tabs';
 import { Text } from 'shared/ui/Text';
+import { FullScreen } from './FullScreen/FullScreen';
 import cls from './Leftbar.module.css';
+import { ThemeSelect } from './ThemeSelect';
 
 interface LeftbarProps {
   className?: string;
@@ -40,6 +42,10 @@ export const Leftbar = memo((props: LeftbarProps) => {
           <Tabs tabs={tabs} value={pathname} onTabClick={navFn} />
         </VStack>
       </Card>
+      <VStack align="center" justify="center" gap="20">
+        <FullScreen />
+        <ThemeSelect />
+      </VStack>
     </VStack>
   );
 });
