@@ -20,7 +20,7 @@ export const FullScreen = memo((props: FullScreenProps) => {
       }
     };
   }, []);
-  const buttonContent = fullScreen ? 'Выйти из полноэкранного' : 'Полноэкранный режим';
+  const buttonContent = fullScreen ? 'Выйти из полноэкранного режима' : 'Полноэкранный режим';
   const buttonHandler = useCallback(() => {
     if (!fullScreen) document.body.requestFullscreen();
     else {
