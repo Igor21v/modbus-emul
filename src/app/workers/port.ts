@@ -1,11 +1,27 @@
 /* eslint-disable no-restricted-globals */
-let port;
-let reader;
+
+interface OpenType {
+  type: 'open';
+  props: any;
+}
+
+interface CloseType {
+  type: 'close';
+}
+
+interface ListenType {
+  type: 'listen';
+}
+
+type Data = CloseType | OpenType | ListenType;
+
+let port: any;
+let reader: any;
 let needClose = false;
 let baudRate = 9600;
 
 // Обработка получения сообщения
-self.onmessage = ({ data }) => {
+self.onmessage = ({ data }: { data: Data }) => {
   if (data.type === 'open') open(data.props);
   else if (data.type === 'close') close();
   else if (data.type === 'listen') listen();
@@ -65,7 +81,7 @@ async function listen() {
 }
 
 // Максимальная задержка между символьными фреймами в одном фрейме
-function getMaxFrameDeley(msg) {
+function getMaxFrameDeley(msg: string) {
   let t15 = 0.75;
   if (baudRate <= 19200) {
     t15 = 16500 / baudRate;
@@ -75,8 +91,9 @@ function getMaxFrameDeley(msg) {
 }
 
 // Открытие порта
-async function open(props) {
+async function open(props: any) {
   try {
+    // @ts-ignore
     const ports = await navigator.serial.getPorts();
     port = ports[0];
     await port.open(props);
@@ -102,3 +119,5 @@ async function close() {
     postMessage({ type: 'close', state: 'ERROR', error });
   }
 }
+
+export {};
