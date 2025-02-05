@@ -49,7 +49,7 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
       />
       <InputNum placeholder="Количество" initVal={response.quantity} onChange={quantityHandler} id={`q${id}`} min={1} max={126} />
       <Button theme="outlineRed" onClick={delReqHandler} className={cls.addReq} size="size_s">
-        Удалить запрос
+        Удалить область
       </Button>
     </HStack>
   );

@@ -39,8 +39,8 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
           min={1}
           max={255}
         />
-        <Button theme="outlineGreen" onClick={addRequestHandler}>
-          Добавить регистры
+        <Button theme="outlineGreen" onClick={addRequestHandler} title="Добавить область памяти для ответа на запросы мастера">
+          Добавить область
         </Button>
         <Button theme="outlineRed" onClick={delSlaveHandler} className={cls.delSlave}>
           Удалить устройство
