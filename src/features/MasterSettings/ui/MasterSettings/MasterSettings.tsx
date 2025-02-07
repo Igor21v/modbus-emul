@@ -18,10 +18,10 @@ export const MasterSettings = memo((props: MasterSettingsProps) => {
   const dispatch = useAppDispatch();
   const { frameDelay, timeout } = useAppSelector((state) => state.masterSettings);
   const timeoutHandler = (val: number) => {
-    dispatch(setSettings({ timeout: val }));
+    dispatch(setSettings({ type: 'timeout', timeout: val }));
   };
   const frameHandler = (val: number) => {
-    dispatch(setSettings({ delay: val }));
+    dispatch(setSettings({ type: 'delay', delay: val }));
   };
 
   return (

@@ -1,12 +1,12 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface MasetSettingsState {
+export interface MasterSettingsState {
   timeout?: number;
   frameDelay?: number;
 }
 
-const initialState: MasetSettingsState = { frameDelay: 4, timeout: 500 };
+const initialState: MasterSettingsState = { frameDelay: 4, timeout: 500 };
 
 const masterSettings = createSlice({
   name: 'requests',

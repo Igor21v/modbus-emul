@@ -2,22 +2,25 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { masterSettingsActions } from '../slice/masterSettings';
 
-interface Props {
-  timeout?: number;
-  delay?: number;
+interface Timeout {
+  type: 'timeout';
+  timeout: number;
 }
+interface Delay {
+  type: 'delay';
+  delay: number;
+}
+type Props = Timeout | Delay;
 
 export const setSettings = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
   const { dispatch } = thunkApi;
-  const type = Object.keys(payload)[0] as keyof Props;
-  const props = Object.values(payload)[0];
-  switch (type) {
+  switch (payload.type) {
     case 'timeout':
-      dispatch(masterSettingsActions.setTimeout(props));
+      dispatch(masterSettingsActions.setTimeout(payload.timeout));
       sendToWorker('333');
       break;
     case 'delay':
-      dispatch(masterSettingsActions.setFrameDelay(props));
+      dispatch(masterSettingsActions.setFrameDelay(payload.delay));
       sendToWorker('444');
       break;
   }
