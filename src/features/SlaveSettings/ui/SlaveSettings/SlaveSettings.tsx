@@ -20,10 +20,10 @@ export const SlaveSettings = memo((props: SlaveSettingsProps) => {
   const dispatch = useAppDispatch();
   const { frameDelay, sendError } = useAppSelector((state) => state.slaveSettings);
   const toggleHandler = useCallback(() => {
-    dispatch(setSettings({ sendError: !sendError }));
+    dispatch(setSettings({ type: 'sendError', sendError: !sendError }));
   }, [sendError]);
   const frameHandler = useCallback((val: number) => {
-    dispatch(setSettings({ delay: val }));
+    dispatch(setSettings({ type: 'delay', delay: val }));
   }, []);
 
   return (
