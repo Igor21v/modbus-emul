@@ -20,11 +20,14 @@ export const openPort = createAsyncThunk<void, void, ThunkConfig>('port/openPort
       await serial.requestPort();
 
       const { baudRate, dataBits, stopBits, parity } = getState().port;
-      sendToWorker('open', {
-        baudRate,
-        dataBits,
-        stopBits,
-        parity,
+      sendToWorker({
+        type: 'open',
+        props: {
+          baudRate,
+          dataBits,
+          stopBits,
+          parity,
+        },
       });
 
       await new Promise<void>((resolve, reject) => {

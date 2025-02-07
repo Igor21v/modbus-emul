@@ -11,7 +11,15 @@ interface ListenType {
   type: 'listen';
 }
 
-export type Data = CloseType | OpenType | ListenType;
+interface MasterType {
+  type: 'master';
+}
+
+interface SlaveType {
+  type: 'slave';
+}
+
+export type Data = CloseType | OpenType | ListenType | MasterType | SlaveType;
 
 export interface WorkerStateType {
   port: any;

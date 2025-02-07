@@ -8,7 +8,7 @@ import { sendToWorker } from 'shared/worker';
 
 export const masterStart = createAsyncThunk<any, void, ThunkConfig>('requests/masterStart', async (_, thunkApi) => {
   const { dispatch } = thunkApi;
-  sendToWorker('master');
+  sendToWorker({ type: 'master' });
   window.portWorker.onmessage = ({ data }) => {
     if (data.type === 'master' && data.state === 'MSG') {
       const msg = data.payload.msg.split(',');

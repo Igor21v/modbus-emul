@@ -8,7 +8,7 @@ export const closePort = createAsyncThunk<void, void, ThunkConfig>('port/closePo
   const { dispatch, getState } = thunkApi;
   if (getState().port.portIsOpen) {
     try {
-      sendToWorker('close');
+      sendToWorker({ type: 'close' });
       await new Promise<void>((resolve, reject) => {
         window.portWorker.onmessage = ({ data }) => {
           if (data.type === 'close' && data.state === 'OK') {
