@@ -1,15 +1,14 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card';
 import { InputNum } from 'shared/ui/InputNum';
-import { HStack, VStack } from 'shared/ui/Stack';
+import { VStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text';
+import { Toggle } from 'shared/ui/Toggle/Toggle';
 import { setSettings } from '../../model/services/setSettings';
 import cls from './SlaveSettings.module.css';
-import { Toggle } from 'shared/ui/Toggle/Toggle';
-import { TextSpan } from 'shared/ui/TextSpan';
 
 interface SlaveSettingsProps {
   className?: string;
