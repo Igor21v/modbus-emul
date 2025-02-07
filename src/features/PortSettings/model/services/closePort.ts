@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { appStateActions } from 'entities/AppState';
 import { addLog } from 'entities/Log/model/services/addLog';
-import { sendToWorker } from 'shared/lib/sendToWorker';
+import { sendToWorker } from 'shared/worker';
 
 export const closePort = createAsyncThunk<void, void, ThunkConfig>('port/closePort', async (_, thunkApi) => {
   const { dispatch, getState } = thunkApi;

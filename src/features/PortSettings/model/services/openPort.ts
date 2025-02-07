@@ -3,7 +3,7 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { appStateActions } from 'entities/AppState';
 import { addLog } from 'entities/Log/model/services/addLog';
 import { listenStart } from 'features/PortListen/model/services/listen';
-import { sendToWorker } from 'shared/lib/sendToWorker';
+import { sendToWorker } from 'shared/worker';
 
 export const openPort = createAsyncThunk<void, void, ThunkConfig>('port/openPort', async (_, thunkApi) => {
   const { getState, dispatch } = thunkApi;

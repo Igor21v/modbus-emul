@@ -4,7 +4,7 @@ import { addLog } from 'entities/Log/model/services/addLog';
 import { portActions } from 'features/PortSettings';
 import { crc16 } from 'shared/lib/crc16';
 import { ModbusErrorFC, ModbusFC } from 'shared/lib/modbusCodes';
-import { sendToWorker } from 'shared/lib/sendToWorker';
+import { sendToWorker } from 'shared/worker';
 
 export const listenStart = createAsyncThunk<any, void, ThunkConfig>('listen/start', async (_, thunkApi) => {
   const { dispatch } = thunkApi;
