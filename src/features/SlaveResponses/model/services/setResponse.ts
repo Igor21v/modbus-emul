@@ -21,8 +21,8 @@ interface DelSlave {
 }
 interface ChangeAdr {
   type: 'changeAdr';
-   id: number
-    adr: number
+  id: number;
+  adr: number;
 }
 interface ChangeRegister {
   type: 'changeRegister';
@@ -64,33 +64,50 @@ export const setResponse = createAsyncThunk<void, Props, ThunkConfig>('requests/
       sendRequest('44');
       break;
     case 'delRegister':
-      dispatch(responsesActions.delRegister({adress:payload.adress, reqID: payload.reqID}));
-      sendRequest('55');
+      {
+        const { adress, reqID } = payload;
+        dispatch(responsesActions.delRegister({ adress, reqID }));
+        sendRequest('55');
+      }
       break;
     case 'delSlave':
       dispatch(responsesActions.delSlave(payload.adrSlave));
       sendRequest('66');
       break;
     case 'changeAdr':
-      dispatch(responsesActions.changeAdr({adr: payload.adr, id: payload.id}));
-      sendRequest('99');
+      {
+        const { adr, id } = payload;
+        dispatch(responsesActions.changeAdr({ adr, id }));
+        sendRequest('99');
+      }
       break;
     case 'changeRegister':
-      const {register, responseId,slaveId} = payload;
-      dispatch(responsesActions.changeRegister({register, responseId: payload.responseId}));
-      sendRequest('1');
+      {
+        const { register, responseId, slaveId } = payload;
+        dispatch(responsesActions.changeRegister({ register, responseId, slaveId }));
+        sendRequest('1');
+      }
       break;
     case 'changeQuantity':
-      dispatch(responsesActions.changeQuantity(payload.));
-      sendRequest('3');
+      {
+        const { quantity, responseId, slaveId } = payload;
+        dispatch(responsesActions.changeQuantity({ quantity, responseId, slaveId }));
+        sendRequest('3');
+      }
       break;
     case 'setContent':
-      dispatch(responsesActions.setContent(payload.));
-      sendRequest('88');
+      {
+        const { content, register, responseId, slaveId } = payload;
+        dispatch(responsesActions.setContent({ content, register, responseId, slaveId }));
+        sendRequest('88');
+      }
       break;
     case 'setArea':
-      dispatch(responsesActions.setArea(payload.));
-      sendRequest('34');
+      {
+        const { area, responseId, slaveId } = payload;
+        dispatch(responsesActions.setArea({ area, responseId, slaveId }));
+        sendRequest('34');
+      }
       break;
   }
 });
