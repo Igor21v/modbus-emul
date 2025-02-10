@@ -21,13 +21,13 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const { className, slaveID, slave } = props;
   const dispatch = useAppDispatch();
   const adressHandler = (adr: number) => {
-    dispatch(setRequest({ changeAdr: { id: slaveID, adr } }));
+    dispatch(setRequest({ type: 'changeAdr', adr, slaveID }));
   };
   const addRequestHandler = () => {
-    dispatch(setRequest({ addRequest: slaveID }));
+    dispatch(setRequest({ type: 'addRequest', slaveID }));
   };
   const delSlaveHandler = () => {
-    dispatch(setRequest({ delSlave: slaveID }));
+    dispatch(setRequest({ type: 'delSlave', slaveID }));
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>
@@ -50,7 +50,7 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
       <hr className={cls.line} />
 
       {Object.entries(slave.requests).map(([id, request]) => (
-        <RequestItem slaveAdress={slaveID} id={+id} request={request} key={id} slaveId={slaveID} requestId={+id} />
+        <RequestItem slaveAdress={slaveID} request={request} key={id} slaveId={slaveID} requestId={+id} />
       ))}
     </VStack>
   );

@@ -1,64 +1,74 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { requestsActions } from '../slice/requests';
+import {
+  AddRequest,
+  AddSlave,
+  ChangeAdr,
+  ChangeQuantity,
+  ChangeRegister,
+  DelRequest,
+  DelSlave,
+  SendCmdRec,
+  SetContent,
+  SetFunc,
+  SetLoopRec,
+} from '../types/actionTypes';
 
-interface Props {
-  addSlave?: number;
-  addRequest?: number;
-  delRequest?: { adress: number; reqID: number };
-  delSlave?: number;
-  changeAdr?: { id: number; adr: number };
-  changeRegister?: { slaveId: number; requestId: number; register: number };
-  changeQuantity?: { slaveId: number; requestId: number; quantity: number };
-  setContent?: { slaveId: number; requestId: number; register: number; content: number };
-  setFunc?: { slaveId: number; requestId: number; func: number };
-  setLoopRec?: { slaveId: number; requestId: number; loopRec: boolean };
-  sendCmdRec?: { slaveId: number; requestId: number };
-}
+type Props =
+  | AddSlave
+  | AddRequest
+  | DelRequest
+  | DelSlave
+  | ChangeAdr
+  | ChangeRegister
+  | ChangeQuantity
+  | SetContent
+  | SetFunc
+  | SetLoopRec
+  | SendCmdRec;
 
 export const setRequest = createAsyncThunk<void, Props, ThunkConfig>('requests/setMasterProp', async (payload, thunkApi) => {
   const { dispatch } = thunkApi;
-  const type = Object.keys(payload)[0] as keyof Props;
-  const props = Object.values(payload)[0];
-  switch (type) {
+  switch (payload.type) {
     case 'addSlave':
-      dispatch(requestsActions.addSlave(props));
+      dispatch(requestsActions.addSlave(payload));
       sendRequest('33');
       break;
     case 'addRequest':
-      dispatch(requestsActions.addRequest(props));
+      dispatch(requestsActions.addRequest(payload));
       sendRequest('44');
       break;
     case 'delRequest':
-      dispatch(requestsActions.delRequest(props));
+      dispatch(requestsActions.delRequest(payload));
       sendRequest('55');
       break;
     case 'delSlave':
-      dispatch(requestsActions.delSlave(props));
+      dispatch(requestsActions.delSlave(payload));
       sendRequest('66');
       break;
     case 'changeAdr':
-      dispatch(requestsActions.changeAdr(props));
+      dispatch(requestsActions.changeAdr(payload));
       sendRequest('99');
       break;
     case 'changeRegister':
-      dispatch(requestsActions.changeRegister(props));
+      dispatch(requestsActions.changeRegister(payload));
       sendRequest('1');
       break;
     case 'changeQuantity':
-      dispatch(requestsActions.changeQuantity(props));
+      dispatch(requestsActions.changeQuantity(payload));
       sendRequest('3');
       break;
     case 'setContent':
-      dispatch(requestsActions.setContent(props));
+      dispatch(requestsActions.setContent(payload));
       sendRequest('88');
       break;
     case 'setFunc':
-      dispatch(requestsActions.setFunc(props));
+      dispatch(requestsActions.setFunc(payload));
       sendRequest('34');
       break;
     case 'setLoopRec':
-      dispatch(requestsActions.setLoopRec(props));
+      dispatch(requestsActions.setLoopRec(payload));
       sendRequest('343');
       break;
     case 'sendCmdRec':

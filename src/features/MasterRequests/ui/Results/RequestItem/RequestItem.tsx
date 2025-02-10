@@ -7,7 +7,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Icon, IconTheme } from 'shared/ui/Icon';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Request, ViewType, requestsActions } from '../../../model/slice/requests';
-
 import { Register } from 'entities/Register';
 import Send from 'shared/icons/Send';
 import cls from './RequestItem.module.css';
@@ -31,15 +30,15 @@ export const RequestItem = memo((props: RequestItemProps) => {
   };
   const setContent = useCallback(
     (register: number, content: number) => {
-      dispatch(setRequest({ setContent: { content, register, requestId, slaveId } }));
+      dispatch(setRequest({ type: 'setContent', content, register, requestId, slaveId }));
     },
     [slaveId, requestId],
   );
   const setLoopRec = useCallback(() => {
-    dispatch(setRequest({ setLoopRec: { requestId, slaveId, loopRec: !loopRec } }));
+    dispatch(setRequest({ type: 'setLoopRec', loopRec: !loopRec, slaveId, requestId }));
   }, [loopRec]);
   const sendCmdRec = useCallback(() => {
-    dispatch(setRequest({ sendCmdRec: { requestId, slaveId } }));
+    dispatch(setRequest({ type: 'sendCmdRec', requestId, slaveId }));
   }, []);
 
   const editable = func > 4;
