@@ -26,7 +26,7 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
   };
   const setContent = useCallback(
     (register: number, content: number) => {
-      dispatch(setResponse({ setContent: { content, register, responseId, slaveId } }));
+      dispatch(setResponse({ type: 'setContent', content, register, responseId, slaveId }));
     },
     [slaveId, responseId],
   );

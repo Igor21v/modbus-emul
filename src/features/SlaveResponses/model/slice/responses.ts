@@ -41,8 +41,8 @@ const responsesSlice = createSlice({
         aria: 4,
       };
     },
-    delRegister: (state, action: PayloadAction<{ adress: number; reqID: number }>) => {
-      delete state[action.payload.adress].requests[action.payload.reqID];
+    delRegister: (state, action: PayloadAction<{ slaveAdress: number; id: number }>) => {
+      delete state[action.payload.slaveAdress].requests[action.payload.id];
     },
     delSlave: (state, action: PayloadAction<number>) => {
       delete state[action.payload];
@@ -50,12 +50,12 @@ const responsesSlice = createSlice({
     changeAdr: (state, action: PayloadAction<{ id: number; adr: number }>) => {
       state[action.payload.id].adr = action.payload.adr;
     },
-    changeRegister: (state, action: PayloadAction<{ slaveId: number; responseId: number; register: number }>) => {
-      state[action.payload.slaveId].requests[action.payload.responseId].register = action.payload.register;
+    changeRegister: (state, action: PayloadAction<{ slaveId: number; responseId: number; val: number }>) => {
+      state[action.payload.slaveId].requests[action.payload.responseId].register = action.payload.val;
     },
-    changeQuantity: (state, action: PayloadAction<{ slaveId: number; responseId: number; quantity: number }>) => {
-      state[action.payload.slaveId].requests[action.payload.responseId].quantity = action.payload.quantity;
-      state[action.payload.slaveId].requests[action.payload.responseId].content = Array(action.payload.quantity).fill(0);
+    changeQuantity: (state, action: PayloadAction<{ slaveId: number; responseId: number; val: number }>) => {
+      state[action.payload.slaveId].requests[action.payload.responseId].quantity = action.payload.val;
+      state[action.payload.slaveId].requests[action.payload.responseId].content = Array(action.payload.val).fill(0);
     },
     setView: (state, action: PayloadAction<{ slaveId: number; responseId: number; view: ViewType }>) => {
       state[action.payload.slaveId].requests[action.payload.responseId].view = action.payload.view;

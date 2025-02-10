@@ -22,17 +22,17 @@ export const ResponseItem = memo((props: ResponseItemProps) => {
   const { className, response, id, slaveAdress, slaveId, responseId } = props;
   const dispatch = useAppDispatch();
   const regHandler = (val: number) => {
-    dispatch(setResponse({ changeRegister: { register: val, responseId: id, slaveId: slaveId } }));
+    dispatch(setResponse({ type: 'changeRegister', val, responseId, slaveId }));
   };
   const quantityHandler = (val: number) => {
-    dispatch(setResponse({ changeQuantity: { quantity: val, responseId: id, slaveId: slaveId } }));
+    dispatch(setResponse({ type: 'changeQuantity', val, responseId, slaveId }));
   };
 
   const delReqHandler = () => {
-    dispatch(setResponse({ delRegister: { adress: slaveAdress, reqID: id } }));
+    dispatch(setResponse({ type: 'delRegister', slaveAdress, id }));
   };
   const areaHandler = (val: string) => {
-    dispatch(setResponse({ setArea: { slaveId, responseId, area: +val } }));
+    dispatch(setResponse({ type: 'setArea', area: +val, responseId, slaveId }));
   };
 
   return (

@@ -20,13 +20,13 @@ export const SlaveItem = memo((props: SlaveItemProps) => {
   const { className, slaveID, slave } = props;
   const dispatch = useAppDispatch();
   const adressHandler = (adr: number) => {
-    dispatch(setResponse({ changeAdr: { id: slaveID, adr } }));
+    dispatch(setResponse({ type: 'changeAdr', slaveID, adr }));
   };
   const addRequestHandler = () => {
-    dispatch(setResponse({ addRegister: slaveID }));
+    dispatch(setResponse({ type: 'addRegister', slaveID }));
   };
   const delSlaveHandler = () => {
-    dispatch(setResponse({ delSlave: slaveID }));
+    dispatch(setResponse({ type: 'delSlave', slaveID }));
   };
   return (
     <VStack className={classNames(cls.SlaveItem, {}, [className])} gap="4" max>

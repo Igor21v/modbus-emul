@@ -21,7 +21,7 @@ export const Config = memo((props: SettingsProps) => {
     let newAdr = Object.values(responses).at(-1)?.adr;
     if (!newAdr || newAdr >= 255) newAdr = 1;
     else newAdr++;
-    dispatch(setResponse({ addSlave: newAdr }));
+    dispatch(setResponse({ type: 'addSlave', newAdr }));
   };
   return (
     <VStack className={classNames(cls.Config, {}, [className])} gap="32">
