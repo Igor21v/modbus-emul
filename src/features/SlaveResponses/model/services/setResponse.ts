@@ -1,54 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { responsesActions } from '../slice/responses';
-
-interface AddSlave {
-  type: 'addSlave';
-  newAdr: number;
-}
-interface AddRegister {
-  type: 'addRegister';
-  slaveID: number;
-}
-interface DelRegister {
-  type: 'delRegister';
-  slaveAdress: number;
-  id: number;
-}
-interface DelSlave {
-  type: 'delSlave';
-  slaveID: number;
-}
-interface ChangeAdr {
-  type: 'changeAdr';
-  slaveID: number;
-  adr: number;
-}
-interface ChangeRegister {
-  type: 'changeRegister';
-  slaveId: number;
-  responseId: number;
-  val: number;
-}
-interface ChangeQuantity {
-  type: 'changeQuantity';
-  slaveId: number;
-  responseId: number;
-  val: number;
-}
-interface SetContent {
-  type: 'setContent';
-  slaveId: number;
-  responseId: number;
-  register: number;
-  content: number;
-}
-interface SetArea {
-  type: 'setArea';
-  slaveId: number;
-  responseId: number;
-  area: number;
-}
+import {
+  AddRegister,
+  AddSlave,
+  ChangeAdr,
+  ChangeQuantity,
+  ChangeRegister,
+  DelRegister,
+  DelSlave,
+  SetArea,
+  SetContent,
+} from '../types/actionTypes';
 
 type Props = AddSlave | AddRegister | DelRegister | DelSlave | ChangeAdr | ChangeRegister | ChangeQuantity | SetContent | SetArea;
 
@@ -56,58 +19,40 @@ export const setResponse = createAsyncThunk<void, Props, ThunkConfig>('requests/
   const { dispatch } = thunkApi;
   switch (payload.type) {
     case 'addSlave':
-      dispatch(responsesActions.addSlave(payload.newAdr));
+      dispatch(responsesActions.addSlave(payload));
       sendRequest('33');
       break;
     case 'addRegister':
-      dispatch(responsesActions.addRegister(payload.slaveID));
+      dispatch(responsesActions.addRegister(payload));
       sendRequest('44');
       break;
     case 'delRegister':
-      {
-        const { slaveAdress, id } = payload;
-        dispatch(responsesActions.delRegister({ slaveAdress, id }));
-        sendRequest('55');
-      }
+      dispatch(responsesActions.delRegister(payload));
+      sendRequest('55');
       break;
     case 'delSlave':
-      dispatch(responsesActions.delSlave(payload.slaveID));
+      dispatch(responsesActions.delSlave(payload));
       sendRequest('66');
       break;
     case 'changeAdr':
-      {
-        const { adr, slaveID: id } = payload;
-        dispatch(responsesActions.changeAdr({ adr, id }));
-        sendRequest('99');
-      }
+      dispatch(responsesActions.changeAdr(payload));
+      sendRequest('99');
       break;
     case 'changeRegister':
-      {
-        const { val, responseId, slaveId } = payload;
-        dispatch(responsesActions.changeRegister({ val, responseId, slaveId }));
-        sendRequest('1');
-      }
+      dispatch(responsesActions.changeRegister(payload));
+      sendRequest('1');
       break;
     case 'changeQuantity':
-      {
-        const { val, responseId, slaveId } = payload;
-        dispatch(responsesActions.changeQuantity({ val, responseId, slaveId }));
-        sendRequest('3');
-      }
+      dispatch(responsesActions.changeQuantity(payload));
+      sendRequest('3');
       break;
     case 'setContent':
-      {
-        const { content, register, responseId, slaveId } = payload;
-        dispatch(responsesActions.setContent({ content, register, responseId, slaveId }));
-        sendRequest('88');
-      }
+      dispatch(responsesActions.setContent(payload));
+      sendRequest('88');
       break;
     case 'setArea':
-      {
-        const { area, responseId, slaveId } = payload;
-        dispatch(responsesActions.setArea({ area, responseId, slaveId }));
-        sendRequest('34');
-      }
+      dispatch(responsesActions.setArea(payload));
+      sendRequest('34');
       break;
   }
 });
