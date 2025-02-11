@@ -6,7 +6,7 @@ export default async function open(ws: WorkerStateType, props: any) {
     // @ts-ignore
     const ports = await navigator.serial.getPorts();
     ws.port = ports[0];
-    await ws.port.open(props);
+    await ws.port.open({ ...props, bufferSize: 1 });
     ws.needClose = false;
     ws.baudRate = props.baudRate;
     postMessage({ type: 'open', state: 'OK' });
