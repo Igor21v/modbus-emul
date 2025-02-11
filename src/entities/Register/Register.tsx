@@ -23,6 +23,9 @@ export const Register = memo((props: RegisterProps) => {
   const setContentReg = useCallback((content: number) => {
     setContent(index, content);
   }, []);
+  if (discrete && value > 1) {
+    setContentReg(0);
+  }
 
   let RenderVal = null;
   if (discrete) RenderVal = <Discrete value={value} setContentReg={setContentReg} editable={editable} />;
