@@ -27,11 +27,13 @@ export default async function listen(ws: WorkerStateType) {
           if (chankTime > maxFrameDelay) {
             const diffTime = Math.round((currTime - prevFrameTime) * 100) / 100;
             /* console.log('Отправка фрейма ' + frame); */
-            postMessage({
-              type: 'listen',
-              state: 'MSG',
-              payload: { msg: frame, diffTime },
-            });
+            if (!ws.init) {
+              postMessage({
+                type: 'listen',
+                state: 'MSG',
+                payload: { msg: frame, diffTime },
+              });
+            }
             frame = `${value}`;
             /*  console.log('Начало нового фрейма ' + frame); */
             prevFrameTime = performance.now();

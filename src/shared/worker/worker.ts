@@ -10,6 +10,7 @@ const ws: WorkerStateType = {
   reader: undefined,
   needClose: false,
   baudRate: 9600,
+  init: false,
 };
 
 // Обработка получения сообщения

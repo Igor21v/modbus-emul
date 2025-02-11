@@ -26,4 +26,5 @@ export interface WorkerStateType {
   reader: any;
   needClose: boolean;
   baudRate: number;
+  init: boolean;
 }
