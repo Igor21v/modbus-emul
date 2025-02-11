@@ -56,17 +56,13 @@ export default async function listen(ws: WorkerStateType) {
   // Максимальная задержка между символьными фреймами в одном фрейме
   function getMaxFrameDeley(msg: string) {
     // время передачи 1 симвала (из 11 бит)
-    let charTime = (11 / ws.baudRate) * 10;
-    // В соответсвии со спецификацией modbus если скорость более 19200 время t1,5 и t3,5 фиксировано
+    let charTime = (11 / ws.baudRate) * 1000;
+    // В соответсвии со спецификацией modbus если скорость более 19200 время t1,5
     let t15 = 0.75;
-    let t35 = 1.75;
     if (ws.baudRate <= 19200) {
       t15 = charTime * 1.5;
-      t35 = charTime * 3.5;
     }
     charTime += t15;
-    const numberChars = msg.split(',').length;
-    const chunkTime = numberChars * charTime + t35;
-    return chunkTime;
+    return charTime;
   }
 }
