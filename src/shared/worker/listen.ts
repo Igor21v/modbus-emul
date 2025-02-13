@@ -4,44 +4,40 @@ import { WorkerStateType } from './types';
 export default async function listen(ws: WorkerStateType) {
   let frame = '';
   let prevFrameTime = performance.now();
-  let prevChunkTime = performance.now();
+  let timer;
+  // 11 бит в символе модбас, 256 - максимальое количество символов в фрейме
+  let maxFrameTime = 256 * (11 / ws.baudRate) * 1000;
+  // 1.5 - время между символами согласно спецификации, при скорости более 19200 задержка между символами фиксированая
+  if (ws.baudRate <= 19200) maxFrameTime *= 1.5;
+  else maxFrameTime += 256 * 0.75;
+
+  console.log('maxFrame ' + maxFrameTime);
   while (ws.port?.readable && !ws.needClose) {
     ws.reader = ws.port.readable.getReader();
     try {
       while (true) {
         const { value, done } = await ws.reader.read();
         if (done) {
+          console.log('trap ');
           break;
         }
-        /* console.log('Получен чанк ' + `${value}`); */
-        if (frame === '') {
-          /* console.log('Начало нового фрейма из пустого'); */
-          frame = `${value}`;
-        } else {
+        if (frame !== '') frame += ',';
+        frame += `${value}`;
+
+        clearTimeout(timer);
+        timer = setTimeout(async () => {
           const currTime = performance.now();
-          const chunkTime = currTime - prevChunkTime;
-          const maxFrameDelay = getMaxFrameDeley(`${value}`);
-          console.log('maxFrameDelay ' + maxFrameDelay);
-          console.log('chunkTime ' + chunkTime);
-          if (chunkTime > maxFrameDelay) {
-            const diffTime = Math.round((currTime - prevFrameTime) * 100) / 100;
-            /* console.log('Отправка фрейма ' + frame); */
-            if (!ws.init) {
-              postMessage({
-                type: 'listen',
-                state: 'MSG',
-                payload: { msg: frame, diffTime },
-              });
-            }
-            frame = `${value}`;
-            /* console.log('Начало нового фрейма ' + frame); */
-            prevFrameTime = performance.now();
-          } else {
-            frame += `,${value}`;
-            /* console.log('Дополнил фрейм ' + frame); */
+          const diffTime = Math.round((currTime - prevFrameTime) * 100) / 100;
+          if (!ws.init) {
+            postMessage({
+              type: 'listen',
+              state: 'MSG',
+              payload: { msg: frame, diffTime },
+            });
           }
-        }
-        prevChunkTime = performance.now();
+          prevFrameTime = performance.now();
+          frame = '';
+        }, maxFrameTime);
       }
     } catch (error) {
     } finally {
@@ -51,18 +47,5 @@ export default async function listen(ws: WorkerStateType) {
   if (ws.port) {
     await ws.port.close();
     ws.port = undefined;
-  }
-
-  // Максимальная задержка между символьными фреймами в одном фрейме
-  function getMaxFrameDeley(msg: string) {
-    // время передачи 1 симвала (из 11 бит)
-    let charTime = (11 / ws.baudRate) * 1000;
-    // В соответсвии со спецификацией modbus если скорость более 19200 время t1,5
-    let t15 = 0.75;
-    if (ws.baudRate <= 19200) {
-      t15 = charTime * 1.5;
-    }
-    charTime += t15;
-    return charTime;
   }
 }
